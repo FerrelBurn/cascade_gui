@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import Upload from './Upload';
 class AddReporting extends Component{
     render(){
         return(
@@ -103,6 +103,7 @@ class AddReporting extends Component{
                   </div>
                 </div>
               </form>
+              <Upload/>
             </div>
           </div>
         )

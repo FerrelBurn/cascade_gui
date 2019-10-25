@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import Upload from './Upload';
 
 class AddRequirement extends Component{
     render(){
@@ -15,14 +16,14 @@ class AddRequirement extends Component{
                 htmlFor="petName"
                 readOnly
               >
-                Pet Name
+                Source Name
               </label>
               <div className="col-md-10">
                 <input
                   type="text"
                   className="form-control"
                   name="petName"
-                  placeholder="Pet's Name"
+                  placeholder="Source's Name"
                 />
               </div>
             </div>
@@ -102,6 +103,7 @@ class AddRequirement extends Component{
               </div>
             </div>
           </form>
+          <Upload/>
         </div>
       </div>)
     }
