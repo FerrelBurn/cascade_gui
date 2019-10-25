@@ -8,6 +8,7 @@ import AddRequirement from './AddRequirement';
 import ListReports from './ListReports';
 import ListRequirements from './ListRequirements';
 import Navigation from './Navigation';
+import DraftList from './DraftList';
 import { Nav, Navbar, NavItem, NavbarBrand } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
@@ -73,6 +74,7 @@ class App extends Component {
                 <Route path="/list-requirements" component={ListRequirements} />
                 <Route path="/add-report" component={AddReporting} />
                 <Route path="/add-requirement" component={AddRequirement} />
+                <Route path="/list-drafts" component={DraftList} />
               </Switch>
 
             </div>

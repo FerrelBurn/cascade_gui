@@ -18,6 +18,9 @@ const Navigation = (props) => (
             <NavItem>
                 <Nav.Link className="text-white" href="/add-requirement"><h4>Add Requirement</h4></Nav.Link>
             </NavItem>
+            <NavItem>
+                <Nav.Link className="text-white" href="/list-drafts"><h4>Draft Queue</h4></Nav.Link>
+            </NavItem>
             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>

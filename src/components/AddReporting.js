@@ -16,14 +16,14 @@ class AddReporting extends Component{
                     htmlFor="petName"
                     readOnly
                   >
-                    Pet Name
+                   Source Name
                   </label>
                   <div className="col-md-10">
                     <input
                       type="text"
                       className="form-control"
                       name="petName"
-                      placeholder="Pet's Name"
+                      placeholder="Sources's Name"
                     />
                   </div>
                 </div>
@@ -33,14 +33,14 @@ class AddReporting extends Component{
                     className="col-md-2 col-form-label text-md-right"
                     htmlFor="ownerName"
                   >
-                    Pet Owner
+                    Location
                   </label>
                   <div className="col-md-10">
                     <input
                       type="text"
                       className="form-control"
                       name="ownerName"
-                      placeholder="Owner's Name"
+                      placeholder="New York City, NY"
                     />
                   </div>
                 </div>
@@ -78,7 +78,7 @@ class AddReporting extends Component{
   
                 <div className="form-group form-row">
                   <label className="col-md-2 text-md-right" htmlFor="aptNotes">
-                    Apt. Notes
+                    Notes
                   </label>
                   <div className="col-md-10">
                     <textarea
@@ -87,7 +87,7 @@ class AddReporting extends Component{
                       cols="50"
                       name="aptNotes"
                       id="aptNotes"
-                      placeholder="Appointment Notes"
+                      placeholder=" Notes"
                     />
                   </div>
                 </div>
