@@ -1,5 +1,6 @@
-import React from 'react';
-import '../css/index.css';
+import React, { Component } from 'react';
+import '../css/App.css';
+
 import AddReporting from './AddReporting';
 
 
@@ -10,9 +11,9 @@ function App() {
         <div className="row">
           <div className="col-md-12 bg-white">
             <div className="container">
-              <AddReporting/>
+              <AddReporting />
               {/* <div>Search Appointments</div>
-              <div>List Appointments</div> */}
+              <div>List Appointments</div>  */}
             </div>
           </div>
         </div>

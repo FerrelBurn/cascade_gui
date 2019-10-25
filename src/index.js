@@ -9,7 +9,7 @@ import 'jquery/dist/jquery.js';
 import 'popper.js/dist/umd/popper.js';
 import 'bootstrap/dist/js/bootstrap.js';
 
-// ReactDOM.render(<App />, document.getElementById('root'));
+render(<App />, document.getElementById('root'));
 
 
 // class FavoriteColorForm extends React.Component {
@@ -292,7 +292,6 @@ import 'bootstrap/dist/js/bootstrap.js';
 //     }
 // }
 
-// render(
-//     // <Library  />,
+//  render(
 //     document.getElementById('root')
-// )
+//  )
