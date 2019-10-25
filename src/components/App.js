@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import '../css/App.css';
+// import '../css/App.css';
 
 import AddReporting from './AddReporting';
 import Home from './Home';
@@ -41,16 +41,19 @@ class App extends Component {
   render() {
 
     return (
-      
 
-        <Router>
-          <Navbar fixed="top" color="337ab7" bg="primary"  >
-            
+
+      <Router>
+        <div className="container">
+          <header>
+            <Navbar fixed="top" color="337ab7" bg="dark"  >
+
               <NavbarBrand>
-                <Link className="text-white navbar-brand" to="/"><h1>Cascade</h1></Link>
+                <Link className="text-white navbar-brand" to="/"><h1><font color="37eb34">Cascade</font></h1></Link>
               </NavbarBrand>
-              <Navigation/>
-          </Navbar>
+              <Navigation />
+            </Navbar>
+          </header>
           {/* <nav className="navbar fixed-top navbar-light bg-primary" >
 
             
@@ -62,31 +65,22 @@ class App extends Component {
            
 
           </nav> */}
-          <main className="page bg-white" id="petratings">
+          <main role="main" className="page  flex-shrink-0" id="petratings">
             <div className="container">
-              <div className="row">
-                <div className="col-md-12 bg-white">
-                  <Switch>
-                    <Route exact path="/" component={Home} />
-                    <Route path="/list-reports" component={ListReports} />
-                    <Route path="/list-requirements" component={ListRequirements} />
-                    <Route path="/add-report" component={AddReporting} />
-                    <Route path="/add-requirement" component={AddRequirement} />
-                  </Switch>
-                  <div className="container">
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route path="/list-reports" component={ListReports} />
+                <Route path="/list-requirements" component={ListRequirements} />
+                <Route path="/add-report" component={AddReporting} />
+                <Route path="/add-requirement" component={AddRequirement} />
+              </Switch>
 
-                    {/* <AddReporting />
-                  <AddRequirement />
-                  <ListReports reports={this.state.reports} /> */}
-                    {/* <div>Search Appointments</div>
-              <div>List Appointments</div>  */}
-                  </div>
-                </div>
-              </div>
             </div>
           </main>
-        </Router>
-      
+
+        </div>
+      </Router >
+
     );
   }
 }
