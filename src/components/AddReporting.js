@@ -98,7 +98,7 @@ class AddReporting extends Component{
                       type="submit"
                       className="btn btn-primary d-block ml-auto"
                     >
-                      Add Appointment
+                      Add Notes
                     </button>
                   </div>
                 </div>

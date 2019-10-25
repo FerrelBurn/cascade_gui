@@ -16,35 +16,19 @@ class AddRequirement extends Component{
                 htmlFor="petName"
                 readOnly
               >
-                Source Name
+                Requirement Name
               </label>
               <div className="col-md-10">
                 <input
                   type="text"
                   className="form-control"
                   name="petName"
-                  placeholder="Source's Name"
+                  placeholder="Requirement Name"
                 />
               </div>
             </div>
 
-            <div className="form-group form-row">
-              <label
-                className="col-md-2 col-form-label text-md-right"
-                htmlFor="ownerName"
-              >
-                Pet Owner
-              </label>
-              <div className="col-md-10">
-                <input
-                  type="text"
-                  className="form-control"
-                  name="ownerName"
-                  placeholder="Owner's Name"
-                />
-              </div>
-            </div>
-
+           
             <div className="form-group form-row">
               <label
                 className="col-md-2 col-form-label text-md-right"
@@ -78,7 +62,7 @@ class AddRequirement extends Component{
 
             <div className="form-group form-row">
               <label className="col-md-2 text-md-right" htmlFor="aptNotes">
-                Apt. Notes
+               Description
               </label>
               <div className="col-md-10">
                 <textarea
@@ -87,7 +71,7 @@ class AddRequirement extends Component{
                   cols="50"
                   name="aptNotes"
                   id="aptNotes"
-                  placeholder="Appointment Notes"
+                  placeholder="Description"
                 />
               </div>
             </div>
@@ -98,7 +82,7 @@ class AddRequirement extends Component{
                   type="submit"
                   className="btn btn-primary d-block ml-auto"
                 >
-                  Add Appointment
+                  Add Requirement
                 </button>
               </div>
             </div>
