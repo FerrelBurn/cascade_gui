@@ -6,4 +6,4 @@ class AddReporting extends Component{
     }
 }
 
-export default AddReporting;
+export default AddReporting; 
