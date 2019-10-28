@@ -12,6 +12,7 @@ import DraftList from './DraftList';
 import { Nav, Navbar, NavItem, NavbarBrand } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
+import data from './public/data.json';
 
 class App extends Component {
 
@@ -19,7 +20,8 @@ class App extends Component {
     super();
     this.state = {
       reports: [],
-      lastIndex: 0
+      lastIndex: 0,
+      reports: data
     };
   }
   componentDidMount() {
