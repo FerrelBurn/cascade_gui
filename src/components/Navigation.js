@@ -1,25 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Nav, Navbar, NavItem, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar, NavItem } from "react-bootstrap";
 
 const Navigation = (props) => (
     <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto">
 
             <NavItem>
-                <Nav.Link className="text-white" href="/list-reports"><h4>List Reports</h4></Nav.Link>
+                <Nav.Link href="/list-reports">List Reports</Nav.Link>
             </NavItem>
             <NavItem>
-                <Nav.Link className="text-white" href="/list-requirements"><h4>List Requirements</h4></Nav.Link>
+                <Nav.Link href="/list-requirements">List Requirements</Nav.Link>
             </NavItem>
             <NavItem>
-                <Nav.Link className="text-white" href="/add-report"><h4>Add Report</h4></Nav.Link>
+                <Nav.Link href="/add-report">Add Report</Nav.Link>
             </NavItem>
             <NavItem>
-                <Nav.Link className="text-white" href="/add-requirement"><h4>Add Requirement</h4></Nav.Link>
+                <Nav.Link href="/add-requirement">Add Requirement</Nav.Link>
             </NavItem>
             <NavItem>
-                <Nav.Link className="text-white" href="/list-drafts"><h4>Draft Queue</h4></Nav.Link>
+                <Nav.Link href="/list-drafts">Draft Queue</Nav.Link>
             </NavItem>
             {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

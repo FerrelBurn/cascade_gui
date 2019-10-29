@@ -9,10 +9,11 @@ import ListReports from './components/ListReports';
 import ListRequirements from './components/ListRequirements';
 import Navigation from './components/Navigation';
 import DraftList from './components/DraftList';
-import { Nav, Navbar, NavItem, NavbarBrand } from "react-bootstrap";
+import {  Navbar,  NavbarBrand } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
 import data from './data/data.json';
+import ReportView from './components/ReportView';
 
 class App extends Component {
 
@@ -20,41 +21,27 @@ class App extends Component {
     super();
     this.state = {
       reports: [],
-      lastIndex: 0,
-      reports: data
+      lastIndex: 0
+     
     };
+
+   
   }
-  componentWillMount(){
+ 
+  componentDidMount() {
     this.setState({
       reports: data
     })
-  }
-  componentDidMount() {
-    // fetch('./data.json')
-    //   .then(response => response.json())
-    //   .then(result => {
-    //     const rpts = result.map(item => {
-    //       item.reportId = this.state.lastIndex;
-    //       this.setState({ lastIndex: this.state.lastIndex + 1 });
-    //       return item;
-    //     });
-
-    //     this.setState({
-    //       reports: rpts
-    //     });
-    //   });
-
 
   }
   render() {
-
     return (
 
 
       <Router>
         <div className="container">
           <header>
-            <Navbar fixed="top" color="337ab7" bg="dark"  >
+            <Navbar fixed="top" color="337ab7" bg="dark"  className="navbar-dark bg-dark" >
 
               <NavbarBrand>
                 <Link className="text-white navbar-brand" to="/"><h1><font color="37eb34">Cascade</font></h1></Link>
@@ -79,11 +66,23 @@ class App extends Component {
                 <Route exact path="/" render={(props) => (
                   <Home />
                 )} />
-                <Route path="/list-reports" component={ListReports} />
+                <Route exact path="/list-reports" render={(props) => (
+                  <ListReports reports={this.state.reports} />
+                )} />
+                {/* <Route path="/list-reports" component={ListReports} /> */}
                 <Route path="/list-requirements" component={ListRequirements} />
                 <Route path="/add-report" component={AddReporting} />
                 <Route path="/add-requirement" component={AddRequirement} />
                 <Route path="/list-drafts" component={DraftList} />
+                <Route path="/report/:id" render={(props) => {
+                 
+                  let reportPosition = props.location.pathname.replace('/report/', '');
+                  return (
+                    <ReportView
+                      report={this.state.reports[reportPosition]}
+                    />
+                  )
+                }} />
               </Switch>
 
             </div>

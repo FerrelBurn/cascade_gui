@@ -1,14 +1,22 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 
-const ReportView = (report) => (
-    <Link to={`/report/${report.report.id}`}>
-        <div className="card">
-            
-        </div>
+const ReportView = (props) => (
+    <div >
+        {
+            <div className="card" >
+                <div className="card-header">
+                    {props.report.summary}
+                </div>
+                <div className="cardBody">
+                    <p className="card-text">
+                        {props.report.text}
+                    </p>
 
-    </Link>
+                </div>
+            </div>
+        }
+    </div>
 )
 
 export default ReportView;
