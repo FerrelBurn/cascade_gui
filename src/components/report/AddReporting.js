@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Upload from './Upload';
+import Upload from '../Upload';
 class AddReporting extends Component{
     render(){
         return(

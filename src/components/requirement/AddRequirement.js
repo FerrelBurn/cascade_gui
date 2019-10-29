@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Upload from './Upload';
+import Upload from '../Upload';
 
 class AddRequirement extends Component{
     render(){

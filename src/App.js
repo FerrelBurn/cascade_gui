@@ -2,36 +2,38 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import '../css/App.css';
 
-import AddReporting from './components/AddReporting';
+import AddReporting from './components/report/AddReporting';
 import Home from './components/Home';
-import AddRequirement from './components/AddRequirement';
-import ListReports from './components/ListReports';
-import ListRequirements from './components/ListRequirements';
+import AddRequirement from './components/requirement/AddRequirement';
+import ListReports from './components/report/ListReports';
+import ListRequirements from './components/requirement/ListRequirements';
 import Navigation from './components/Navigation';
 import DraftList from './components/DraftList';
-import {  Navbar,  NavbarBrand } from "react-bootstrap";
+import { Navbar, NavbarBrand } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
 import data from './data/data.json';
-import ReportView from './components/ReportView';
+import ReportView from './components/report/ReportView';
 
 class App extends Component {
 
   constructor() {
+  
     super();
     this.state = {
-      reports: [],
+      reports: data,
       lastIndex: 0
-     
+
     };
 
-   
+
   }
- 
+
   componentDidMount() {
     this.setState({
       reports: data
     })
+   
 
   }
   render() {
@@ -41,7 +43,7 @@ class App extends Component {
       <Router>
         <div className="container">
           <header>
-            <Navbar fixed="top" color="337ab7" bg="dark"  className="navbar-dark bg-dark" >
+            <Navbar fixed="top" color="337ab7" bg="dark" className="navbar-dark bg-dark" >
 
               <NavbarBrand>
                 <Link className="text-white navbar-brand" to="/"><h1><font color="37eb34">Cascade</font></h1></Link>
@@ -75,7 +77,7 @@ class App extends Component {
                 <Route path="/add-requirement" component={AddRequirement} />
                 <Route path="/list-drafts" component={DraftList} />
                 <Route path="/report/:id" render={(props) => {
-                 
+
                   let reportPosition = props.location.pathname.replace('/report/', '');
                   return (
                     <ReportView
