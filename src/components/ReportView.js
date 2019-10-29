@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
-const ReportView = (props) => {
-    return ( <h1>Report View</h1> );
-}
- 
+
+const ReportView = (report) => (
+    <Link to={`/report/${report.report.id}`}>
+        <div className="card">
+            
+        </div>
+
+    </Link>
+)
+
 export default ReportView;

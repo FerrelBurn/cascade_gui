@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 
 
 
-import App from './components/App';
+import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'jquery/dist/jquery.js';
 import 'popper.js/dist/umd/popper.js';

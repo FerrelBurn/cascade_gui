@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 // import '../css/App.css';
 
-import AddReporting from './AddReporting';
-import Home from './Home';
-import AddRequirement from './AddRequirement';
-import ListReports from './ListReports';
-import ListRequirements from './ListRequirements';
-import Navigation from './Navigation';
-import DraftList from './DraftList';
+import AddReporting from './components/AddReporting';
+import Home from './components/Home';
+import AddRequirement from './components/AddRequirement';
+import ListReports from './components/ListReports';
+import ListRequirements from './components/ListRequirements';
+import Navigation from './components/Navigation';
+import DraftList from './components/DraftList';
 import { Nav, Navbar, NavItem, NavbarBrand } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
-import data from './public/data.json';
+import data from './data/data.json';
 
 class App extends Component {
 
@@ -23,6 +23,11 @@ class App extends Component {
       lastIndex: 0,
       reports: data
     };
+  }
+  componentWillMount(){
+    this.setState({
+      reports: data
+    })
   }
   componentDidMount() {
     // fetch('./data.json')
@@ -71,7 +76,9 @@ class App extends Component {
           <main role="main" className="page  flex-shrink-0" id="petratings">
             <div className="container">
               <Switch>
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" render={(props) => (
+                  <Home />
+                )} />
                 <Route path="/list-reports" component={ListReports} />
                 <Route path="/list-requirements" component={ListRequirements} />
                 <Route path="/add-report" component={AddReporting} />
