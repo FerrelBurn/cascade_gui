@@ -14,28 +14,38 @@ import { Navbar, NavbarBrand } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import data from './data/data.json';
 import ReportView from './components/report/ReportView';
-
+import Modal from 'react-modal';
 class App extends Component {
 
   constructor() {
-  
+
     super();
     this.state = {
       reports: data,
       drafts: data,
+      sidePaneOpen: false,
       lastIndex: 0
 
     };
-
+    this.handleClick = this.handleClick.bind(this);
 
   }
+  handleClick(e) {
+    console.log(e)
+    this.setState({
+      sidePaneOpen: !this.state.sidePaneOpen
 
+    })
+  }
   componentDidMount() {
+    Modal.setAppElement(this.el);
     this.setState({
       reports: data,
-      drafts: data
+      drafts: data,
+      sidePaneOpen: false
+
     })
-   
+  
 
   }
   render() {
@@ -48,7 +58,9 @@ class App extends Component {
             <Navbar fixed="top" color="337ab7" bg="dark" className="navbar-dark bg-dark" >
 
               <NavbarBrand>
-                <Link className="text-white navbar-brand" to="/"><h1><font color="37eb34">Cascade</font></h1></Link>
+                <Link className="text-white navbar-brand" to="/">
+                  <h1><font color="37eb34">Cascade</font></h1>
+                </Link>
               </NavbarBrand>
               <Navigation />
             </Navbar>
@@ -79,7 +91,10 @@ class App extends Component {
                 <Route path="/add-requirement" component={AddRequirement} />
 
                 <Route exact path="/list-drafts" render={(props) => (
-                <DraftList reports={this.state.drafts} />
+                  <DraftList
+                    handleClick={this.handleClick}
+                    sidePaneOpen={this.state.sidePaneOpen}
+                    reports={this.state.drafts} />
                 )} />
                 <Route path="/report/:id" render={(props) => {
 

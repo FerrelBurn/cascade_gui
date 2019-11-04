@@ -1,15 +1,12 @@
 import React from 'react';
 
-class RequirementsMatcher extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            isPaneOpen: false
-         }
-    }
-    render() { 
-        return (  );
-    }
+const RequirmentsMatcher = (props) => {
+    return ( 
+
+        <div className="col-6" style={{border: '1px solid green'}}>
+            requirementsMatcher
+        </div>
+     );
 }
  
-export default RequirementsMatcher;
+export default RequirmentsMatcher;
