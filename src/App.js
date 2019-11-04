@@ -8,7 +8,7 @@ import AddRequirement from './components/requirement/AddRequirement';
 import ListReports from './components/report/ListReports';
 import ListRequirements from './components/requirement/ListRequirements';
 import Navigation from './components/Navigation';
-import DraftList from './components/DraftList';
+import DraftList from './components/draftreport/DraftList';
 import { Navbar, NavbarBrand } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
@@ -22,6 +22,7 @@ class App extends Component {
     super();
     this.state = {
       reports: data,
+      drafts: data,
       lastIndex: 0
 
     };
@@ -31,7 +32,8 @@ class App extends Component {
 
   componentDidMount() {
     this.setState({
-      reports: data
+      reports: data,
+      drafts: data
     })
    
 
@@ -75,7 +77,10 @@ class App extends Component {
                 <Route path="/list-requirements" component={ListRequirements} />
                 <Route path="/add-report" component={AddReporting} />
                 <Route path="/add-requirement" component={AddRequirement} />
-                <Route path="/list-drafts" component={DraftList} />
+
+                <Route exact path="/list-drafts" render={(props) => (
+                <DraftList reports={this.state.drafts} />
+                )} />
                 <Route path="/report/:id" render={(props) => {
 
                   let reportPosition = props.location.pathname.replace('/report/', '');

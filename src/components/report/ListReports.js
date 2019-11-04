@@ -1,7 +1,5 @@
 import React from 'react';
-// import { FaFile } from "react-icons/fa";
-// import { Link } from 'react-router-dom';
-// import ReportView from './ReportView';
+
 import ReportSummary from './ReportSummary';
 
 const ListReports = (props) => {
