@@ -5,7 +5,7 @@ import ReportSummary from './ReportSummary';
 const ListReports = (props) => {
  
   return (
-    <div className="container" >
+    <div className="container-fluid" >
       {
         props.reports.map((report) => (
          

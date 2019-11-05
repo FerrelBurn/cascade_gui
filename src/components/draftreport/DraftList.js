@@ -4,7 +4,7 @@ import DraftSummary from './DraftSummary';
 const DraftList = (props) => {
     // console.log(props);
     return (
-        <div className="container" >
+        <div className="container-fluid" >
             {
               
                 props.reports.map((report) => (

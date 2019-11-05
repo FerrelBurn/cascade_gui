@@ -1,9 +1,9 @@
 import React from 'react';
-import ReportEnclosure from './ReportEnclosure';
-import ReportComment from './ReportComment';
+import ReportEnclosure from '../report/ReportEnclosure';
+import ReportComment from '../report/ReportComment';
 
-const ReportView = (props) => (
-    <div className="container-fluid" >
+const DraftView = (props) => (
+    <div >
         {
             <div className="card" >
                 <div className="card-header  d-flex">
@@ -51,4 +51,4 @@ const ReportView = (props) => (
     </div>
 )
 
-export default ReportView;
+export default DraftView;

@@ -6,9 +6,9 @@ import { Link } from 'react-router-dom';
 const DraftSummary = (props) => {
     // console.log(props);
     return (
-        <div className=" row mb-3" style={{ border: '1px solid red' }}>
+        <div className=" row mb-3" >
 
-            <div className=" col-5 media py-3" style={{ border: '1px solid black' }} key={props.report.reportId}>
+            <div className=" col-11 media py-3" key={props.report.reportId}>
                 {/* <div className="mr-3">
           <button className="pet-delete btn btn-sm btn-danger">X</button>
       </div> */}
@@ -20,7 +20,7 @@ const DraftSummary = (props) => {
                     </div>
                     <Link alt="view report"
                         title="view report"
-                        to={`/report/${props.report.id}`}>
+                        to={`/draft/${props.report.id}`}>
                         <div className="">
                             <span className="label-item">Subj: </span>
                             <span>{props.report.subject} </span>
@@ -49,11 +49,7 @@ const DraftSummary = (props) => {
 
                 </div>
             </div>
-            <RequirementsMatcher report={props.report}
-                selectedReport={props.report}
-
-                handleClick={props.handleClick}
-                sidePaneOpen={props.sidePaneOpen} />
+           
 
 
         </div >

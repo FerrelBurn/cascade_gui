@@ -9,7 +9,9 @@ import 'popper.js/dist/umd/popper.js';
 import 'bootstrap/dist/js/bootstrap.js';
 
 import './css/index.css';
+
 import 'bootstrap/dist/css/bootstrap.css';
+import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 render(<App />, document.getElementById('root'));
 
 

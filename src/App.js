@@ -14,7 +14,10 @@ import { Navbar, NavbarBrand } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import data from './data/data.json';
 import ReportView from './components/report/ReportView';
+import DraftView from './components/draftreport/DraftView';
 import Modal from 'react-modal';
+import { FaCheck, FaWindowClose, FaTags, FaRegListAlt } from "react-icons/fa";
+import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 class App extends Component {
 
   constructor() {
@@ -45,7 +48,7 @@ class App extends Component {
       sidePaneOpen: false
 
     })
-  
+
 
   }
   render() {
@@ -53,13 +56,13 @@ class App extends Component {
 
 
       <Router>
-        <div className="container">
+        <div className="container-fluid">
           <header>
             <Navbar fixed="top" color="337ab7" bg="dark" className="navbar-dark bg-dark" >
 
               <NavbarBrand>
                 <Link className="text-white navbar-brand" to="/">
-                  <h1><font color="37eb34">Cascade</font></h1>
+                  <h1><font color="37eb34">CASCADE</font></h1>
                 </Link>
               </NavbarBrand>
               <Navigation />
@@ -76,37 +79,105 @@ class App extends Component {
            
 
           </nav> */}
-          <main role="main" className="page  flex-shrink-0" id="petratings">
-            <div className="container">
-              <Switch>
-                <Route exact path="/" render={(props) => (
-                  <Home />
-                )} />
-                <Route exact path="/list-reports" render={(props) => (
-                  <ListReports reports={this.state.reports} />
-                )} />
-                {/* <Route path="/list-reports" component={ListReports} /> */}
-                <Route path="/list-requirements" component={ListRequirements} />
-                <Route path="/add-report" component={AddReporting} />
-                <Route path="/add-requirement" component={AddRequirement} />
 
-                <Route exact path="/list-drafts" render={(props) => (
-                  <DraftList
-                    handleClick={this.handleClick}
-                    sidePaneOpen={this.state.sidePaneOpen}
-                    reports={this.state.drafts} />
-                )} />
-                <Route path="/report/:id" render={(props) => {
+          <main role="main" className="container" style={{ marginTop: '1em' }} id="petratings">
+           
+             
+                <SideNav style={{ marginTop: '5em', background:' #555555 ' }}
+               
+                  onSelect={(selected) => {
+                    // Add your code here
+                  }}
+                >
+                  <SideNav.Toggle />
 
-                  let reportPosition = props.location.pathname.replace('/report/', '');
-                  return (
-                    <ReportView
-                      report={this.state.reports[reportPosition]}
-                    />
-                  )
-                }} />
-              </Switch>
+                  <SideNav.Nav defaultSelected="req">
+                    <NavItem eventKey="req" expanded={true}>
+                      <NavIcon>
+                        <FaTags />
+                      </NavIcon>
+                      <NavText>
+                        Req Counts
+                    </NavText>
 
+
+                      <NavItem eventKey="req/accepted">
+                        <NavText>
+                          <FaCheck color={'green'} /> Accepted: 5
+                      </NavText>
+                      </NavItem>
+                      <NavItem eventKey="req/rejected">
+                        <NavText>
+                          <FaWindowClose color={'red'} /> Rejected: 2
+                      </NavText>
+                      </NavItem>
+
+                    </NavItem>
+                    <NavItem eventKey="requirements" expanded={true}>
+                      <NavIcon>
+                        <FaRegListAlt />
+                      </NavIcon>
+                      <NavText>
+                        Requirements
+                    </NavText>
+                      <NavItem eventKey="requirements/pir">
+                        <NavText>
+                          PIR: 3
+                      </NavText>
+                      </NavItem>
+                      <NavItem eventKey="requirements/cir">
+                        <NavText>
+                          CIR: 2
+                      </NavText>
+                      </NavItem>
+                      <NavItem eventKey="requirements/nir">
+                        <NavText>
+                          NIR: 2
+                      </NavText>
+                      </NavItem>
+                    </NavItem>
+                  </SideNav.Nav>
+                </SideNav>
+                <div className="row">
+                <div className="col-md-11 offset-md-1">
+                <Switch>
+                  <Route exact path="/" render={(props) => (
+                    <Home />
+                  )} />
+                  <Route exact path="/list-reports" render={(props) => (
+                    <ListReports reports={this.state.reports} />
+                  )} />
+                  {/* <Route path="/list-reports" component={ListReports} /> */}
+                  <Route path="/list-requirements" component={ListRequirements} />
+                  <Route path="/add-report" component={AddReporting} />
+                  <Route path="/add-requirement" component={AddRequirement} />
+
+                  <Route exact path="/list-drafts" render={(props) => (
+                    <DraftList
+                      handleClick={this.handleClick}
+                      sidePaneOpen={this.state.sidePaneOpen}
+                      reports={this.state.drafts} />
+                  )} />
+                  <Route path="/report/:id" render={(props) => {
+
+                    let reportPosition = props.location.pathname.replace('/report/', '');
+                    return (
+                      <ReportView
+                        report={this.state.reports[reportPosition]}
+                      />
+                    )
+                  }} />
+                  <Route path="/draft/:id" render={(props) => {
+
+                    let reportPosition = props.location.pathname.replace('/draft/', '');
+                    return (
+                      <DraftView
+                        report={this.state.reports[reportPosition]}
+                      />
+                    )
+                  }} />
+                </Switch>
+              </div>
             </div>
           </main>
 
