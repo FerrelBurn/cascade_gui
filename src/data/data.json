@@ -20,19 +20,23 @@
         "warning": "this is non cooberated non validated",
         "comments": [
             {
-                "id":1,
+                "id": 1,
                 "comment": "says if source is available for re-contact",
                 "doi": "last time believed to be accurate",
-                "reqs": ["456"],
+                "reqs": [
+                    "456"
+                ],
                 "source": "head",
                 "summary": "summary1",
                 "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
             },
             {
-                "id":2,
+                "id": 2,
                 "comment": "says if source is available for re-contact",
                 "doi": "last time believed to be accurate",
-                "reqs": ["123"],
+                "reqs": [
+                    "123"
+                ],
                 "source": "face",
                 "summary": "",
                 "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
@@ -44,12 +48,12 @@
         "prep": "prepared by",
         "encl": [
             {
-                "id":1,
+                "id": 1,
                 "enclosureClassification": "UNCLASSIFIED",
                 "enclosureDescription": "a picture of a bicycle"
             },
             {
-                "id":2,
+                "id": 2,
                 "enclosureClassification": "UNCLASSIFIED",
                 "enclosureDescription": "a picture of a bicycle"
             }
@@ -263,6 +267,53 @@
         "subject": "This is a fancy subject",
         "summary": "this is a summary",
         "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+        "iirTagline": "specific recipient?",
+        "warning": "this is non cooberated non validated",
+        "comments": [
+            {
+                "comment": "says if source is available for re-contact",
+                "doi": "last time believed to be accurate",
+                "reqs": [],
+                "source": "",
+                "summary": "",
+                "text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+            }
+        ],
+        "facq": "",
+        "coll": "browncow",
+        "instr": "instructions text. not there was an SDR (source directed requirement). Instructions to recipient. what ICR to respond to (intelligence collectionRequirement",
+        "prep": "prepared by",
+        "encl": [
+            {
+                "enclosureClassification": "UNCLASSIFIED",
+                "enclosureDescription": "a picture of a bicycle"
+            },
+            {
+                "enclosureClassification": "UNCLASSIFIED",
+                "enclosureDescription": "a picture of a bicycle"
+            }
+        ],
+        "acqDate": "2019-10-25T15:50:39Z",
+        "acq": "where information accquired such as city name",
+        "dissem": []
+    },
+    {
+        "id": 7,
+        "serial": {
+            "classification": "UNCLASSIFIED",
+            "crc": "323",
+            "serialNumber": "117",
+            "year": "19"
+        },
+        "pass": {},
+        "country": {
+            "trigraph": "USA",
+            "digraph": "US"
+        },
+        "ipsp": "intelligence priorities for strategic planning",
+        "subject": "This is a fancy subject",
+        "summary": "this is a summary",
+        "text": "Really Cool Vibe here! Place is clean and staff is friendly. your smack in the middle of Tribeca here. Lots of common space to work. network or just meetup. There is a gastropub with some bangin whiskey sours. Roof Top has very good feel indoor and out.  DJ spins certain nights. Free wifi and good cell signal in the cafe.\nThe grounds at the Royal Kona Resort are just as pictured, the plants flowers ,and grounds were absolutely breathtaking.The pool was beautiful,as well, because you could watch the ocean while swimming in the pool. The lagoon was beautiful as well. Our room overlooked the lagoon as well as being oceanfront. The dinning room and bar were exceptional. The food was great,and the whole open air effect was beautiful. The only negative thing I can say was the room w as not pretty. In fact it was old, but the grounds and resort made up for this. What a great location. The location could not have been better.. We had a great time!\nStayed at the Courtyard by Marriott Kamehameha, we spent all day out sunning on the beach and the nights slaying beers. Note that HA does not have the best public transport, driving is certainly an adventure the roads can be quiet bad.\nOne of the most interesting hotels I have ever stayed at! Inside you can see a photo of the building taken during the civil war showing a corner completely blown away by a bomb, possibly by the airplane that is now on display in a square after being shot down by the locals.Great staff, decent included breakfast, open access to the roof to overlook the streets and markets. Rooms were rather shabby but it is in Somaliland, a country not recognized by any other country, to the world it is still Somalia.Remarkably I have never felt safer or met friendlier people than I did here. The recent election was held during my stay, I stepped out of the hotel and people rushed up to me to assure me all the gunfire was not trouble, only celebrations! That being said no public transport can be trusted, you need a guided to take you out on the road.\nI stay here regularly for business and have for well over a year. The service level at this hotel is definitely highest quality and much better than you find today at the large hotel-chain properties, which I also stay in around the world. In addition to the basics of clean and comfortable, there are always attentive bell persons to assist, including Alex, who now retrieves my bag in storage before I even have a chance to ask! Sara and Carlos in the lounge handle the largest crowds with ease and always make the regulars feel at home. Rooms come with a fridge and free bottled water daily - virtually unheard of anymore. All within walking distance of the White House and Metro and at prices generally lower than others in the area. And then there is the beautiful pool in the summer time. I recommend it to everyone. ",
         "iirTagline": "specific recipient?",
         "warning": "this is non cooberated non validated",
         "comments": [

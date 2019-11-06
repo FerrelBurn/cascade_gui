@@ -15,7 +15,7 @@ import { Link } from 'react-router-dom';
 import data from './data/data.json';
 import ReportView from './components/report/ReportView';
 import DraftView from './components/draftreport/DraftView';
-import Modal from 'react-modal';
+import Modal from 'react-bootstrap/Modal';
 import { FaCheck, FaWindowClose, FaTags, FaRegListAlt } from "react-icons/fa";
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 class App extends Component {
@@ -41,7 +41,7 @@ class App extends Component {
     })
   }
   componentDidMount() {
-    Modal.setAppElement(this.el);
+   
     this.setState({
       reports: data,
       drafts: data,
@@ -81,65 +81,65 @@ class App extends Component {
           </nav> */}
 
           <main role="main" className="container" style={{ marginTop: '1em' }} id="petratings">
-           
-             
-                <SideNav style={{ marginTop: '5em', background:' #555555 ' }}
-               
-                  onSelect={(selected) => {
-                    // Add your code here
-                  }}
-                >
-                  <SideNav.Toggle />
 
-                  <SideNav.Nav defaultSelected="req">
-                    <NavItem eventKey="req" expanded={true}>
-                      <NavIcon>
-                        <FaTags />
-                      </NavIcon>
-                      <NavText>
-                        Req Counts
+
+            <SideNav style={{ marginTop: '5em', background: ' #555555 ' }}
+
+              onSelect={(selected) => {
+                // Add your code here
+              }}
+            >
+              <SideNav.Toggle />
+
+              <SideNav.Nav defaultSelected="req">
+                <NavItem eventKey="req" expanded={true}>
+                  <NavIcon>
+                    <FaTags />
+                  </NavIcon>
+                  <NavText>
+                    Req Counts
                     </NavText>
 
 
-                      <NavItem eventKey="req/accepted">
-                        <NavText>
-                          <FaCheck color={'green'} /> Accepted: 5
+                  <NavItem eventKey="req/accepted">
+                    <NavText>
+                      <FaCheck color={'green'} /> Accepted: 5
                       </NavText>
-                      </NavItem>
-                      <NavItem eventKey="req/rejected">
-                        <NavText>
-                          <FaWindowClose color={'red'} /> Rejected: 2
+                  </NavItem>
+                  <NavItem eventKey="req/rejected">
+                    <NavText>
+                      <FaWindowClose color={'red'} /> Rejected: 2
                       </NavText>
-                      </NavItem>
+                  </NavItem>
 
-                    </NavItem>
-                    <NavItem eventKey="requirements" expanded={true}>
-                      <NavIcon>
-                        <FaRegListAlt />
-                      </NavIcon>
-                      <NavText>
-                        Requirements
+                </NavItem>
+                <NavItem eventKey="requirements" expanded={true}>
+                  <NavIcon>
+                    <FaRegListAlt />
+                  </NavIcon>
+                  <NavText>
+                    Requirements
                     </NavText>
-                      <NavItem eventKey="requirements/pir">
-                        <NavText>
-                          PIR: 3
+                  <NavItem eventKey="requirements/pir">
+                    <NavText>
+                      PIR: 3
                       </NavText>
-                      </NavItem>
-                      <NavItem eventKey="requirements/cir">
-                        <NavText>
-                          CIR: 2
+                  </NavItem>
+                  <NavItem eventKey="requirements/cir">
+                    <NavText>
+                      CIR: 2
                       </NavText>
-                      </NavItem>
-                      <NavItem eventKey="requirements/nir">
-                        <NavText>
-                          NIR: 2
+                  </NavItem>
+                  <NavItem eventKey="requirements/nir">
+                    <NavText>
+                      NIR: 2
                       </NavText>
-                      </NavItem>
-                    </NavItem>
-                  </SideNav.Nav>
-                </SideNav>
-                <div className="row">
-                <div className="col-md-11 offset-md-1">
+                  </NavItem>
+                </NavItem>
+              </SideNav.Nav>
+            </SideNav>
+            <div className="row">
+              <div className="col-md-11 offset-md-1">
                 <Switch>
                   <Route exact path="/" render={(props) => (
                     <Home />
@@ -163,7 +163,7 @@ class App extends Component {
                     let reportPosition = props.location.pathname.replace('/report/', '');
                     return (
                       <ReportView
-                        report={this.state.reports[reportPosition]}
+                        report={this.state.reports[reportPosition-1]}
                       />
                     )
                   }} />
@@ -172,7 +172,7 @@ class App extends Component {
                     let reportPosition = props.location.pathname.replace('/draft/', '');
                     return (
                       <DraftView
-                        report={this.state.reports[reportPosition]}
+                        report={this.state.reports[reportPosition-1]}
                       />
                     )
                   }} />

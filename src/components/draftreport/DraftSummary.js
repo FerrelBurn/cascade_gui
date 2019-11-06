@@ -1,10 +1,8 @@
 import React from 'react';
 import { FaFile, FaEdit, FaTags } from "react-icons/fa";
-import RequirementsMatcher from './RequirementsMatcher';
 
 import { Link } from 'react-router-dom';
 const DraftSummary = (props) => {
-    // console.log(props);
     return (
         <div className=" row mb-3" >
 
