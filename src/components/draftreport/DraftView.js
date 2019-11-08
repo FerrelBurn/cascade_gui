@@ -181,11 +181,11 @@ class DraftView extends Component {
                             <p className="card-text">
                                 <b>Summary: </b>{this.props.report.summary}
                             </p>
-                            <p className="card-text">
+                            <div className="card-text">
                                 <b>Text:</b> {this.props.report.text.split('\n').map((item, key) => {
                                     return <p key={key}>{item}<br /></p>
                                 })}
-                            </p>
+                            </div>
                             {
                                 this.props.report.comments.map((comment) => (
                                     <ReportComment comment={comment} />

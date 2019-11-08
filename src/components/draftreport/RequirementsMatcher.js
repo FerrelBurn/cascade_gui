@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 // import {Modal, Button} from 'react-bootstrap/Modal';
 import { Modal, Button } from 'react-bootstrap';
+import MatchesView from './MatchesView';
 
 
 function RequirmentsMatcher(props) {
@@ -16,17 +17,12 @@ function RequirmentsMatcher(props) {
             <Button variant="primary" onClick={handleShow}>
                 Match Requirements
         </Button>
-            {
-                console.log(props)
-            }
-            {
-                console.log(props.matches[0].ml_matches.length)
-            }
+           
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>ML matches: {props.matches.length}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                <Modal.Body><MatchesView matches={props.matches}/></Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close

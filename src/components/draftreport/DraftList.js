@@ -18,7 +18,8 @@ const DraftList = (props) => {
 
                 ))
             }
-        </div>);
+        </div>
+        );
 }
 
 export default DraftList;
