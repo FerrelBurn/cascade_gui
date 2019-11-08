@@ -2,9 +2,7 @@ import React from 'react';
 import ReqMatch from './ReqMatch';
 
 const MatchItem = (props) => {
-    {
-        console.log(props.match.ml_matches)
-    }
+   
     return ( 
        
         <div>
