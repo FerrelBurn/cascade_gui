@@ -25,14 +25,16 @@ class MatchesView extends Component {
         var nextIndex = this.state.currentIndex;
         if (this.state.currentIndex < this.state.matches.length) {
             nextIndex = this.state.currentIndex + 1
+            this.setState({ currentIndex: nextIndex });
         }
-        this.setState({ currentIndex: nextIndex });
+        
     }
     back() {
      
-        if (this.state.currentIndex > 0)
+        if (this.state.currentIndex > 0){
             var lastIndex = this.state.currentIndex - 1;
             this.setState({ currentIndex: lastIndex });
+        }
     }
     render() {
         return (
