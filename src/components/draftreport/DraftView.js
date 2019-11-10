@@ -15,8 +15,8 @@ class DraftView extends Component {
         } </span>;
     }
     matchRequirements(reportText) {
-        
-        let data = [
+
+        let testData = [
             {
                 "fuzzy_matches": [],
                 "ml_matches": [
@@ -147,7 +147,26 @@ class DraftView extends Component {
                 "text": "I stay here regularly for business and have for well over a year. The service level at this hotel is definitely highest quality and much better than you find today at the large hotel-chain properties, which I also stay in around the world. In addition to the basics of clean and comfortable, there are always attentive bell persons to assist, including Alex, who now retrieves my bag in storage before I even have a chance to ask! Sara and Carlos in the lounge handle the largest crowds with ease and always make the regulars feel at home. Rooms come with a fridge and free bottled water daily - virtually unheard of anymore. All within walking distance of the White House and Metro and at prices generally lower than others in the area. And then there is the beautiful pool in the summer time. I recommend it to everyone."
             }
         ]
-        return data;
+
+        //for testing
+        //return testData;
+
+        //for real
+        return this.sendData("http://localhost:3005/read", reportText);
+    }
+    sendData(url, payload) {
+        // create a new XMLHttpRequest
+        var xhr = new XMLHttpRequest()
+        console.log("url: " + url);
+        // get a callback when the server responds
+        xhr.addEventListener('load', () => {
+            // update the state of the component with the result here
+            console.log(xhr.responseText)
+        })
+        // open the request with the verb and the url
+        xhr.open('POST', url)
+        // send the request
+        xhr.send(JSON.stringify({ report: payload }))
     }
     render() {
         return (
@@ -158,9 +177,15 @@ class DraftView extends Component {
                     <div className="card" >
                         <div className="card-header  d-flex">
                             <span>
-                                <b> Serial Number:</b> {this.props.report.serial.classification} {this.props.report.serial.crc} {this.props.report.serial.serialNumber} {this.props.report.serial.year}
+                                <b> Serial Number:</b> 
+                                {this.props.report.serial.classification} 
+                                {this.props.report.serial.crc} 
+                                {this.props.report.serial.serialNumber} 
+                                {this.props.report.serial.year}
                             </span>
-                            <span className="ml-auto"><RequirementsMatcher matches={this.matchRequirements(this.props.report.text)} /> <b>Acquisition Date:</b> {this.props.report.acqDate}</span>
+                            <span className="ml-auto">
+                                <RequirementsMatcher matches={this.matchRequirements(this.props.report.text)} />
+                                <b>Acquisition Date:</b> {this.props.report.acqDate}</span>
                         </div>
                         <div className="cardBody">
                             <p className="card-text">

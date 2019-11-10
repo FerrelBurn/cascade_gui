@@ -22,7 +22,9 @@ function RequirmentsMatcher(props) {
                 <Modal.Header closeButton>
                     <Modal.Title>ML matches: {props.matches.length}</Modal.Title>
                 </Modal.Header>
-                <Modal.Body><MatchesView matches={props.matches}/></Modal.Body>
+                <Modal.Body>
+                    <MatchesView matches={props.matches}/>
+                    </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
