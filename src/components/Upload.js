@@ -10,13 +10,19 @@ class Upload extends Component {
       files: [],
       uploading: false,
       uploadProgress: {},
-      successfullUploaded: false
+      successfullUploaded: false,
+      url:'',
+
     };
 
     this.onFilesAdded = this.onFilesAdded.bind(this);
     this.uploadFiles = this.uploadFiles.bind(this);
     this.sendRequest = this.sendRequest.bind(this);
     this.renderActions = this.renderActions.bind(this);
+  }
+
+  componentDidMount(){
+    this.setState({ url: this.props.url  });
   }
 
   onFilesAdded(files) {
@@ -41,7 +47,7 @@ class Upload extends Component {
     }
   }
 
-  sendRequest(file) {
+  sendRequest(file, url) {
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
@@ -73,7 +79,7 @@ class Upload extends Component {
       const formData = new FormData();
       formData.append("file", file, file.name);
 
-      req.open("POST", "http://localhost:8081/upload");
+      req.open("POST", url);
       req.send(formData);
     });
   }

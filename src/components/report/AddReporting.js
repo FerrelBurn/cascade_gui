@@ -103,7 +103,7 @@ class AddReporting extends Component{
                   </div>
                 </div>
               </form>
-              <Upload/>
+              <Upload url="http://nifi:8081/reports"/>
             </div>
           </div>
         )
