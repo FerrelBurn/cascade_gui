@@ -149,10 +149,10 @@ class DraftView extends Component {
         ]
 
         //for testing
-        //return testData;
+        return testData;
 
         //for real
-        return this.sendData("http://localhost:3005/read", reportText);
+        //return this.sendData("http://localhost:3005/read", reportText);
     }
     sendData(url, payload) {
         // create a new XMLHttpRequest

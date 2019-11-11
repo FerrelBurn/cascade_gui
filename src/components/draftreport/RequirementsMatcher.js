@@ -20,7 +20,7 @@ function RequirmentsMatcher(props) {
            
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>ML matches: {props.matches.length}</Modal.Title>
+              <Modal.Title>8</Modal.Title> 
                 </Modal.Header>
                 <Modal.Body>
                     <MatchesView matches={props.matches}/>

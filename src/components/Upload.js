@@ -22,6 +22,8 @@ class Upload extends Component {
   }
 
   componentDidMount(){
+    console.log("did mount: ")
+    console.log(this.props.url)
     this.setState({ url: this.props.url  });
   }
 
@@ -47,7 +49,10 @@ class Upload extends Component {
     }
   }
 
-  sendRequest(file, url) {
+  sendRequest(file) {
+    console.log("url");
+    console.log(this.state.url)
+
     return new Promise((resolve, reject) => {
       const req = new XMLHttpRequest();
 
@@ -79,7 +84,7 @@ class Upload extends Component {
       const formData = new FormData();
       formData.append("file", file, file.name);
 
-      req.open("POST", url);
+      req.open("POST", this.state.url);
       req.send(formData);
     });
   }
