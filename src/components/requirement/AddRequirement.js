@@ -87,7 +87,7 @@ class AddRequirement extends Component{
               </div>
             </div>
           </form>
-          <Upload url="http://localhost:8081/requirements"/>
+          <Upload url="http://localhost:3000/requirements"/>
         </div>
       </div>)
     }
