@@ -2,17 +2,138 @@ import React, { Component } from 'react';
 import ReportEnclosure from '../report/ReportEnclosure';
 import ReportComment from '../report/ReportComment';
 import RequirementsMatcher from './RequirementsMatcher';
+import { Button } from 'react-bootstrap';
+import HighlightedText from './HighlightedText';
 // const ReportView = (this.props) => (
 class DraftView extends Component {
-
-    getHighlightedText(text, higlight, question) {
+    constructor(props) {
+        super(props);
+        this.state = {
+            highlighted: []
+        };
+        this.spot = this.spot.bind(this);
+    }
+    componentDidMount() {
+        let reportText = this.props.report.text.split('\n').map((item, key) => {
+            return <p key={key}>{item}<br /></p>
+        });
+        // console.log(reportText)
+        this.setState({ highlighted: reportText });
+    }
+    highlight(text, higlight) {
         // Split on higlight term and include term into parts, ignore case
         let parts = text.split(new RegExp(`(${higlight})`, 'gi'));
         return <span> {parts.map((part, i) =>
-            <span alt={question} key={i} style={part.toLowerCase() === higlight.toLowerCase() ? { fontWeight: 'bold', backgroundColor: 'yellow' } : {}}>
-                {part}
-            </span>)
+            <HighlightedText highlighted={part.toLowerCase() === higlight.toLowerCase() ? true : false} />
+            // <span alt={question} key={i} style={part.toLowerCase() === higlight.toLowerCase() ? { fontWeight: 'bold', backgroundColor: 'yellow' } : {}}>
+            //     {part}
+            // </span>
+
+        )
         } </span>;
+    }
+
+    sendData(url, payload) {
+        // create a new XMLHttpRequest
+        var xhr = new XMLHttpRequest()
+        console.log("url: " + url);
+        // get a callback when the server responds
+        xhr.addEventListener('load', () => {
+            // update the state of the component with the result here
+            console.log(xhr.responseText)
+        })
+        // open the request with the verb and the url
+        xhr.open('POST', url)
+        // send the request
+        xhr.send(JSON.stringify({ report: payload }))
+    }
+    spot() {
+        var res = this.matchRequirements(this.props.report.text)
+        let hl = [];
+        for (let i = 0; i < res.length; i++) {
+            res[i].ml_matches.forEach(value => {
+                // console.log(value[1])
+                // var higlightedText = this.highlight(this.props.report.text, value[1], value[0]);
+
+
+                hl.push( <HighlightedText highlighted={true} text={value[1]}></HighlightedText>))
+            })
+        }
+ // this.props.report.text.replace()
+        // <HighlightedText highlighted={part.toLowerCase() === higlight.toLowerCase() ? true : false } />
+        this.setState({ highlighted: highlighted });
+    }
+    render() {
+        return (
+            <div className="container-fluid" >
+
+                {
+
+                    <div className="card" >
+                        <div className="card-header  d-flex">
+                            <span>
+                                <b> Serial Number:</b>
+                                {this.props.report.serial.classification}
+                                {this.props.report.serial.crc}
+                                {this.props.report.serial.serialNumber}
+                                {this.props.report.serial.year}
+                            </span>
+                            <span className="ml-auto">
+                                <Button onClick={this.spot}>match</Button>
+                                <RequirementsMatcher 
+                                highlights={this.state.highlighted} 
+                                matches={this.matchRequirements(this.props.report.text)} />
+                                <b>Acquisition Date:</b> {this.props.report.acqDate}</span>
+                        </div>
+                        <div className="cardBody">
+                            <p className="card-text">
+                                <b>ACQ: </b>{this.props.report.acq}
+                            </p>
+                            <p className="card-text">
+                                <b>DISSEM: </b>{this.props.report.dissem}
+                            </p>
+                            <p className="card-text">
+                                <b>IPSP: </b>{this.props.report.ipsp}
+                            </p>
+                            <p className="card-text">
+                                <b>Country: </b>{this.props.report.country.trigraph}
+                            </p>
+                            <p className="card-text">
+                                <b>Subject: </b>{this.props.report.subject}
+                            </p>
+                            <p className="card-text">
+                                <b>Summary: </b>{this.props.report.summary}
+                            </p>
+                            <div className="card-text">
+                                <b>Text:</b>
+                                {this.state.highlighted.map((paragraph) => (
+                                    <HighlightedText highlighted={false} text={paragraph}></HighlightedText>
+
+                                ))}
+                                {/* {this.state.highlighted.map((hl) => {
+                                    <HighlightedText highlighted={true}>{hl}</HighlightedText>
+                                })} */}
+
+                                {/* {this.state.highlighted.split('\n').map((item, key) => {
+                                    return <p key={key}>{item}<br /></p>
+                                })} */}
+                            </div>
+                            {
+                                this.props.report.comments.map((comment) => (
+                                    <ReportComment comment={comment} />
+                                ))
+                            }
+                            {
+                                this.props.report.encl.map((encl) => (
+                                    <ReportEnclosure encl={encl} />
+                                ))
+                            }
+
+                        </div>
+                    </div>
+                }
+            </div>
+        )
     }
     matchRequirements(reportText) {
 
@@ -153,80 +274,6 @@ class DraftView extends Component {
 
         //for real
         //return this.sendData("http://localhost:3005/read", reportText);
-    }
-    sendData(url, payload) {
-        // create a new XMLHttpRequest
-        var xhr = new XMLHttpRequest()
-        console.log("url: " + url);
-        // get a callback when the server responds
-        xhr.addEventListener('load', () => {
-            // update the state of the component with the result here
-            console.log(xhr.responseText)
-        })
-        // open the request with the verb and the url
-        xhr.open('POST', url)
-        // send the request
-        xhr.send(JSON.stringify({ report: payload }))
-    }
-    render() {
-        return (
-            <div className="container-fluid" >
-
-                {
-
-                    <div className="card" >
-                        <div className="card-header  d-flex">
-                            <span>
-                                <b> Serial Number:</b> 
-                                {this.props.report.serial.classification} 
-                                {this.props.report.serial.crc} 
-                                {this.props.report.serial.serialNumber} 
-                                {this.props.report.serial.year}
-                            </span>
-                            <span className="ml-auto">
-                                <RequirementsMatcher matches={this.matchRequirements(this.props.report.text)} />
-                                <b>Acquisition Date:</b> {this.props.report.acqDate}</span>
-                        </div>
-                        <div className="cardBody">
-                            <p className="card-text">
-                                <b>ACQ: </b>{this.props.report.acq}
-                            </p>
-                            <p className="card-text">
-                                <b>DISSEM: </b>{this.props.report.dissem}
-                            </p>
-                            <p className="card-text">
-                                <b>IPSP: </b>{this.props.report.ipsp}
-                            </p>
-                            <p className="card-text">
-                                <b>Country: </b>{this.props.report.country.trigraph}
-                            </p>
-                            <p className="card-text">
-                                <b>Subject: </b>{this.props.report.subject}
-                            </p>
-                            <p className="card-text">
-                                <b>Summary: </b>{this.props.report.summary}
-                            </p>
-                            <div className="card-text">
-                                <b>Text:</b> {this.props.report.text.split('\n').map((item, key) => {
-                                    return <p key={key}>{item}<br /></p>
-                                })}
-                            </div>
-                            {
-                                this.props.report.comments.map((comment) => (
-                                    <ReportComment comment={comment} />
-                                ))
-                            }
-                            {
-                                this.props.report.encl.map((encl) => (
-                                    <ReportEnclosure encl={encl} />
-                                ))
-                            }
-
-                        </div>
-                    </div>
-                }
-            </div>
-        )
     }
 }
 

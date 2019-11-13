@@ -1,7 +1,7 @@
 import React from 'react';
 
 const ReportComment = (props) => {
-    console.log(props)
+
     return (
         <div key={props.comment.id}>
             <div className="card-header  d-flex">

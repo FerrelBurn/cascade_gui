@@ -9,7 +9,7 @@ class AddRequirement extends Component{
         </div>
 
         <div className="card-body">
-          <form id="aptForm" noValidate>
+          {/* <form id="aptForm" noValidate>
             <div className="form-group form-row">
               <label
                 className="col-md-2 col-form-label text-md-right"
@@ -86,7 +86,7 @@ class AddRequirement extends Component{
                 </button>
               </div>
             </div>
-          </form>
+          </form> */}
           <Upload url="http://localhost:3000/requirements"/>
         </div>
       </div>)

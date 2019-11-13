@@ -1,15 +1,15 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Upload from '../Upload';
-class AddReporting extends Component{
-    render(){
-        return(
-            <div className="card textcenter mt-3 add-report">
-            <div className="apt-addheading card-header bg-primary text-white">
-              Add Report
+class AddReporting extends Component {
+  render() {
+    return (
+      <div className="card textcenter mt-3 add-report">
+        <div className="apt-addheading card-header bg-primary text-white">
+          Add Report
             </div>
-  
-            <div className="card-body">
-              <form id="aptForm" noValidate>
+
+        <div className="card-body">
+          {/* <form id="aptForm" noValidate>
                 <div className="form-group form-row">
                   <label
                     className="col-md-2 col-form-label text-md-right"
@@ -102,12 +102,12 @@ class AddReporting extends Component{
                     </button>
                   </div>
                 </div>
-              </form>
-              <Upload url="http://localhost:3000/reports"/>
-            </div>
-          </div>
-        )
-    }
+              </form> */}
+          <Upload url="http://localhost:3000/reports" />
+        </div>
+      </div>
+    )
+  }
 }
 
 export default AddReporting; 
