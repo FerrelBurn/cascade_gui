@@ -13,8 +13,10 @@ class DraftView extends Component {
             highlighted: []
         };
         this.spot = this.spot.bind(this);
+        console.log(props)
     }
     componentDidMount() {
+       
         let reportText = this.props.report.text.split('\n').map((item, key) => {
             return <p key={key}>{item}<br /></p>
         });
@@ -41,7 +43,6 @@ class DraftView extends Component {
     spot() {
         var res = this.matchRequirements(this.props.report.text)
         let hl = [];
-
         for (let i = 0; i < res.length; i++) {
             res[i].ml_matches.forEach(value => {
                 let marker = {};
@@ -49,16 +50,12 @@ class DraftView extends Component {
                 marker.start = this.props.report.text.indexOf(currentValue);
                 marker.end = marker.start + currentValue.length;
                 hl.push(marker);
-
             });
-
         }
 
         let highlightedReport = this.props.report.text;
-
         hl.forEach((item, i) => {
             let ss = this.props.report.text.substring(item.start, item.end);
-
             highlightedReport = reactStringReplace(highlightedReport, ss, (ss, i) => (
                 <HighlightedText key={i} highlighted={true} text={ss} />
             ));
@@ -69,6 +66,7 @@ class DraftView extends Component {
     }
 
     render() {
+        console.log(this.props.report)
         return (
             <div className="container-fluid" >
 

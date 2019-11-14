@@ -3,6 +3,7 @@ import { FaFile, FaEdit, FaTags } from "react-icons/fa";
 
 import { Link } from 'react-router-dom';
 const DraftSummary = (props) => {
+    console.log(props)
     return (
         <div className=" row mb-3" >
 
@@ -18,7 +19,7 @@ const DraftSummary = (props) => {
                     </div>
                     <Link alt="view report"
                         title="view report"
-                        to={`/draft/${props.report.id}`}>
+                        to={`/draft/${props.report.uuid}`}>
                         <div className="">
                             <span className="label-item">Subj: </span>
                             <span>{props.report.subject} </span>

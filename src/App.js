@@ -12,26 +12,78 @@ import DraftList from './components/draftreport/DraftList';
 import { Navbar, NavbarBrand } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
-import data from './data/data.json';
+import data1 from './data/data.json';
 import ReportView from './components/report/ReportView';
 import DraftView from './components/draftreport/DraftView';
 import Modal from 'react-bootstrap/Modal';
 import { FaCheck, FaWindowClose, FaTags, FaRegListAlt } from "react-icons/fa";
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 class App extends Component {
-
+  _isMounted = false;
   constructor() {
 
     super();
     this.state = {
-      reports: data,
-      drafts: data,
+      reports: [],
+      drafts: [],
       sidePaneOpen: false,
       lastIndex: 0
 
     };
     this.handleClick = this.handleClick.bind(this);
+    this.getData = this.getData.bind(this);
 
+  }
+  componentWillUnmount() {
+    this._isMounted = false;
+  }
+  // componentWillMount() {
+  //   // this.getData()
+  // }
+  componentDidUpdate() {
+
+  }
+  componentDidMount() {
+    this.getData("allreports");
+    // this._isMounted = true;
+    // fetch("http://localhost:3000/allreports")
+    //   // .then(res => res.json())
+    //   // .then(res => console.log(res))
+    //   .then(res => {
+    //     if (this._isMounted) {
+    //       this.setState({
+    //         drafts: res,
+    //         reports: res
+    //       })
+    //     }
+    //   })
+    //   .catch(() => this.setState({ hasErrors: true }));
+    // // console.log('state after')
+    // // console.log(this.state)
+  }
+  async  getData(path) {
+    const res = await fetch("http://localhost:3000/"+path);
+    const reports = await res.json();
+    this.setState({ reports: reports, drafts: reports });
+    console.log(reports)
+    // console.log("get data")
+    // // create a new XMLHttpRequest
+    // var xhr = new XMLHttpRequest()
+
+    // // get a callback when the server responds
+    // xhr.addEventListener('load', () => {
+    //   // update the state of the component with the result here
+    //   console.log('here')
+    //   // console.log(xhr.responseText)
+    //   this.setState({
+    //     data: xhr.responseText,
+    //     drafts: xhr.responseText
+    //   });
+    // })
+    // // open the request with the verb and the url
+    // xhr.open('GET', 'http://localhost:3000/allreports')
+    // // send the request
+    // xhr.send()
   }
   handleClick(e) {
     console.log(e)
@@ -40,17 +92,25 @@ class App extends Component {
 
     })
   }
-  componentDidMount() {
-   
-    this.setState({
-      reports: data,
-      drafts: data,
-      sidePaneOpen: false
+  // getData2(){
 
-    })
+  //           fetch('http://localhost:3000/allreports')
+  //               .then(data => console.log(data))
+  //               .then(data => data.json())
+  //               .then(function (data) {
+  //                   alert("here")
+  //               })
+  //               .then(data => this.setState({ data, loading: false }))
+  // }
+  // componentDidMount() {
 
+  //   this.setState({
+  //     reports: data,
+  //     drafts: data,
+  //     sidePaneOpen: false
 
-  }
+  //   })
+  // }
   render() {
     return (
 
@@ -158,21 +218,21 @@ class App extends Component {
                       sidePaneOpen={this.state.sidePaneOpen}
                       reports={this.state.drafts} />
                   )} />
-                  <Route path="/report/:id" render={(props) => {
+                  <Route path="/report/:uuid" render={(props) => {
 
                     let reportPosition = props.location.pathname.replace('/report/', '');
                     return (
                       <ReportView
-                        report={this.state.reports[reportPosition-1]}
+                        report={this.state.reports[reportPosition - 1]}
                       />
                     )
                   }} />
-                  <Route path="/draft/:id" render={(props) => {
+                  <Route path="/draft/:uuid" render={(props) => {
 
                     let reportPosition = props.location.pathname.replace('/draft/', '');
                     return (
                       <DraftView
-                        report={this.state.reports[reportPosition-1]}
+                        report={this.state.reports[reportPosition]}
                       />
                     )
                   }} />
