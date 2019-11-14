@@ -4,6 +4,7 @@ import ReportComment from '../report/ReportComment';
 import RequirementsMatcher from './RequirementsMatcher';
 import { Button } from 'react-bootstrap';
 import HighlightedText from './HighlightedText';
+const reactStringReplace = require('react-string-replace');
 // const ReportView = (this.props) => (
 class DraftView extends Component {
     constructor(props) {
@@ -17,21 +18,10 @@ class DraftView extends Component {
         let reportText = this.props.report.text.split('\n').map((item, key) => {
             return <p key={key}>{item}<br /></p>
         });
-        // console.log(reportText)
+        
         this.setState({ highlighted: reportText });
     }
-    highlight(text, higlight) {
-        // Split on higlight term and include term into parts, ignore case
-        let parts = text.split(new RegExp(`(${higlight})`, 'gi'));
-        return <span> {parts.map((part, i) =>
-            <HighlightedText highlighted={part.toLowerCase() === higlight.toLowerCase() ? true : false} />
-            // <span alt={question} key={i} style={part.toLowerCase() === higlight.toLowerCase() ? { fontWeight: 'bold', backgroundColor: 'yellow' } : {}}>
-            //     {part}
-            // </span>
-
-        )
-        } </span>;
-    }
+   
 
     sendData(url, payload) {
         // create a new XMLHttpRequest
@@ -47,22 +37,37 @@ class DraftView extends Component {
         // send the request
         xhr.send(JSON.stringify({ report: payload }))
     }
+
     spot() {
         var res = this.matchRequirements(this.props.report.text)
         let hl = [];
+
         for (let i = 0; i < res.length; i++) {
             res[i].ml_matches.forEach(value => {
-                // console.log(value[1])
-                // var higlightedText = this.highlight(this.props.report.text, value[1], value[0]);
+                let marker = {};
+                let currentValue = value[1];
+                marker.start = this.props.report.text.indexOf(currentValue);
+                marker.end = marker.start + currentValue.length;
+                hl.push(marker);
 
+            });
 
-                hl.push( <HighlightedText highlighted={true} text={value[1]}></HighlightedText>))
-            })
         }
- // this.props.report.text.replace()
-        // <HighlightedText highlighted={part.toLowerCase() === higlight.toLowerCase() ? true : false } />
-        this.setState({ highlighted: highlighted });
+
+        let highlightedReport = this.props.report.text;
+
+        hl.forEach((item, i) => {
+            let ss = this.props.report.text.substring(item.start, item.end);
+
+            highlightedReport = reactStringReplace(highlightedReport, ss, (ss, i) => (
+                <HighlightedText key={i} highlighted={true} text={ss} />
+            ));
+
+        })
+
+        this.setState({ highlighted: highlightedReport });
     }
+
     render() {
         return (
             <div className="container-fluid" >
@@ -80,9 +85,9 @@ class DraftView extends Component {
                             </span>
                             <span className="ml-auto">
                                 <Button onClick={this.spot}>match</Button>
-                                <RequirementsMatcher 
-                                highlights={this.state.highlighted} 
-                                matches={this.matchRequirements(this.props.report.text)} />
+                                <RequirementsMatcher
+                                    highlights={this.state.highlighted}
+                                    matches={this.matchRequirements(this.props.report.text)} />
                                 <b>Acquisition Date:</b> {this.props.report.acqDate}</span>
                         </div>
                         <div className="cardBody">
@@ -106,10 +111,12 @@ class DraftView extends Component {
                             </p>
                             <div className="card-text">
                                 <b>Text:</b>
-                                {this.state.highlighted.map((paragraph) => (
-                                    <HighlightedText highlighted={false} text={paragraph}></HighlightedText>
+                                {
+                                    this.state.highlighted.map((paragraph) => (
+                                        <HighlightedText highlighted={false} text={paragraph}></HighlightedText>
 
-                                ))}
+                                    ))
+                                }
                                 {/* {this.state.highlighted.map((hl) => {
                                     <HighlightedText highlighted={true}>{hl}</HighlightedText>
                                 })} */}

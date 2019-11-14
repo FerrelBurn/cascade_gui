@@ -4,18 +4,19 @@ class HighlightedText extends Component {
         super(props);
         this.state = {
             highlights: [],
-            highlighted: true
+            highlighted: true,
+            color: 'yellow'
         }
     }
     render() {
-        console.log("***************")
-        console.log(this.props)
+        // console.log("***************")
+        // console.log(this.props)
         // console.log(this.state.highlighted)
         return (
             // style={this.state.highlighted ? { backgroundColor: 'yellow' } : {}}
-            <p style={this.props.highlighted ? { backgroundColor: 'yellow' } : {}}>
+            <span style={this.props.highlighted ? { backgroundColor: this.state.color } : {}}>
                 {this.props.text}
-            </p>
+            </span>
 
 
         );
