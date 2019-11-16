@@ -15,7 +15,7 @@ class RequirementsMatcher extends Component {
         }
     }
     setSelectedReport(report){
-        console.log(report)
+       
         this.setState({selectedReport:report})
     }
     render() {

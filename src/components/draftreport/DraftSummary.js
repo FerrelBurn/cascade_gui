@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaFile, FaEdit, FaTags } from "react-icons/fa";
+// import { FaFile, FaEdit, FaTags } from "react-icons/fa";
 
 import { Link } from 'react-router-dom';
 const DraftSummary = (props) => {
@@ -13,7 +13,7 @@ const DraftSummary = (props) => {
       </div> */}
 
                 <div className=" media-body">
-                    <div className=" d-flex">
+                    <div className="pet-head d-flex">
                         <span >{props.report.crc}</span>
                         <span className=" ml-auto">{props.report.acqDate}</span>
                     </div>
@@ -21,8 +21,8 @@ const DraftSummary = (props) => {
                         title="view report"
                         to={`/draft/${props.index}`} >
                         <div className="">
-                            <span className="label-item">Subj: </span>
-                            <span>{props.report.subject} </span>
+                           
+                            <h5>{props.report.subject} </h5>
                         </div>
                     </Link>
                     <div className="apt-notes">{props.report.text.substring(0, 150)+"..."}</div>

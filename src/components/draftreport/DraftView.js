@@ -28,11 +28,11 @@ class DraftView extends Component {
     sendData(url, payload) {
         // create a new XMLHttpRequest
         var xhr = new XMLHttpRequest()
-        console.log("url: " + url);
+    
         // get a callback when the server responds
         xhr.addEventListener('load', () => {
             // update the state of the component with the result here
-            console.log(xhr.responseText)
+      
         })
         // open the request with the verb and the url
         xhr.open('POST', url)
@@ -56,12 +56,19 @@ class DraftView extends Component {
         let highlightedReport = this.props.report.text;
         hl.forEach((item, i) => {
             let ss = this.props.report.text.substring(item.start, item.end);
-            highlightedReport = reactStringReplace(highlightedReport, ss, (ss, i) => (
+            let reportText = ss.split('\n').map((item, key) => {
+                return <p key={key}>{item}<br /></p>
+            });
+            highlightedReport = reactStringReplace(highlightedReport, reportText, (reportText, i) => (
                 <HighlightedText key={i} highlighted={true} text={ss} />
             ));
 
         })
-
+        // let reportText = highlightedReport.split('\n').map((item, key) => {
+        //     return <p key={key}>{item}<br /></p>
+        // });
+        console.log("highlightedReport");
+        console.log(highlightedReport);
         this.setState({ highlighted: highlightedReport });
     }
 

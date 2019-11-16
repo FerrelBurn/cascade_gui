@@ -37,9 +37,9 @@ class App extends Component {
     this._isMounted = false;
   }
   
-  componentDidUpdate() {
-    this.getData("allreports");
-  }
+  // componentDidUpdate() {
+  //   this.getData("allreports");
+  // }
   componentDidMount() {
     this.getData("allreports");
 
@@ -51,8 +51,7 @@ class App extends Component {
 
   }
   handleClick(e) {
-    console.log("handle click")
-    console.log(e)
+   
     this.setState({
       sidePaneOpen: !this.state.sidePaneOpen
 
@@ -166,7 +165,7 @@ class App extends Component {
                     )
                   }} />
                   <Route path="/draft/:id" render={(props) => {
-                    console.log(props);
+              
                     let reportPosition = props.location.pathname.replace('/draft/', '');
                     return (
                       <DraftView
