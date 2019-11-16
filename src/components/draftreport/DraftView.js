@@ -13,17 +13,17 @@ class DraftView extends Component {
             highlighted: []
         };
         this.spot = this.spot.bind(this);
-        console.log(props)
+    
     }
     componentDidMount() {
-       
+
         let reportText = this.props.report.text.split('\n').map((item, key) => {
             return <p key={key}>{item}<br /></p>
         });
-        
+
         this.setState({ highlighted: reportText });
     }
-   
+
 
     sendData(url, payload) {
         // create a new XMLHttpRequest
@@ -66,7 +66,7 @@ class DraftView extends Component {
     }
 
     render() {
-        // console.log(this.props.report)
+ 
         return (
             <div className="container-fluid" >
 
@@ -110,27 +110,21 @@ class DraftView extends Component {
                             <div className="card-text">
                                 <b>Text:</b>
                                 {
-                                    this.state.highlighted.map((paragraph) => (
-                                        <HighlightedText highlighted={false} text={paragraph}></HighlightedText>
+                                    this.state.highlighted.map((paragraph, index) => (
+                                        <HighlightedText key={index} highlighted={false} text={paragraph}></HighlightedText>
 
                                     ))
                                 }
-                                {/* {this.state.highlighted.map((hl) => {
-                                    <HighlightedText highlighted={true}>{hl}</HighlightedText>
-                                })} */}
-
-                                {/* {this.state.highlighted.split('\n').map((item, key) => {
-                                    return <p key={key}>{item}<br /></p>
-                                })} */}
+                         
                             </div>
                             {
-                                this.props.report.comments.map((comment) => (
-                                    <ReportComment comment={comment} />
+                                this.props.report.comments.map((comment, index) => (
+                                    <ReportComment key={index} comment={comment} />
                                 ))
                             }
                             {
-                                this.props.report.encl.map((encl) => (
-                                    <ReportEnclosure encl={encl} />
+                                this.props.report.encl.map((encl, index) => (
+                                    <ReportEnclosure  key={index} encl={encl} />
                                 ))
                             }
 

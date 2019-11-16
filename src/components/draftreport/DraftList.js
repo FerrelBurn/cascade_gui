@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React from 'react';
 import DraftSummary from './DraftSummary';
 
 const DraftList = (props) => {
     // console.log("draft list")
-    console.log(props);
+    // console.log(props);
     return (
         <div className="container-fluid" >
             {
@@ -12,6 +12,7 @@ const DraftList = (props) => {
 
                     <DraftSummary
                         report={report}
+                        index={index}
                         key={index}
                         arrayIndex={index}
                         sidePaneOpen={props.sidePaneOpen}

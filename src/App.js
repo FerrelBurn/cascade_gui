@@ -15,9 +15,8 @@ import { Link } from 'react-router-dom';
 import data1 from './data/data.json';
 import ReportView from './components/report/ReportView';
 import DraftView from './components/draftreport/DraftView';
-import Modal from 'react-bootstrap/Modal';
 import { FaCheck, FaWindowClose, FaTags, FaRegListAlt } from "react-icons/fa";
-import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import SideNav, {  NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 class App extends Component {
   _isMounted = false;
   constructor() {
@@ -37,53 +36,19 @@ class App extends Component {
   componentWillUnmount() {
     this._isMounted = false;
   }
-  // componentWillMount() {
-  //   // this.getData()
-  // }
+  
   componentDidUpdate() {
-
+    this.getData("allreports");
   }
   componentDidMount() {
     this.getData("allreports");
-    // this._isMounted = true;
-    // fetch("http://localhost:3000/allreports")
-    //   // .then(res => res.json())
-    //   // .then(res => console.log(res))
-    //   .then(res => {
-    //     if (this._isMounted) {
-    //       this.setState({
-    //         drafts: res,
-    //         reports: res
-    //       })
-    //     }
-    //   })
-    //   .catch(() => this.setState({ hasErrors: true }));
-    // // console.log('state after')
-    // // console.log(this.state)
+
   }
   async  getData(path) {
     const res = await fetch("http://localhost:3000/"+path);
     const reports = await res.json();
     this.setState({ reports: reports, drafts: reports });
-    // console.log(reports)
-    // console.log("get data")
-    // // create a new XMLHttpRequest
-    // var xhr = new XMLHttpRequest()
 
-    // // get a callback when the server responds
-    // xhr.addEventListener('load', () => {
-    //   // update the state of the component with the result here
-    //   console.log('here')
-    //   // console.log(xhr.responseText)
-    //   this.setState({
-    //     data: xhr.responseText,
-    //     drafts: xhr.responseText
-    //   });
-    // })
-    // // open the request with the verb and the url
-    // xhr.open('GET', 'http://localhost:3000/allreports')
-    // // send the request
-    // xhr.send()
   }
   handleClick(e) {
     console.log("handle click")
@@ -93,25 +58,7 @@ class App extends Component {
 
     })
   }
-  // getData2(){
 
-  //           fetch('http://localhost:3000/allreports')
-  //               .then(data => console.log(data))
-  //               .then(data => data.json())
-  //               .then(function (data) {
-  //                   alert("here")
-  //               })
-  //               .then(data => this.setState({ data, loading: false }))
-  // }
-  // componentDidMount() {
-
-  //   this.setState({
-  //     reports: data,
-  //     drafts: data,
-  //     sidePaneOpen: false
-
-  //   })
-  // }
   render() {
     return (
 
@@ -129,17 +76,7 @@ class App extends Component {
               <Navigation />
             </Navbar>
           </header>
-          {/* <nav className="navbar fixed-top navbar-light bg-primary" >
-
-            
-            
-            <a className="navbar-brand text-white" >
-              <h4>Cascade</h4>
-            </a>
-              <Navigation />
-           
-
-          </nav> */}
+    
 
           <main role="main" className="container" style={{ marginTop: '1em' }} id="petratings">
 
@@ -233,7 +170,7 @@ class App extends Component {
                     let reportPosition = props.location.pathname.replace('/draft/', '');
                     return (
                       <DraftView
-                        report={this.state.reports[reportPosition]}
+                        report={this.state.reports[reportPosition ]}
                       />
                     )
                   }} />
