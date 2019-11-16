@@ -56,10 +56,8 @@ class DraftView extends Component {
         let highlightedReport = this.props.report.text;
         hl.forEach((item, i) => {
             let ss = this.props.report.text.substring(item.start, item.end);
-            let reportText = ss.split('\n').map((item, key) => {
-                return <p key={key}>{item}<br /></p>
-            });
-            highlightedReport = reactStringReplace(highlightedReport, reportText, (reportText, i) => (
+            
+            highlightedReport = reactStringReplace(highlightedReport, ss, (ss, i) => (
                 <HighlightedText key={i} highlighted={true} text={ss} />
             ));
 
@@ -68,7 +66,10 @@ class DraftView extends Component {
         //     return <p key={key}>{item}<br /></p>
         // });
         console.log("highlightedReport");
-        console.log(highlightedReport);
+        highlightedReport = reactStringReplace(highlightedReport, '\n', (match, i) =>(
+            <p key={i}>{match}</p>
+        ))
+        console.log(JSON.stringify(highlightedReport));
         this.setState({ highlighted: highlightedReport });
     }
 
