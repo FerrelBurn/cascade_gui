@@ -65,7 +65,7 @@ class App extends Component {
     const res = await fetch("http://localhost:3000/"+path);
     const reports = await res.json();
     this.setState({ reports: reports, drafts: reports });
-    console.log(reports)
+    // console.log(reports)
     // console.log("get data")
     // // create a new XMLHttpRequest
     // var xhr = new XMLHttpRequest()
@@ -86,6 +86,7 @@ class App extends Component {
     // xhr.send()
   }
   handleClick(e) {
+    console.log("handle click")
     console.log(e)
     this.setState({
       sidePaneOpen: !this.state.sidePaneOpen
@@ -218,7 +219,7 @@ class App extends Component {
                       sidePaneOpen={this.state.sidePaneOpen}
                       reports={this.state.drafts} />
                   )} />
-                  <Route path="/report/:uuid" render={(props) => {
+                  <Route path="/report/:id" render={(props) => {
 
                     let reportPosition = props.location.pathname.replace('/report/', '');
                     return (
@@ -227,8 +228,8 @@ class App extends Component {
                       />
                     )
                   }} />
-                  <Route path="/draft/:uuid" render={(props) => {
-
+                  <Route path="/draft/:id" render={(props) => {
+                    console.log(props);
                     let reportPosition = props.location.pathname.replace('/draft/', '');
                     return (
                       <DraftView

@@ -13,6 +13,7 @@ const DraftList = (props) => {
                     <DraftSummary
                         report={report}
                         key={index}
+                        arrayIndex={index}
                         sidePaneOpen={props.sidePaneOpen}
                         handleClick={props.handleClick}
                     />

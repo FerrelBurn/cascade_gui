@@ -3,7 +3,7 @@ import { FaFile, FaEdit, FaTags } from "react-icons/fa";
 
 import { Link } from 'react-router-dom';
 const DraftSummary = (props) => {
-    console.log(props)
+    // console.log(props)
     return (
         <div className=" row mb-3" >
 

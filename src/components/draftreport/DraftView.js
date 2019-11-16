@@ -66,7 +66,7 @@ class DraftView extends Component {
     }
 
     render() {
-        console.log(this.props.report)
+        // console.log(this.props.report)
         return (
             <div className="container-fluid" >
 
