@@ -13,12 +13,13 @@ class DraftView extends Component {
             highlighted: []
         };
         this.spot = this.spot.bind(this);
-    
+        this.tryAgain = this.tryAgain.bind(this);
+
     }
     componentDidMount() {
 
         let reportText = this.props.report.text.split('\n').map((item, key) => {
-            return <p key={key}>{item}<br /></p>
+            return <p key={key}>{item}</p>
         });
 
         this.setState({ highlighted: reportText });
@@ -28,19 +29,69 @@ class DraftView extends Component {
     sendData(url, payload) {
         // create a new XMLHttpRequest
         var xhr = new XMLHttpRequest()
-    
+
         // get a callback when the server responds
         xhr.addEventListener('load', () => {
             // update the state of the component with the result here
-      
+
         })
         // open the request with the verb and the url
         xhr.open('POST', url)
         // send the request
         xhr.send(JSON.stringify({ report: payload }))
     }
+    tryAgain() {
+        let miso = this.state.highlighted.forEach((v) => console.log(v))
+        const newText = [...this.state.highlighted]
+        var res = this.matchRequirements(this.props.report.text)
+        let hl = [];
+        for (let i = 0; i < res.length; i++) {
+            res[i].ml_matches.forEach(value => {
+                let marker = {};
+                let currentValue = value[1];
+                console.log("trying to match: " + currentValue);
 
+
+                // alert("misio:"+miso)
+
+                let face = this.state.highlighted.map((item, arindex) => (
+                    //   console.log(item.props.children){}
+
+                    // console.log(item)
+                    reactStringReplace(item.props.children, currentValue, (match, i) => (
+                        <HighlightedText key={i} highlighted={true} text={match} />
+                    ))
+
+                ));
+                this.setState({ highlighted: face });
+                // console.log("face");
+                // console.log(face);
+
+
+            });
+        }
+
+        // console.log(JSON.stringify(newText))
+        console.log("newtext");
+        console.log(newText);
+
+        // let face = this.highlighted.map((item, i) => (
+        //     reactStringReplace(item, ss, (match, i) => (
+        //         <HighlightedText key={i} highlighted={true} text={match} />
+        //     ))
+        // ))
+    }
+    textMatches(a, b) {
+        if (a.replace(" ", "").toLowerCase(b.replace(" ", "").toLowerCase())) {
+            return true;
+        }
+        return false;
+    }
     spot() {
+
+        /**
+         * Parse AIML response for matches and create an array of them
+         */
         var res = this.matchRequirements(this.props.report.text)
         let hl = [];
         for (let i = 0; i < res.length; i++) {
@@ -52,29 +103,36 @@ class DraftView extends Component {
                 hl.push(marker);
             });
         }
-
+        // let reportText = this.props.report.text.split('\n').map((item, key) => {
+        //     return <p key={key}>{item}<br /></p>
+        // });
+        // console.log("reportText")
+        // console.log(JSON.stringify(reportText.join('')))
         let highlightedReport = this.props.report.text;
         hl.forEach((item, i) => {
             let ss = this.props.report.text.substring(item.start, item.end);
-            
-            highlightedReport = reactStringReplace(highlightedReport, ss, (ss, i) => (
-                <HighlightedText key={i} highlighted={true} text={ss} />
+
+            highlightedReport = reactStringReplace(highlightedReport, ss, (match, i) => (
+                <HighlightedText key={i} highlighted={true} text={match} />
             ));
+
 
         })
         // let reportText = highlightedReport.split('\n').map((item, key) => {
         //     return <p key={key}>{item}<br /></p>
         // });
         console.log("highlightedReport");
-        highlightedReport = reactStringReplace(highlightedReport, '\n', (match, i) =>(
+        console.log(highlightedReport)
+        // console.log(JSON.stringify(highlightedReport));
+        highlightedReport = reactStringReplace(highlightedReport, '\n', (match, i) => (
             <p key={i}>{match}</p>
         ))
-        console.log(JSON.stringify(highlightedReport));
+        //   console.log(JSON.stringify(highlightedReport));
         this.setState({ highlighted: highlightedReport });
     }
 
     render() {
- 
+
         return (
             <div className="container-fluid" >
 
@@ -118,12 +176,14 @@ class DraftView extends Component {
                             <div className="card-text">
                                 <b>Text:</b>
                                 {
-                                    this.state.highlighted.map((paragraph, index) => (
-                                        <HighlightedText key={index} highlighted={false} text={paragraph}></HighlightedText>
-
-                                    ))
+                                    this.addParagraphs(this.state.highlighted)
+                                    // this.state.highlighted.map()
+                                    // this.state.highlighted.map((paragraph, index) => (
+                                    // <HighlightedText key={index} highlighted={false} text={paragraph}></HighlightedText>
+                                    //      <p>{paragraph}</p>
+                                    //   ))
                                 }
-                         
+
                             </div>
                             {
                                 this.props.report.comments.map((comment, index) => (
@@ -132,7 +192,7 @@ class DraftView extends Component {
                             }
                             {
                                 this.props.report.encl.map((encl, index) => (
-                                    <ReportEnclosure  key={index} encl={encl} />
+                                    <ReportEnclosure key={index} encl={encl} />
                                 ))
                             }
 
@@ -141,6 +201,14 @@ class DraftView extends Component {
                 }
             </div>
         )
+    }
+    addParagraphs(text) {
+        // return text.split('\n').map((item, key) => {
+        //     return <p key={key}>{item}<br /></p>
+        // });
+        console.log('text')
+        console.log(text)
+        return text;
     }
     matchRequirements(reportText) {
 
