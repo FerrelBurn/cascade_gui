@@ -12,11 +12,11 @@ import DraftList from './components/draftreport/DraftList';
 import { Navbar, NavbarBrand } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
-import data1 from './data/data.json';
+import data1 from './data/allreportsresponse.json';
 import ReportView from './components/report/ReportView';
 import DraftView from './components/draftreport/DraftView';
 import { FaCheck, FaWindowClose, FaTags, FaRegListAlt } from "react-icons/fa";
-import SideNav, {  NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 class App extends Component {
   _isMounted = false;
   constructor() {
@@ -31,27 +31,36 @@ class App extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
     this.getData = this.getData.bind(this);
+    this.getFakeData = this.getFakeData.bind(this);
 
   }
   componentWillUnmount() {
     this._isMounted = false;
   }
-  
-  // componentDidUpdate() {
-  //   this.getData("allreports");
-  // }
-  componentDidMount() {
-    this.getData("allreports");
 
+  componentDidUpdate() {
+    // this.getData("allreports");
+    // this.getFakeData();
+  }
+  componentDidMount() {
+    //this.getData("allreports");
+    this.getFakeData()
+  }
+  getFakeData(){
+    this.setState({
+      reports: data1,
+      drafts: data1
+    })
+    // return data1;
   }
   async  getData(path) {
-    const res = await fetch("http://localhost:3000/"+path);
+    const res = await fetch("http://localhost:3000/" + path);
     const reports = await res.json();
     this.setState({ reports: reports, drafts: reports });
 
   }
   handleClick(e) {
-   
+
     this.setState({
       sidePaneOpen: !this.state.sidePaneOpen
 
@@ -75,7 +84,7 @@ class App extends Component {
               <Navigation />
             </Navbar>
           </header>
-    
+
 
           <main role="main" className="container" style={{ marginTop: '1em' }} id="petratings">
 
@@ -165,11 +174,11 @@ class App extends Component {
                     )
                   }} />
                   <Route path="/draft/:id" render={(props) => {
-              
+
                     let reportPosition = props.location.pathname.replace('/draft/', '');
                     return (
                       <DraftView
-                        report={this.state.reports[reportPosition ]}
+                        report={this.state.reports[reportPosition]}
                       />
                     )
                   }} />

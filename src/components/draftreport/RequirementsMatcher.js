@@ -14,9 +14,9 @@ function RequirmentsMatcher(props) {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Match Requirements
-        </Button>
+            <span variant="primary" onClick={handleShow}>
+                {props.text}
+        </span>
            
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>

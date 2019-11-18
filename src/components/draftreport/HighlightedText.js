@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import RequirementsMatcher from './RequirementsMatcher';
 class HighlightedText extends Component {
     constructor(props) {
         super(props);
@@ -15,6 +16,8 @@ class HighlightedText extends Component {
         return (
             // style={this.state.highlighted ? { backgroundColor: 'yellow' } : {}}
             <span style={this.props.highlighted ? { backgroundColor: this.state.color } : {}}>
+               
+               <RequirementsMatcher text={this.props.text} />
                 {this.props.text}
             </span>
 

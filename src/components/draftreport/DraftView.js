@@ -58,6 +58,7 @@ class DraftView extends Component {
                     //   console.log(item.props.children){}
 
                     // console.log(item)
+                    
                     reactStringReplace(item.props.children, currentValue, (match, i) => (
                         <HighlightedText key={i} highlighted={true} text={match} />
                     ))
@@ -97,8 +98,13 @@ class DraftView extends Component {
         for (let i = 0; i < res.length; i++) {
             res[i].ml_matches.forEach(value => {
                 let marker = {};
+
                 let currentValue = value[1];
+                console.log('currentValue')
+                console.log(currentValue)
                 marker.start = this.props.report.text.indexOf(currentValue);
+                console.log("marker start");
+                console.log(marker.start)
                 marker.end = marker.start + currentValue.length;
                 hl.push(marker);
             });
@@ -121,8 +127,8 @@ class DraftView extends Component {
         // let reportText = highlightedReport.split('\n').map((item, key) => {
         //     return <p key={key}>{item}<br /></p>
         // });
-        console.log("highlightedReport");
-        console.log(highlightedReport)
+        // console.log("highlightedReport");
+        // console.log(highlightedReport)
         // console.log(JSON.stringify(highlightedReport));
         highlightedReport = reactStringReplace(highlightedReport, '\n', (match, i) => (
             <p key={i}>{match}</p>
@@ -206,8 +212,8 @@ class DraftView extends Component {
         // return text.split('\n').map((item, key) => {
         //     return <p key={key}>{item}<br /></p>
         // });
-        console.log('text')
-        console.log(text)
+       // console.log('text')
+       // console.log(text)
         return text;
     }
     matchRequirements(reportText) {
@@ -297,7 +303,7 @@ class DraftView extends Component {
                 "ml_matches": [
                     [
                         "Are there trains or buses around?",
-                        "Rooms were rather shabby but it is in Somaliland, a country not recognized by any other country, to the world it is still Somalia.Remarkably I have never felt safer or met friendlier people than I did here. The recent election was held during my stay, I stepped out of the hotel and people rushed up to me to assure me all the gunfire was not trouble, only celebrations! That being said no public transport can be trusted, you need a guided to take you out on the road."
+                        "Rooms were rather shabby but it is in Somaliland, a country not recognized by any other country, to the world it is still Somalia. Remarkably I have never felt safer or met friendlier people than I did here. The recent election was held during my stay, I stepped out of the hotel and people rushed up to me to assure me all the gunfire was not trouble, only celebrations! That being said no public transport can be trusted, you need a guided to take you out on the road."
                     ]
                 ],
                 "paragraph_number": 4,
