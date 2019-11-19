@@ -41,7 +41,7 @@ class DraftView extends Component {
         xhr.send(JSON.stringify({ report: payload }))
     }
     tryAgain() {
-        let miso = this.state.highlighted.forEach((v) => console.log(v))
+        //let miso = this.state.highlighted.forEach((v) => console.log(v))
         const newText = [...this.state.highlighted]
         var res = this.matchRequirements(this.props.report.text)
         let hl = [];
@@ -49,7 +49,7 @@ class DraftView extends Component {
             res[i].ml_matches.forEach(value => {
                 let marker = {};
                 let currentValue = value[1];
-                console.log("trying to match: " + currentValue);
+               // console.log("trying to match: " + currentValue);
 
 
                 // alert("misio:"+miso)
@@ -100,11 +100,11 @@ class DraftView extends Component {
                 let marker = {};
 
                 let currentValue = value[1];
-                console.log('currentValue')
-                console.log(currentValue)
+                // console.log('currentValue')
+                // console.log(currentValue)
                 marker.start = this.props.report.text.indexOf(currentValue);
-                console.log("marker start");
-                console.log(marker.start)
+                // console.log("marker start");
+                // console.log(marker.start)
                 marker.end = marker.start + currentValue.length;
                 hl.push(marker);
             });
@@ -119,7 +119,7 @@ class DraftView extends Component {
             let ss = this.props.report.text.substring(item.start, item.end);
 
             highlightedReport = reactStringReplace(highlightedReport, ss, (match, i) => (
-                <HighlightedText key={i} highlighted={true} text={match} />
+                <HighlightedText key={i}  highlighted={true} matches={res} text={match} currentIndex={i}/>
             ));
 
 
@@ -182,7 +182,8 @@ class DraftView extends Component {
                             <div className="card-text">
                                 <b>Text:</b>
                                 {
-                                    this.addParagraphs(this.state.highlighted)
+                                    this.state.highlighted
+                                    // this.addParagraphs(this.state.highlighted)
                                     // this.state.highlighted.map()
                                     // this.state.highlighted.map((paragraph, index) => (
                                     // <HighlightedText key={index} highlighted={false} text={paragraph}></HighlightedText>

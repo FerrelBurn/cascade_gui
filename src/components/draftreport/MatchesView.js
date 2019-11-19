@@ -15,9 +15,10 @@ class MatchesView extends Component {
 
     }
     componentDidMount() {
+       
         this.setState({
             matches: this.props.matches,
-            currentIndex: 0
+            currentIndex: this.props.currentIndex
         });
     }
     next() {

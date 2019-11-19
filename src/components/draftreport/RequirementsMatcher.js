@@ -11,19 +11,20 @@ function RequirmentsMatcher(props) {
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
+   
     return (
         <>
-            <span variant="primary" onClick={handleShow}>
+        {console.log(props)}
+            <span  variant="primary" onClick={handleShow}>
                 {props.text}
         </span>
            
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-              <Modal.Title>8</Modal.Title> 
+              <Modal.Title>{props.matches.length} requirement matches</Modal.Title> 
                 </Modal.Header>
                 <Modal.Body>
-                    <MatchesView matches={props.matches}/>
+                    <MatchesView matches={props.matches} currentIndex={props.currentIndex}/>
                     </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>

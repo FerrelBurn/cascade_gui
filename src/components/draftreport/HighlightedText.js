@@ -4,10 +4,13 @@ class HighlightedText extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            highlights: [],
+            currentIndex:this.props.currentIndex,
             highlighted: true,
             color: 'yellow'
         }
+    }
+    componentDidMount(){
+        this.setState({ currentIndex: this.props.currentIndex  });
     }
     render() {
         // console.log("***************")
@@ -17,8 +20,8 @@ class HighlightedText extends Component {
             // style={this.state.highlighted ? { backgroundColor: 'yellow' } : {}}
             <span style={this.props.highlighted ? { backgroundColor: this.state.color } : {}}>
                
-               <RequirementsMatcher text={this.props.text} />
-                {this.props.text}
+               <RequirementsMatcher matches={this.props.matches} currentIndex={this.props.currentIndex} text={this.props.text} />
+              
             </span>
 
 
