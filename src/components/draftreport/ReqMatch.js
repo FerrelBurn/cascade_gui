@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import "./fixedSizedModal.css";
 class ReqMatch extends Component {
     constructor(props) {
         super(props);
@@ -7,8 +7,8 @@ class ReqMatch extends Component {
     }
     render() { 
         return ( 
-            <div >
-                <div className="row d-flex flex-column h-100" style={{height:'20em'}}>
+            <div className="">
+                <div className="row  " >
                     <div className="col">
                    <b> question: </b>{this.props.question}
                     </div>

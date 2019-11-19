@@ -53,6 +53,9 @@ class App extends Component {
     })
     // return data1;
   }
+  uploadRequirements(){
+    
+  }
   async  getData(path) {
     const res = await fetch("http://localhost:3000/" + path);
     const reports = await res.json();

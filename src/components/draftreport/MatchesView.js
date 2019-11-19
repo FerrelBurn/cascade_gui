@@ -41,9 +41,9 @@ class MatchesView extends Component {
     }
     render() {
         return (
-            <div className="container" >
+            <div className="container my-modal" >
 
-                <div className="row h-50">
+                <div className="row ">
                     <div className="col">
                         <Button variant="secondary" onClick={this.back}><MdChevronLeft /> Back</Button>
                     </div>
@@ -52,7 +52,9 @@ class MatchesView extends Component {
                     </div>
 
                 </div>
+                <div className="row">
                 <MatchItem match={this.props.matches[this.state.currentIndex]} />
+                </div>
             </div>
         );
     }
