@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MatchItem from './MatchItem';
 import { Button } from 'react-bootstrap';
+import { FaCheck, FaEdit, FaTags } from "react-icons/fa";
+
 
 
 class MatchesView extends Component {

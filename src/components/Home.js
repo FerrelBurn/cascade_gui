@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import AddRequirement from "./requirement/AddRequirement";
 
 
 class Home extends Component {
@@ -45,39 +46,39 @@ console.log("url: "+url);
     }
     render() {
         return (
+<img src={require('./CASCADE.png')} alt="CASCADE"/>
+            // <div className="card">
+            //     <div className="card-body">
+            //         <form >
 
-            <div className="card">
-                <div className="card-body">
-                    <form >
+            //             <div className="row">
+            //                 <label>
+            //                     URL:  <input
+            //                         type="text"
+            //                         id="url" name="url"
+            //                         onChange={this.handleChange} value="http://localhost:3005/provide_queries" />
+            //                 </label>
 
-                        <div className="row">
-                            <label>
-                                URL:  <input
-                                    type="text"
-                                    id="url" name="url"
-                                    onChange={this.handleChange} value="http://localhost:3005/provide_queries" />
-                            </label>
+            //             </div>
+            //             <div className="row">
+            //                 <label>
+            //                     Body:
+            //         <textarea
+            //                         id="content"
+            //                         name="content"
+            //                         onChange={this.handleChange}
+            //                         placeholder="lorem ipsum" />
+            //                 </label>
 
-                        </div>
-                        <div className="row">
-                            <label>
-                                Body:
-                    <textarea
-                                    id="content"
-                                    name="content"
-                                    onChange={this.handleChange}
-                                    placeholder="lorem ipsum" />
-                            </label>
-
-                        </div>
-
-
+            //             </div>
 
 
-                        <input type="button" value="Submit" onClick={this.handleSubmit} />
-                    </form>
-                </div>
-            </div>
+
+
+            //             <input type="button" value="Submit" onClick={this.handleSubmit} />
+            //         </form>
+            //     </div>
+            // </div>
 
         );
     }
