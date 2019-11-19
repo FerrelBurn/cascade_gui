@@ -1,11 +1,11 @@
 // import React from 'react';
 // import {Modal, Button} from 'react-bootstrap/Modal';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import MatchesView from './MatchesView';
 
-import { FaCheck, FaRegWindowClose } from "react-icons/fa";
-
+import { MdCheck, MdCancel } from "react-icons/md";
+import "./fixedSizedModal.css";
 
 class RequirmentsMatcher extends Component {
     constructor(props) {
@@ -18,40 +18,41 @@ class RequirmentsMatcher extends Component {
         this.handleShow = this.handleShow.bind(this);
     }
     handleClose(e) {
-       this.setState({ show: false  });
+        this.setState({ show: false });
     }
     handleShow(e) {
-        alert(this.props.currentIndex)
+        console.log(this.props.currentIndex)
         console.log(e)
-       this.setState({ show: true  });
+        this.setState({ show: true });
     }
     render() {
         return (
-                    <>
-            
-                        <span variant="primary" onClick={this.handleShow}>
-                            {this.props.text}
-                    </span>
-            
-                        <Modal show={this.state.show} onHide={this.handleClose}>
-                            <Modal.Header closeButton>
-                          <Modal.Title>{this.props.matches.length} requirement matches</Modal.Title> 
-                            </Modal.Header>
-                            <Modal.Body>
-                                <MatchesView matches={this.props.matches} currentIndex={this.props.currentIndex}/>
-                                </Modal.Body>
-                            <Modal.Footer>
-                                <Button variant="secondary" onClick={this.handleClose}>
-                                  <FaCheck color="green"/> 
+            <>
+
+                <span variant="primary" onClick={this.handleShow}>
+                    {this.props.text}
+                </span>
+
+                <Modal size="md"  centered="true" show={this.state.show} onHide={this.handleClose}>
+                    <Modal.Header closeButton>
+                        {/* <Modal.Title>{this.props.matches.length} requirement matches</Modal.Title> */}
+                        <Button variant="success" onClick={this.handleClose}>
+                            <MdCheck color="green" /> Accept 
                         </Button>
-                                <Button variant="primary" onClick={this.handleClose}>
-                                   <FaRegWindowClose color="red"/> 
+                        <Button variant="danger" onClick={this.handleClose}>
+                            <MdCancel /> Decline 
                         </Button>
-                            </Modal.Footer>
-                        </Modal>
-                    </>
-                );
-            
+                    </Modal.Header>
+                    <Modal.Body>
+                        <MatchesView matches={this.props.matches} currentIndex={this.props.currentIndex} />
+                    </Modal.Body>
+                    <Modal.Footer>
+                        
+                    </Modal.Footer>
+                </Modal>
+            </>
+        );
+
     }
 }
 

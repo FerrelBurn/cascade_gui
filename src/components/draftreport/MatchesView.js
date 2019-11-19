@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import MatchItem from './MatchItem';
 import { Button } from 'react-bootstrap';
-import { FaCheck, FaEdit, FaTags } from "react-icons/fa";
+import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 
 
 
@@ -17,7 +17,7 @@ class MatchesView extends Component {
 
     }
     componentDidMount() {
-       
+
         this.setState({
             matches: this.props.matches,
             currentIndex: this.props.currentIndex
@@ -26,7 +26,7 @@ class MatchesView extends Component {
     next() {
 
         var nextIndex = this.state.currentIndex;
-        if (this.state.currentIndex < (this.state.matches.length -1)) {
+        if (this.state.currentIndex < (this.state.matches.length - 1)) {
             nextIndex = this.state.currentIndex + 1
             this.setState({ currentIndex: nextIndex });
         }
@@ -41,18 +41,18 @@ class MatchesView extends Component {
     }
     render() {
         return (
-            <div className="container">
-                <MatchItem match={this.props.matches[this.state.currentIndex]} />
-                <div className="row">
+            <div className="container" >
+
+                <div className="row h-50">
                     <div className="col">
-                        <Button onClick={this.back}>back</Button>
+                        <Button variant="secondary" onClick={this.back}><MdChevronLeft /> Back</Button>
                     </div>
-                    <div className="col">
-                        <Button onClick={this.next}>next</Button>
+                    <div className="col" className="pull-right" >
+                        <Button variant="secondary" onClick={this.next}>Next <MdChevronRight /></Button>
                     </div>
 
                 </div>
-
+                <MatchItem match={this.props.matches[this.state.currentIndex]} />
             </div>
         );
     }

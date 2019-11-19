@@ -1,8 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-
-
-
 import App from './App';
 import 'jquery/dist/jquery.js';
 import 'popper.js/dist/umd/popper.js';

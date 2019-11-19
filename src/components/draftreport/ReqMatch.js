@@ -8,7 +8,7 @@ class ReqMatch extends Component {
     render() { 
         return ( 
             <div >
-                <div className="row">
+                <div className="row d-flex flex-column h-100" style={{height:'20em'}}>
                     <div className="col">
                    <b> question: </b>{this.props.question}
                     </div>
