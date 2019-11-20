@@ -18,7 +18,7 @@ class RequirmentsMatcher extends Component {
         this.handleClose = this.handleClose.bind(this);
         this.handleShow = this.handleShow.bind(this);
         this.handleAccept = this.handleAccept.bind(this);
-        
+
     }
     handleClose(e) {
         this.setState({ show: false });
@@ -42,10 +42,10 @@ class RequirmentsMatcher extends Component {
                 <Modal size="md"  centered="true" show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         {/* <Modal.Title>{this.props.matches.length} requirement matches</Modal.Title> */}
-                        <Button variant="success" onClick={this.handleAccept}>
+                        <Button variant="success" className="mr-1" onClick={this.handleAccept}>
                             <MdCheck color="green" /> Accept 
                         </Button>
-                        <Button variant="danger" onClick={this.handleClose}>
+                        <Button variant="danger" className="mr-1" onClick={this.handleClose}>
                             <MdCancel /> Decline 
                         </Button>
                     </Modal.Header>

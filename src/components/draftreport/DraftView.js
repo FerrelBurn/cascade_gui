@@ -30,7 +30,11 @@ class DraftView extends Component {
     }
     addRequirement(requirement){
         console.log("addRequirement")
-       let updatedRequirements = this.state.requirements.push(requirement)
+        // console.log(requirement)
+        let reqId = requirement.ml_matches[0][0].req_id;
+        console.log(reqId)
+       let updatedRequirements = [...this.state.requirements];
+       updatedRequirements.push(reqId)
         this.setState({ requirements: updatedRequirements });
     }
 
@@ -111,7 +115,7 @@ class DraftView extends Component {
                                 {this.props.report.serial.year}
                             </span>
                             <span className="ml-auto">
-                                <Button onClick={this.spot}>match</Button>
+                                <Button className="mr-1" onClick={this.spot}>match</Button>
                                 {/* <RequirementsMatcher
                                     highlights={this.state.highlighted}
                                     matches={this.matchRequirements(this.props.report.text)} /> */}
@@ -129,7 +133,10 @@ class DraftView extends Component {
                                 <b>IPSP: </b>{this.props.report.ipsp}
                             </p>
                             <p className="card-text">
-                                <b>REQ: </b>{this.state.requirements}
+                                <b>REQ: </b>
+                                {this.state.requirements.map((reqid, i) =>(
+                                    <span>{reqid } </span>
+                                ))}
                             </p>
                             <p className="card-text">
                                 <b>Country: </b>{this.props.report.country.trigraph}

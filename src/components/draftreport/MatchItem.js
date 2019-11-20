@@ -6,7 +6,7 @@ const MatchItem = (props) => {
     return ( 
        
         <div>
-                {console.log(props)}
+                
             {
                 
                  props.match.ml_matches.map((match) => (
