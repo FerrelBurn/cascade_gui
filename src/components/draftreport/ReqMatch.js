@@ -16,7 +16,7 @@ class ReqMatch extends Component {
                 </div>
                 <div className="row">
                     <div className="col">
-                       <b> answered by:</b> {this.props.answer}
+                       <b> Answered by:</b> {this.props.answer}
                     </div>
                 </div>
             </div>

@@ -11,10 +11,12 @@ class DraftView extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            highlighted: []
+            highlighted: [],
+            requirements: []
         };
         this.spot = this.spot.bind(this);
         this.match = this.match.bind(this);
+        this.addRequirement = this.addRequirement.bind(this);
         // this.tryAgain = this.tryAgain.bind(this);
 
     }
@@ -26,7 +28,10 @@ class DraftView extends Component {
 
         this.setState({ highlighted: reportText });
     }
-
+    addRequirement(requirement){
+       let updatedRequirements = this.state.requirements.push(requirement)
+        this.setState({ requirements: updatedRequirements });
+    }
 
 
     spot() {
@@ -112,6 +117,7 @@ class DraftView extends Component {
                                 <b>Acquisition Date:</b> {this.props.report.acqDate}</span>
                         </div>
                         <div className="cardBody">
+
                             <p className="card-text">
                                 <b>ACQ: </b>{this.props.report.acq}
                             </p>
@@ -120,6 +126,9 @@ class DraftView extends Component {
                             </p>
                             <p className="card-text">
                                 <b>IPSP: </b>{this.props.report.ipsp}
+                            </p>
+                            <p className="card-text">
+                                <b>REQ: </b>{this.state.requirements}
                             </p>
                             <p className="card-text">
                                 <b>Country: </b>{this.props.report.country.trigraph}
