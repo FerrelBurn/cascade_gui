@@ -17,9 +17,14 @@ class RequirmentsMatcher extends Component {
         console.log(this.props)
         this.handleClose = this.handleClose.bind(this);
         this.handleShow = this.handleShow.bind(this);
+        this.handleAccept = this.handleAccept.bind(this);
+        
     }
     handleClose(e) {
         this.setState({ show: false });
+    }
+    handleAccept(e){
+        this.props.handleAddRequirement(this.props.matches[this.props.currentIndex]);
     }
     handleShow(e) {
        // console.log(this.props.currentIndex)
@@ -37,7 +42,7 @@ class RequirmentsMatcher extends Component {
                 <Modal size="md"  centered="true" show={this.state.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         {/* <Modal.Title>{this.props.matches.length} requirement matches</Modal.Title> */}
-                        <Button variant="success" onClick={this.handleClose}>
+                        <Button variant="success" onClick={this.handleAccept}>
                             <MdCheck color="green" /> Accept 
                         </Button>
                         <Button variant="danger" onClick={this.handleClose}>

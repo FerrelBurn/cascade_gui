@@ -29,6 +29,7 @@ class DraftView extends Component {
         this.setState({ highlighted: reportText });
     }
     addRequirement(requirement){
+        console.log("addRequirement")
        let updatedRequirements = this.state.requirements.push(requirement)
         this.setState({ requirements: updatedRequirements });
     }
@@ -80,7 +81,7 @@ class DraftView extends Component {
             let ss = this.props.report.text.substring(item.start, item.end);
 
             highlightedReport = reactStringReplace(highlightedReport, ss, (match) => (
-                <HighlightedText key={i} highlighted={true} matches={res} text={match} currentIndex={i} />
+                <HighlightedText handleAddRequirement={this.addRequirement} key={i} highlighted={true} matches={res} text={match} currentIndex={i} />
             ));
 
 

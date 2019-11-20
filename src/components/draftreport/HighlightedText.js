@@ -20,7 +20,7 @@ class HighlightedText extends Component {
             // style={this.state.highlighted ? { backgroundColor: 'yellow' } : {}}
             <span style={this.props.highlighted ? { backgroundColor: this.state.color } : {}}>
                
-               <RequirementsMatcher matches={this.props.matches} currentIndex={this.state.currentIndex} text={this.props.text} />
+               <RequirementsMatcher handleAddRequirement={this.props.handleAddRequirement} matches={this.props.matches} currentIndex={this.state.currentIndex} text={this.props.text} />
               
             </span>
 
