@@ -10,7 +10,9 @@ class RequirementSummary extends Component {
          }
     }
     render() { 
+        console.log(this.props)
         return ( 
+            
             <div className=" row mb-3">
 
             <div className=" col media py-3" key={this.props.requirements.req_id}>

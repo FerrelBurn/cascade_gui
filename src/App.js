@@ -32,7 +32,8 @@ class App extends Component {
 
     };
     this.handleClick = this.handleClick.bind(this);
-    this.getData = this.getData.bind(this);
+    this.getReports = this.getReports.bind(this);
+    this.getRequirements = this.getRequirements.bind(this);
     this.getFakeData = this.getFakeData.bind(this);
     this.uploadRequirements = this.uploadRequirements.bind(this);
     // this.uploadRequirements();
@@ -50,18 +51,14 @@ class App extends Component {
   }
   componentDidMount() {
     this.uploadRequirements();
-    let reports = this.getData("allreports");
-    let requirements = this.getData("allrequirements");
-// console.log(reports)
-    this.setState({
-      reports: reports,
-      drafts: reports,
-      requirements: requirements
-    });
+    this.getReports();
+    this.getRequirements();
+    // console.log(reports)
+
 
     // this.getFakeData()
   }
- 
+
   getFakeData() {
     this.setState({
       reports: data1,
@@ -84,14 +81,12 @@ class App extends Component {
         // console.log(response)
       })
   }
-
-  getData(path) {
-    console.log("getData2")
-    axios.get("http://localhost:3000/" + path)
+  getRequirements(path) {
+    console.log("getRequirements")
+    axios.get("http://localhost:3000/allrequirements")
       .then((res) => {
         // console.log("respons from get data")
-        // console.log(res)
-        return res.data;
+        this.setState({ requirements: res.data });
       })
     // const res = await fetch("http://localhost:3000/" + path)
     //   .then((res) => {
@@ -99,6 +94,19 @@ class App extends Component {
     //   })
     // const reports = await res.json();
     // this.setState({ reports: reports, drafts: reports });
+
+  }
+  getReports(path) {
+    console.log("getReports")
+    axios.get("http://localhost:3000/allreports")
+      .then((res) => {
+        // console.log("respons from get data")
+        this.setState({
+          reports: res.data,
+          drafts: res.data
+        });
+      })
+
 
   }
   handleClick(e) {

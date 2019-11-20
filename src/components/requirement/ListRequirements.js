@@ -9,8 +9,8 @@ class ListRequirements extends Component {
     render() {
         return (
             <div className="container-fluid" >
-                {console.log("ListRequirements")}
-                {console.log(this.props)}
+                {/* {console.log("ListRequirements")}
+                {console.log(this.props.requirements)} */}
                 {
                     this.props.requirements.map((requirement) => (
 
