@@ -12,7 +12,8 @@ class DraftView extends Component {
         super(props);
         this.state = {
             highlighted: [],
-            requirements: []
+            requirements: [],
+            matches: []
         };
         this.spot = this.spot.bind(this);
         this.match = this.match.bind(this);
@@ -28,13 +29,11 @@ class DraftView extends Component {
 
         this.setState({ highlighted: reportText });
     }
-    addRequirement(requirement){
-        console.log("addRequirement")
-        // console.log(requirement)
+    addRequirement(requirement) {
+       
         let reqId = requirement.ml_matches[0][0].req_id;
-        console.log(reqId)
-       let updatedRequirements = [...this.state.requirements];
-       updatedRequirements.push(reqId)
+        let updatedRequirements = [...this.state.requirements];
+        updatedRequirements.push(reqId)
         this.setState({ requirements: updatedRequirements });
     }
 
@@ -48,15 +47,15 @@ class DraftView extends Component {
     }
 
     matchRequirements(payload) {
-        
+
         // create a new XMLHttpRequest
         let self = this;
-        
+
         axios.post("http://localhost:3005/read", payload)
             .then((response) => {
-             
+
                 self.match(response.data);
-                
+
             })
             .catch((error) => console.error(error))
 
@@ -67,13 +66,40 @@ class DraftView extends Component {
          * Parse AIML response for matches and create an array of them
          */
         
+        let matches = []
+        res.forEach((item) => {
+            
+            item.ml_matches.forEach((ml) => {
+                let req = ml[0];
+                let mlMatch = {
+                    "type": "ML",
+                    "req_id": req.req_id,
+                    "reqText": req.text,
+                    "matchText": ml[1]
+                };
+                matches.push(mlMatch);
+
+            });
+            item.fuzzy_matches.forEach((fuz) => {
+                let req = fuz[0];
+                let fuzMatch = {
+                    "type": "fuzzy",
+                    "req_id": req.req_id,
+                    "reqText": req.text,
+                    "matchText": fuz[1]
+                }
+                matches.push(fuzMatch);
+            })
+        })
+        
+        this.setState({ matches: matches });
         let hl = [];
         for (let i = 0; i < res.length; i++) {
             res[i].ml_matches.forEach(value => {
                 let marker = {};
 
                 let currentValue = value[1];
-                
+
                 marker.start = this.props.report.text.indexOf(currentValue);
                 marker.end = marker.start + currentValue.length;
                 hl.push(marker);
@@ -85,16 +111,15 @@ class DraftView extends Component {
             let ss = this.props.report.text.substring(item.start, item.end);
 
             highlightedReport = reactStringReplace(highlightedReport, ss, (match) => (
-                <HighlightedText handleAddRequirement={this.addRequirement} key={i} highlighted={true} matches={res} text={match} currentIndex={i} />
+                <HighlightedText handleAddRequirement={this.addRequirement} key={i} highlighted={true} matches={this.state.matches} text={match} currentIndex={i} />
             ));
 
 
         })
-     
+
         highlightedReport = reactStringReplace(highlightedReport, '\n', (match, i) => (
             <p key={i}>{match}</p>
         ))
-      
         this.setState({ highlighted: highlightedReport });
     }
 
@@ -134,8 +159,8 @@ class DraftView extends Component {
                             </p>
                             <p className="card-text">
                                 <b>REQ: </b>
-                                {this.state.requirements.map((reqid, i) =>(
-                                    <span>{reqid } </span>
+                                {this.state.requirements.map((reqid, i) => (
+                                    <span>{reqid} </span>
                                 ))}
                             </p>
                             <p className="card-text">
@@ -177,7 +202,7 @@ class DraftView extends Component {
             </div>
         )
     }
- 
+
 
     matchFakeData() {
         let testData = [

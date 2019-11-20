@@ -2,22 +2,39 @@ import React from 'react';
 import ReqMatch from './ReqMatch';
 
 const MatchItem = (props) => {
-   
-    return ( 
-       
+
+    return (
+
         <div>
-                
+            {console.log(props.matches)}
             {
-                
-                 props.match.ml_matches.map((match) => (
 
 
-                    <ReqMatch reqid={match[0].req_id} question={match[0].text} answer={match[1]}/>
-                ))
+
+                <div className="">
+                    <div className="row">
+                        <div className="col">
+                            <b>Match Type: {props.match.type}</b>
+                        </div>
+                    </div>
+                    <div className="row  " >
+                        <div className="col">
+                            <b> ({props.match.req_id}): </b>{props.match.reqText}
+                        </div>
+                        <br />
+                    </div>
+                    <div className="row">
+                        <div className="col">
+                            <b> Answered by:</b> {props.match.matchText}
+                        </div>
+                    </div>
+                </div>
+                // <ReqMatch reqid={match.req_id} question={match.reqText} match={match} answer={match.matchText}/>
+
             }
         </div>
-     );
+    );
 }
- 
+
 
 export default MatchItem;

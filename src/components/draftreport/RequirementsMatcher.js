@@ -14,7 +14,7 @@ class RequirmentsMatcher extends Component {
             show: false,
             setShow: false
         }
-        console.log(this.props)
+        
         this.handleClose = this.handleClose.bind(this);
         this.handleShow = this.handleShow.bind(this);
         this.handleAccept = this.handleAccept.bind(this);
@@ -27,8 +27,7 @@ class RequirmentsMatcher extends Component {
         this.props.handleAddRequirement(this.props.matches[this.props.currentIndex]);
     }
     handleShow(e) {
-       // console.log(this.props.currentIndex)
-       // console.log(e)
+       
         this.setState({ show: true });
     }
     render() {

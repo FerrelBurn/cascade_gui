@@ -71,7 +71,7 @@ class App extends Component {
     // axios.defaults.headers.post['Content-Type'] = 'application/json';
 
     const cannedpayload = [
-      { "req_id": "REQ-324445-A", "text": "Is there a cocktail bar in the hotel?" },
+   
       { "req_id": "REQ-324445-B", "text": "Are there trains or buses around?" },
       { "req_id": "REQ-324445-C", "text": "What is there to do near the hotel for fun?" }];
 payload.push(...cannedpayload)
