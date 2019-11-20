@@ -50,7 +50,7 @@ class App extends Component {
 
   }
   componentDidMount() {
-    this.uploadRequirements();
+    // this.uploadRequirements();
     this.getReports();
     this.getRequirements();
     // console.log(reports)
@@ -66,15 +66,15 @@ class App extends Component {
     })
     // return data1;
   }
-  uploadRequirements() {
+  uploadRequirements(payload) {
     console.log("axios request")
     // axios.defaults.headers.post['Content-Type'] = 'application/json';
 
-    const payload = [
+    const cannedpayload = [
       { "req_id": "REQ-324445-A", "text": "Is there a cocktail bar in the hotel?" },
       { "req_id": "REQ-324445-B", "text": "Are there trains or buses around?" },
       { "req_id": "REQ-324445-C", "text": "What is there to do near the hotel for fun?" }];
-
+payload.push(...cannedpayload)
     axios.post("http://localhost:3005/provide_queries", payload)
       .then((response) => {
         // console.log(response.data)
@@ -83,10 +83,12 @@ class App extends Component {
   }
   getRequirements(path) {
     console.log("getRequirements")
+    let self = this;
     axios.get("http://localhost:3000/allrequirements")
       .then((res) => {
         // console.log("respons from get data")
         this.setState({ requirements: res.data });
+        self.uploadRequirements(res.data)
       })
     // const res = await fetch("http://localhost:3000/" + path)
     //   .then((res) => {

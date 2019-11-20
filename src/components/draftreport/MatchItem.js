@@ -12,7 +12,7 @@ const MatchItem = (props) => {
                  props.match.ml_matches.map((match) => (
 
 
-                    <ReqMatch question={match[0].req_id} answer={match[1]}/>
+                    <ReqMatch reqid={match[0].req_id} question={match[0].text} answer={match[1]}/>
                 ))
             }
         </div>
