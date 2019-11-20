@@ -17,6 +17,7 @@ import ReportView from './components/report/ReportView';
 import DraftView from './components/draftreport/DraftView';
 import { FaCheck, FaWindowClose, FaTags, FaRegListAlt } from "react-icons/fa";
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
+import axios from 'axios';
 class App extends Component {
   _isMounted = false;
   constructor() {
@@ -24,6 +25,7 @@ class App extends Component {
     super();
     this.state = {
       reports: [],
+      requirements: [],
       drafts: [],
       sidePaneOpen: false,
       lastIndex: 0
@@ -32,6 +34,8 @@ class App extends Component {
     this.handleClick = this.handleClick.bind(this);
     this.getData = this.getData.bind(this);
     this.getFakeData = this.getFakeData.bind(this);
+    this.uploadRequirements = this.uploadRequirements.bind(this);
+    // this.uploadRequirements();
 
   }
   componentWillUnmount() {
@@ -41,25 +45,60 @@ class App extends Component {
   componentDidUpdate() {
     // this.getData("allreports");
     // this.getFakeData();
+
+
   }
   componentDidMount() {
-    //this.getData("allreports");
-    this.getFakeData()
+    this.uploadRequirements();
+    let reports = this.getData("allreports");
+    let requirements = this.getData("allrequirements");
+// console.log(reports)
+    this.setState({
+      reports: reports,
+      drafts: reports,
+      requirements: requirements
+    });
+
+    // this.getFakeData()
   }
-  getFakeData(){
+ 
+  getFakeData() {
     this.setState({
       reports: data1,
       drafts: data1
     })
     // return data1;
   }
-  uploadRequirements(){
-    
+  uploadRequirements() {
+    console.log("axios request")
+    // axios.defaults.headers.post['Content-Type'] = 'application/json';
+
+    const payload = [
+      { "req_id": "REQ-324445-A", "text": "Is there a cocktail bar in the hotel?" },
+      { "req_id": "REQ-324445-B", "text": "Are there trains or buses around?" },
+      { "req_id": "REQ-324445-C", "text": "What is there to do near the hotel for fun?" }];
+
+    axios.post("http://localhost:3005/provide_queries", payload)
+      .then((response) => {
+        // console.log(response.data)
+        // console.log(response)
+      })
   }
-  async  getData(path) {
-    const res = await fetch("http://localhost:3000/" + path);
-    const reports = await res.json();
-    this.setState({ reports: reports, drafts: reports });
+
+  getData(path) {
+    console.log("getData2")
+    axios.get("http://localhost:3000/" + path)
+      .then((res) => {
+        // console.log("respons from get data")
+        // console.log(res)
+        return res.data;
+      })
+    // const res = await fetch("http://localhost:3000/" + path)
+    //   .then((res) => {
+    //     return res.data
+    //   })
+    // const reports = await res.json();
+    // this.setState({ reports: reports, drafts: reports });
 
   }
   handleClick(e) {
@@ -157,7 +196,9 @@ class App extends Component {
                     <ListReports reports={this.state.reports} />
                   )} />
                   {/* <Route path="/list-reports" component={ListReports} /> */}
-                  <Route path="/list-requirements" component={ListRequirements} />
+                  <Route path="/list-requirements" render={(props) => (
+                    <ListRequirements requirements={this.state.requirements} />
+                  )} />
                   <Route path="/add-report" component={AddReporting} />
                   <Route path="/add-requirement" component={AddRequirement} />
 

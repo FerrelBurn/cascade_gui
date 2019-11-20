@@ -6,7 +6,7 @@ const ListReports = (props) => {
  
   return (
     <div className="container-fluid" >
-      {console.log(props)}
+      {/* {console.log(props)} */}
       {
         props.reports.map((report) => (
          
