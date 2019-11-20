@@ -10,7 +10,7 @@ class ReqMatch extends Component {
             <div className="">
                 <div className="row  " >
                     <div className="col">
-                   <b> Question: </b>{this.props.question}
+                   <b> Question: </b>{this.props.reqid} {this.props.question}
                     </div>
                     <br/>
                 </div>
