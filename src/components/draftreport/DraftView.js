@@ -30,10 +30,10 @@ class DraftView extends Component {
         this.setState({ highlighted: reportText });
     }
     addRequirement(requirement) {
-       
-        let reqId = requirement.ml_matches[0][0].req_id;
+        
+        // let reqId = requirement.ml_matches[0][0].req_id;
         let updatedRequirements = [...this.state.requirements];
-        updatedRequirements.push(reqId)
+        updatedRequirements.push(requirement.req_id)
         this.setState({ requirements: updatedRequirements });
     }
 
@@ -65,10 +65,10 @@ class DraftView extends Component {
         /**
          * Parse AIML response for matches and create an array of them
          */
-        
+
         let matches = []
         res.forEach((item) => {
-            
+
             item.ml_matches.forEach((ml) => {
                 let req = ml[0];
                 let mlMatch = {
@@ -91,7 +91,7 @@ class DraftView extends Component {
                 matches.push(fuzMatch);
             })
         })
-        
+
         this.setState({ matches: matches });
         let hl = [];
         for (let i = 0; i < res.length; i++) {
@@ -105,7 +105,7 @@ class DraftView extends Component {
                 hl.push(marker);
             });
         }
-        
+
         let highlightedReport = this.props.report.text;
         hl.forEach((item, i) => {
             let ss = this.props.report.text.substring(item.start, item.end);

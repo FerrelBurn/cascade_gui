@@ -12,18 +12,18 @@ const MatchItem = (props) => {
 
 
                 <div className="">
-                    <div className="row">
+                    <div className="row m-2">
                         <div className="col">
                             <b>Match Type: {props.match.type}</b>
                         </div>
                     </div>
-                    <div className="row  " >
+                    <div className="row m-2 " >
                         <div className="col">
                             <b> ({props.match.req_id}): </b>{props.match.reqText}
                         </div>
                         <br />
                     </div>
-                    <div className="row">
+                    <div className="row m-2">
                         <div className="col">
                             <b> Answered by:</b> {props.match.matchText}
                         </div>
