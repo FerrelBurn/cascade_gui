@@ -15,6 +15,8 @@ import { Link } from 'react-router-dom';
 import data1 from './data/allreportsresponse.json';
 import ReportView from './components/report/ReportView';
 import DraftView from './components/draftreport/DraftView';
+import CollectionManagment from './components/collection_management/CollectionManagement';
+import RequirementCrosswalk from './components/collection_management/RequirementCrosswalk';
 import { FaCheck, FaWindowClose, FaTags, FaRegListAlt } from "react-icons/fa";
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import axios from 'axios';
@@ -211,7 +213,8 @@ class App extends Component {
                   )} />
                   <Route path="/add-report" component={AddReporting} />
                   <Route path="/add-requirement" component={AddRequirement} />
-
+                  <Route path="/collection-management" component={CollectionManagment} />
+                  <Route path="/req-cross-walk" component={RequirementCrosswalk} />
                   <Route exact path="/list-drafts" render={(props) => (
                     <DraftList
                       handleClick={this.handleClick}

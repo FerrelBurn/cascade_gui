@@ -145,7 +145,7 @@ class DraftView extends Component {
                                     highlights={this.state.highlighted}
                                     matches={this.matchRequirements(this.props.report.text)} /> */}
                                 <b>Acquisition Date:</b> {this.props.report.acqDate}</span>
-                        </div>
+                        </div>render
                         <div className="cardBody">
 
                             <p className="card-text">
