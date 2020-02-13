@@ -213,7 +213,12 @@ class App extends Component {
                   )} />
                   <Route path="/add-report" component={AddReporting} />
                   <Route path="/add-requirement" component={AddRequirement} />
-                  <Route path="/collection-management" component={CollectionManagment} />
+
+                  <Route path="/collection-management" render={(props) =>(
+                    <CollectionManagment matchedRequirements={this.state.matchedRequirements}/>
+                  )} />
+
+
                   <Route path="/req-cross-walk" component={RequirementCrosswalk} />
                   <Route exact path="/list-drafts" render={(props) => (
                     <DraftList

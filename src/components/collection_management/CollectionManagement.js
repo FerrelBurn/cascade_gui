@@ -5,7 +5,7 @@ import MatchedRequirement from './MatchedRequirement';
 class CollectionManagement extends Component {
     constructor(props) {
         super(props);
-        this.props.requirements = {"requirement":{"uuid":"123123123", "matches":[{"uuid":"34454234356"},{"uuid":"2567654345654"}]}}
+        // this.props.requirements = {"requirement":{"uuid":"123123123", "matches":[{"uuid":"34454234356"},{"uuid":"2567654345654"}]}}
 
         this.state = {}
     }
