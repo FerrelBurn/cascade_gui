@@ -68,7 +68,7 @@ class RequirementCrosswalk extends Component {
                     <thead>
                         <tr>
                             <th>Requirement</th>
-                            <th>Possibly related</th>
+                            <th>Possibly related requirement</th>
                         </tr>
                     </thead>
                     <tbody>
