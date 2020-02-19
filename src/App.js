@@ -86,7 +86,8 @@ class App extends Component {
   getRequirements(path) {
     console.log("getRequirements")
     let self = this;
-    axios.get("http://localhost:3000/allrequirements")
+    // axios.get("http://localhost:3000/allrequirements")
+    axios.get("http://localhost:3005/listreqs")
       .then((res) => {
         // console.log("respons from get data")
         this.setState({ requirements: res.data });
@@ -102,7 +103,8 @@ class App extends Component {
   }
   getReports(path) {
     console.log("getReports")
-    axios.get("http://localhost:3000/allreports")
+    // axios.get("http://localhost:3000/allreports")
+      axios.get("http://localhost:3005/listreps")
       .then((res) => {
         // console.log("respons from get data")
         this.setState({
@@ -214,8 +216,8 @@ class App extends Component {
                   <Route path="/add-report" component={AddReporting} />
                   <Route path="/add-requirement" component={AddRequirement} />
 
-                  <Route path="/collection-management" render={(props) =>(
-                    <CollectionManagment matchedRequirements={this.state.matchedRequirements}/>
+                  <Route path="/collection-management" render={(props) => (
+                    <CollectionManagment matchedRequirements={this.state.matchedRequirements} />
                   )} />
 
 
