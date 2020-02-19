@@ -14,6 +14,7 @@ import { Navbar, NavbarBrand } from "react-bootstrap";
 import { Link } from 'react-router-dom';
 import data1 from './data/allreportsresponse.json';
 import ReportView from './components/report/ReportView';
+import RequirementView from './components/requirement/RequirementView';
 import DraftView from './components/draftreport/DraftView';
 import CollectionManagment from './components/collection_management/CollectionManagement';
 import RequirementCrosswalk from './components/collection_management/RequirementCrosswalk';
@@ -104,7 +105,7 @@ class App extends Component {
   getReports(path) {
     console.log("getReports")
     // axios.get("http://localhost:3000/allreports")
-      axios.get("http://localhost:3005/listreps")
+    axios.get("http://localhost:3005/listreps")
       .then((res) => {
         // console.log("respons from get data")
         this.setState({
@@ -234,6 +235,14 @@ class App extends Component {
                     return (
                       <ReportView
                         report={this.state.reports[reportPosition - 1]}
+                      />
+                    )
+                  }} />
+                  <Route path="/requirement/:id" render={(props) => {
+                    let requirementPosition = props.location.pathname.replace('/requirement/', '');
+                    return (
+                      <RequirementView
+                        report={this.state.requirements[requirementPosition - 1]}
                       />
                     )
                   }} />

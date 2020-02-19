@@ -28,6 +28,13 @@ class RequirementCrosswalk extends Component {
 
     }
     match(data) {
+
+        for (const d in data) {
+            for (const i in data[d].matches) {
+                data[d].matches[i].score = Math.round(data[d].matches[i].score * 1000) / 10 + "%";
+            }
+
+        }
         this.setState({ "matches": data })
     }
     roundScore(score) {
@@ -49,7 +56,7 @@ class RequirementCrosswalk extends Component {
         // create a new XMLHttpRequest
         let self = this;
 
-        axios.get("http://localhost:3005/remove_rel/" + uuid1 + "/" + uuid2)
+        axios.get("http://localhost:3005/accept_rel/" + uuid1 + "/" + uuid2)
             .then((response) => {
 
                 self.updateStateAfterRemove(index, i)
@@ -101,7 +108,7 @@ class RequirementCrosswalk extends Component {
                                             <td><b>REQ_ID:</b> {match.req_id}</td>
                                             <td><b>Text:</b> {match.text}</td>
                                             {/* <td><b>UUID:</b> {match.uuid}</td> */}
-                                            <td><b>Score:</b> {match.score * 100}%</td>
+                                            <td><b>Score:</b> {match.score}</td>
                                             <td>
                                                 <Button variant="outline-success" size="sm" onClick={() => this.acceptRelationship(index, i, requirement.requirement, match.uuid)}>Accept</Button>
                                             </td>
