@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReportEnclosure from '../report/ReportEnclosure';
 import ReportComment from '../report/ReportComment';
 import RequirementsMatcher from './RequirementsMatcher';
-import { Button } from 'react-bootstrap';
+import { Button, Spinner } from 'react-bootstrap';
 import HighlightedText from './HighlightedText';
 import axios from 'axios';
 const reactStringReplace = require('react-string-replace');
@@ -13,7 +13,8 @@ class DraftView extends Component {
         this.state = {
             highlighted: [],
             requirements: [],
-            matches: []
+            matches: [],
+            loading: false
         };
         this.spot = this.spot.bind(this);
         this.match = this.match.bind(this);
@@ -30,7 +31,7 @@ class DraftView extends Component {
         this.setState({ highlighted: reportText });
     }
     addRequirement(requirement) {
-        
+
         // let reqId = requirement.ml_matches[0][0].req_id;
         let updatedRequirements = [...this.state.requirements];
         updatedRequirements.push(requirement.req_id)
@@ -39,6 +40,7 @@ class DraftView extends Component {
 
 
     spot() {
+        this.setState({loading:true})
         let reportText = this.props.report.text.split('\n').map((item, key) => {
             return { "paragraph_number": key, "text": item }
         });
@@ -120,7 +122,8 @@ class DraftView extends Component {
         highlightedReport = reactStringReplace(highlightedReport, '\n', (match, i) => (
             <p key={i}>{match}</p>
         ))
-        this.setState({ highlighted: highlightedReport });
+        this.setState({ highlighted: highlightedReport,
+                        loading:false });
     }
 
     render() {
@@ -140,12 +143,19 @@ class DraftView extends Component {
                                 {this.props.report.serial.year}
                             </span>
                             <span className="ml-auto">
-                                <Button className="mr-1" onClick={this.spot}>match</Button>
+                                <Button className="mr-1" onClick={this.spot}>
+                                   {this.state.loading && <span><Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                   />Working...</span>}{!this.state.loading && <span>Match</span>}</Button>
                                 {/* <RequirementsMatcher
                                     highlights={this.state.highlighted}
                                     matches={this.matchRequirements(this.props.report.text)} /> */}
                                 <b>Acquisition Date:</b> {this.props.report.acqDate}</span>
-                        </div>render
+                        </div>
                         <div className="cardBody">
 
                             <p className="card-text">

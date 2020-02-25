@@ -20,9 +20,9 @@ const Navigation = (props) => (
             <NavItem>
                 <Nav.Link href="/list-drafts">Draft Queue</Nav.Link>
             </NavItem>
-            {/* <NavItem>
+            <NavItem>
                 <Nav.Link href="/collection-management">Collection Management</Nav.Link>
-            </NavItem> */}
+            </NavItem>
             <NavItem>
                 <Nav.Link href="/req-cross-walk">Requirement Crosswalk</Nav.Link>
             </NavItem>
