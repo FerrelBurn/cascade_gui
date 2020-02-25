@@ -18,7 +18,7 @@ class RequirementCrosswalk extends Component {
         // create a new XMLHttpRequest
         let self = this;
 
-        axios.get("http://localhost:3005/seed_relationships")
+        axios.get("http://peruse:3005/seed_relationships")
             .then((response) => {
 
                 self.match(response.data);
@@ -44,7 +44,7 @@ class RequirementCrosswalk extends Component {
         // create a new XMLHttpRequest
         let self = this;
 
-        axios.get("http://localhost:3005/remove_rel/" + uuid1 + "/" + uuid2)
+        axios.get("http://peruse:3005/remove_rel/" + uuid1 + "/" + uuid2)
             .then((response) => {
 
                 self.updateStateAfterRemove(index, i)
@@ -56,7 +56,7 @@ class RequirementCrosswalk extends Component {
         // create a new XMLHttpRequest
         let self = this;
 
-        axios.get("http://localhost:3005/accept_rel/" + uuid1 + "/" + uuid2)
+        axios.get("http://peruse:3005/accept_rel/" + uuid1 + "/" + uuid2)
             .then((response) => {
 
                 self.updateStateAfterRemove(index, i)

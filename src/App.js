@@ -78,7 +78,7 @@ class App extends Component {
       { "req_id": "REQ-324445-B", "text": "Are there trains or buses around?" },
       { "req_id": "REQ-324445-C", "text": "What is there to do near the hotel for fun?" }];
     // payload.push(...cannedpayload)
-    axios.post("http://localhost:3005/provide_queries", payload)
+    axios.post("http://peruse:3005/provide_queries", payload)
       .then((response) => {
         // console.log(response.data)
         // console.log(response)
@@ -88,7 +88,7 @@ class App extends Component {
     console.log("getRequirements")
     let self = this;
     // axios.get("http://localhost:3000/allrequirements")
-    axios.get("http://localhost:3005/listreqs")
+    axios.get("http://peruse:3005/listreqs")
       .then((res) => {
         // console.log("respons from get data")
         this.setState({ requirements: res.data });
@@ -105,7 +105,7 @@ class App extends Component {
   getReports(path) {
     console.log("getReports")
     // axios.get("http://localhost:3000/allreports")
-    axios.get("http://localhost:3005/listreps")
+    axios.get("http://peruse:3005/listreps")
       .then((res) => {
         // console.log("respons from get data")
         this.setState({
