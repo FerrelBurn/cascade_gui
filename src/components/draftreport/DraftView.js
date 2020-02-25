@@ -40,7 +40,7 @@ class DraftView extends Component {
 
 
     spot() {
-        alert("spot")
+       
         this.setState({loading:true})
         let reportText = this.props.report.text.split('\n').map((item, key) => {
             return { "paragraph_number": key, "text": item }
