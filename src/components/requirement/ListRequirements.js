@@ -14,31 +14,42 @@ class ListRequirements extends Component {
         }
         this.match = this.match.bind(this);
         this.saveAndMatch = this.saveAndMatch.bind(this);
+        this.save = this.save.bind(this);
 
     }
     match(requirement) {
         console.log(requirement)
+        // create a new XMLHttpRequest
+        let self = this;
 
+        axios.post("http://localhost:3005/read/v2", requirement)
+            .then((response) => {
+
+                // self.match(response.data);
+                console.log(response)
+
+            })
+            .catch((error) => console.error(error))
     }
     save() {
         let reqId = this.state.req_id
         let requirement = this.state.reqValue
-        let req = {"req_id": reqId, "text": requirement}
-        console.log("reqid: "+reqId)
-        console.log("requirement: "+requirement)
+        let req = { "req_id": reqId, "text": requirement }
+        console.log("reqid: " + reqId)
+        console.log("requirement: " + requirement)
         // create a new XMLHttpRequest
-          let self = this;
+        let self = this;
 
-          axios.post("http://localhost:3005/addrequirement", req)
-              .then((response) => {
+        axios.post("http://localhost:3005/addrequirement", req)
+            .then((response) => {
 
-                  self.match(response.data);
+                self.match(response.data);
 
-              })
-              .catch((error) => console.error(error))
+            })
+            .catch((error) => console.error(error))
     }
     saveAndMatch() {
-        let reqId = this.state.req_id
+
         let requirement = this.state.reqValue
         this.save();
         this.match(requirement);
