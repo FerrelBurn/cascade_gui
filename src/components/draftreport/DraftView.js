@@ -54,7 +54,7 @@ class DraftView extends Component {
         // create a new XMLHttpRequest
         let self = this;
 
-        axios.post("http://peruse:3005/read", payload)
+        axios.post("http://208.188.184.42:3005/read", payload)
             .then((response) => {
 
                 self.match(response.data);

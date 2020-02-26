@@ -103,7 +103,7 @@ class AddReporting extends Component {
                   </div>
                 </div>
               </form> */}
-          <Upload url="http://peruse:3000/reports" />
+          <Upload url="http://208.188.184.42:3000/reports" />
         </div>
       </div>
     )

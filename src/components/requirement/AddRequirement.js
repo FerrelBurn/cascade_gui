@@ -87,7 +87,7 @@ class AddRequirement extends Component{
               </div>
             </div>
           </form> */}
-          <Upload url="http://peruse:3000/requirements"/>
+          <Upload url="http://208.188.184.42:3000/requirements"/>
         </div>
       </div>)
     }

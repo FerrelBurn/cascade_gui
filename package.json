@@ -23,6 +23,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "start-dev": "react-scripts start --env.API_URL=http://localhost:3000",
+    "build-dev": "react-scripts build ",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

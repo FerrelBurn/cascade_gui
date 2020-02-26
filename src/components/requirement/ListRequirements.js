@@ -22,7 +22,7 @@ class ListRequirements extends Component {
         // create a new XMLHttpRequest
         let self = this;
 
-        axios.post("http://peruse:3005/read/v2", requirement)
+        axios.post("http://208.188.184.42:3005/read/v2", requirement)
             .then((response) => {
 
                 // self.match(response.data);
@@ -40,7 +40,7 @@ class ListRequirements extends Component {
         // create a new XMLHttpRequest
         let self = this;
 
-        axios.post("http://peruse:3005/addrequirement", req)
+        axios.post("http://208.188.184.42:3005/addrequirement", req)
             .then((response) => {
 
                 self.match(response.data);
