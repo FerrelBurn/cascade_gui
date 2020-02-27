@@ -40,7 +40,7 @@ class App extends Component {
     this.getFakeData = this.getFakeData.bind(this);
     this.uploadRequirements = this.uploadRequirements.bind(this);
     // this.uploadRequirements();
-    alert(process.env.REACT_APP_API_ENDPOINT)
+   
   }
   componentWillUnmount() {
     this._isMounted = false;
@@ -78,7 +78,7 @@ class App extends Component {
       { "req_id": "REQ-324445-B", "text": "Are there trains or buses around?" },
       { "req_id": "REQ-324445-C", "text": "What is there to do near the hotel for fun?" }];
     // payload.push(...cannedpayload)
-    axios.post(":3005/provide_queries", payload)
+    axios.post("/peruse/provide_queries", payload)
       .then((response) => {
         // console.log(response.data)
         // console.log(response)
@@ -88,7 +88,7 @@ class App extends Component {
     console.log("getRequirements")
     let self = this;
     // axios.get("http://localhost:3000/allrequirements")
-    axios.get(":3005/listreqs")
+    axios.get("/peruse/listreqs")
       .then((res) => {
         // console.log("respons from get data")
         this.setState({ requirements: res.data });
@@ -105,7 +105,7 @@ class App extends Component {
   getReports(path) {
     console.log("getReports")
     // axios.get("http://localhost:3000/allreports")
-    axios.get(":3005/listreps")
+    axios.get("/peruse/listreps")
       .then((res) => {
         // console.log("respons from get data")
         this.setState({

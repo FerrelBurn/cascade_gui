@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import RequirementSummary from './RequirementSummary';
-import { Button, Spinner, InputGroup, FormControl } from 'react-bootstrap';
+import { Button, Spinner, InputGroup, FormControl, Modal } from 'react-bootstrap';
 import axios from 'axios';
+import ReportMatchModal from './ReportMatchModal';
 
 
 class ListRequirements extends Component {
@@ -10,7 +11,10 @@ class ListRequirements extends Component {
         this.state = {
             requirement: '',
             reqValue: '',
-            req_id: ''
+            req_id: '',
+            matchModalShow: false,
+            loading: false,
+            matches: []
         }
         this.match = this.match.bind(this);
         this.saveAndMatch = this.saveAndMatch.bind(this);
@@ -18,29 +22,42 @@ class ListRequirements extends Component {
 
     }
     match(requirement) {
-        console.log(requirement)
-        // create a new XMLHttpRequest
         let self = this;
+        // console.log(requirement)
+        this.setState({ loading: true })
+        // create a new XMLHttpRequest
 
-        axios.post("http://208.188.184.42:3005/read/v2", requirement)
+
+        axios.post("/peruse/read/v2", requirement)
             .then((response) => {
 
                 // self.match(response.data);
-                console.log(response)
-
+                // console.log(response)
+                if (response.data.length > 0) {
+                    self.setState({ 
+                        matchModalShow: true,
+                        matches:response.data 
+                    })
+                }
+                self.setState({ loading: false })
             })
             .catch((error) => console.error(error))
     }
+    setModalShow(value) {
+        this.setState({ matchModalShow: value })
+    }
+    
+
     save() {
         let reqId = this.state.req_id
         let requirement = this.state.reqValue
         let req = { "req_id": reqId, "text": requirement }
-        console.log("reqid: " + reqId)
-        console.log("requirement: " + requirement)
+        // console.log("reqid: " + reqId)
+        // console.log("requirement: " + requirement)
         // create a new XMLHttpRequest
         let self = this;
 
-        axios.post("http://208.188.184.42:3005/addrequirement", req)
+        axios.post("/peruse/addrequirement", req)
             .then((response) => {
 
                 self.match(response.data);
@@ -56,15 +73,16 @@ class ListRequirements extends Component {
     }
     updateReq = event => {
         var val = event.target.value;
-        console.log(val)
+        // console.log(val)
         this.setState({ reqValue: val })
     }
     updateReq_id = event => {
         var val = event.target.value;
-        console.log(val)
+        // console.log(val)
         this.setState({ req_id: val })
     }
     render() {
+        let matchModalClose = () => this.setState({matchModalShow:false})
         return (
             <div className="container-fluid" >
                 {/* {console.log("ListRequirements")}
@@ -81,7 +99,14 @@ class ListRequirements extends Component {
                         <div className="row">
                             <div className="col">
                                 <Button onClick={this.save}>Add</Button>
-                                <Button onClick={this.saveAndMatch} style={{ marginLeft: '1em' }}>Add/Match</Button>
+                                <Button onClick={this.saveAndMatch} style={{ marginLeft: '1em' }}>
+                                    {this.state.loading && <span><Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                    />Working...</span>}{!this.state.loading && <span>Match</span>}Add/Match</Button>
                             </div>
 
                         </div>
@@ -90,16 +115,21 @@ class ListRequirements extends Component {
                 </div>
 
                 {
-                    this.props.requirements.map((requirement) => (
+                    this.props.requirements.map((requirement, index) => (
 
                         <RequirementSummary
                             requirement={requirement}
-                            key={requirement.req_id}
+                            key={index}
                             matchFunction={this.match}
+                            loading={this.state.loading}
                         />
 
                     ))
                 }
+                <ReportMatchModal
+                    show={this.state.matchModalShow}
+                    onHide={matchModalClose}
+                    matches={this.state.matches}></ReportMatchModal>
             </div>);
     }
 

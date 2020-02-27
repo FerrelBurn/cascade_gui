@@ -6,14 +6,15 @@ class RequirementSummary extends Component {
     constructor(props) {
         super(props);
         this.state = {
-
+            loading:false
         }
     }
     handleClick = () => {
         this.props.matchFunction(this.props.requirement)
+        this.setState({loading:true})
     }
     render() {
-        console.log(this.props.requirement)
+        // console.log(this.props.requirement)
         return (
 
             <div className=" row mb-3">
@@ -38,7 +39,14 @@ class RequirementSummary extends Component {
                 <div className="col-md-4">
                     <div className="row">
                         <div className="col">
-                            <Button value={this.props.key} onClick={this.handleClick} style={{ margin: '1em' }}>Match</Button>
+                            <Button value={this.props.key} onClick={this.handleClick} style={{ margin: '1em' }}>
+                            {this.props.loading && <span><Spinner
+                                        as="span"
+                                        animation="grow"
+                                        size="sm"
+                                        role="status"
+                                        aria-hidden="true"
+                                   />Working...</span>}{!this.props.loading && <span>Match</span>}</Button>
                         </div>
 
                     </div>
