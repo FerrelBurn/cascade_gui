@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Spinner, InputGroup, FormControl, Modal, Row, Link } from 'react-bootstrap';
+import { Button, Container, Spinner, InputGroup, FormControl, Modal, Row, Link } from 'react-bootstrap';
 
 class ReportMatchModal extends Component {
     constructor(props) {
@@ -21,7 +21,7 @@ class ReportMatchModal extends Component {
                 </Modal.Header>
                 <Modal.Body>
                     <h4>Reports</h4>
-                    <p>
+                    <Container>
                         {
                             this.props.matches.map((requirement, index) => (
 
@@ -31,8 +31,8 @@ class ReportMatchModal extends Component {
 
                             ))
                         }
+                    </Container>
 
-                    </p>
                 </Modal.Body>
                 <Modal.Footer>
                     <Button onClick={this.props.onHide}>Close</Button>
