@@ -7,7 +7,7 @@ const ReportSummary = (props) => {
     return (
         <div className=" row mb-3">
 
-            <div className=" col media py-3" key={props.report.reportId}>
+            <div className=" col media py-3" key={props.report.uuid}>
              
 
                 <div className=" media-body">
@@ -15,7 +15,7 @@ const ReportSummary = (props) => {
                         <span className="pet-name">{props.report.crc}</span>
                         <span className="apt-date ml-auto">{props.report.acqDate}</span>
                     </div>
-                    <Link to={`/report/${props.report.id}`}>
+                    <Link to={`/report/${props.report.uuid}`}>
                         <div className="">
                             <span className="label-item">Subj: </span>
                             <span>{props.report.subject} </span>

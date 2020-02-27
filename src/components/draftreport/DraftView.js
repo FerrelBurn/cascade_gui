@@ -131,7 +131,7 @@ class DraftView extends Component {
 
         return (
             <div className="container-fluid" >
-
+                {console.log(this.props.report)}
                 {
 
                     <div className="card" >

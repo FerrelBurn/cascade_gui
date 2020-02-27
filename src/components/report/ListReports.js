@@ -8,11 +8,12 @@ const ListReports = (props) => {
     <div className="container-fluid" >
       {/* {console.log(props)} */}
       {
-        props.reports.map((report) => (
+        props.reports.map((report, index) => (
          
           <ReportSummary
             report={report}
             key={report.id}
+            index={index}
           />
         
         ))

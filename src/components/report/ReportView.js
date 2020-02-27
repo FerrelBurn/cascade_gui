@@ -4,26 +4,25 @@ import ReportComment from './ReportComment';
 
 // const ReportView = (this.props) => (
 class ReportView extends Component {
-
-    getHighlightedText(text, higlight, question) {
-        // Split on higlight term and include term into parts, ignore case
-        let parts = text.split(new RegExp(`(${higlight})`, 'gi'));
-        return <span> {parts.map((part, i) =>
-            <span alt={question} key={i} style={part.toLowerCase() === higlight.toLowerCase() ? { fontWeight: 'bold', backgroundColor: 'yellow' } : {}}>
-                {part}
-            </span>)
-        } </span>;
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading:false
+        }
     }
+ 
     render() {
         return (
             <div className="container-fluid" >
-
+                {/* <span>{this.props.report}</span> */}
+                {console.log(this.props.report.serial)}
+                {/* {console.log(this.props.report.serial)} */}
                 {
 
                     <div className="card" >
                         <div className="card-header  d-flex">
                             <span>
-                                <b> Serial Number:</b> {this.props.report.serial.classification} {this.props.report.serial.crc} {this.props.report.serial.serialNumber} {this.props.report.serial.year}
+                                <b> Serial Number:</b> {this.props.report.serial.classification ? <a href="#"></a> : null} {this.props.report.serial.crc} {this.props.report.serial.serialNumber} {this.props.report.serial.year}
                             </span>
                             <span className="ml-auto"> <b>Acquisition Date:</b> {this.props.report.acqDate}</span>
                         </div>

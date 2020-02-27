@@ -40,13 +40,14 @@ class App extends Component {
     this.getFakeData = this.getFakeData.bind(this);
     this.uploadRequirements = this.uploadRequirements.bind(this);
     // this.uploadRequirements();
-   
+    this.componentDidMount();
   }
   componentWillUnmount() {
     this._isMounted = false;
   }
 
   componentDidUpdate() {
+    
     // this.getData("allreports");
     // this.getFakeData();
 
@@ -92,7 +93,7 @@ class App extends Component {
       .then((res) => {
         // console.log("respons from get data")
         this.setState({ requirements: res.data });
-        self.uploadRequirements(res.data)
+        // self.uploadRequirements(res.data)
       })
     // const res = await fetch("http://localhost:3000/" + path)
     //   .then((res) => {
@@ -231,10 +232,11 @@ class App extends Component {
                   )} />
                   <Route path="/report/:id" render={(props) => {
 
-                    let reportPosition = props.location.pathname.replace('/report/', '');
+                    let uuid = props.location.pathname.replace('/report/', '');
+                    let report = this.state.reports.find(obj => obj.uuid == uuid)
                     return (
                       <ReportView
-                        report={this.state.reports[reportPosition - 1]}
+                        report={report}
                       />
                     )
                   }} />

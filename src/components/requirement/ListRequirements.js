@@ -84,7 +84,9 @@ class ListRequirements extends Component {
     render() {
         let matchModalClose = () => this.setState({matchModalShow:false})
         return (
+           
             <div className="container-fluid" >
+                 {/* {console.log(this.props)} */}
                 {/* {console.log("ListRequirements")}
                 {console.log(this.props.requirements)} */}
                 {/* style={{ border: '1px solid black'}} */}
