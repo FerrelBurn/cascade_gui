@@ -5,7 +5,7 @@ In the project directory, first run:
 This isn't something you have to do every time. This ensures you have up to date npm and node.
 ### `npm install -g npm@latest`
 
-upgrade node with npm:
+## Upgrade node with npm:
 ### `sudo npm cache clean -f`
 ### `sudo npm install -g n`
 ### `sudo n stable`
