@@ -1,6 +1,16 @@
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, first run:
+## Upgrading npm
+This isn't something you have to do every time. This ensures you have up to date npm and node.
+### `npm install -g npm@latest`
+
+upgrade node with npm:
+### `sudo npm cache clean -f`
+### `sudo npm install -g n`
+### `sudo n stable`
+
+## Install application dependencies
 
 ### `npm install`
 
