@@ -66,10 +66,7 @@ class App extends Component {
   uploadRequirements(payload) {
 
 
-    const cannedpayload = [
-
-      { "req_id": "REQ-324445-B", "text": "Are there trains or buses around?" },
-      { "req_id": "REQ-324445-C", "text": "What is there to do near the hotel for fun?" }];
+    
 
     axios.post("/peruse/provide_queries", payload)
       .then((response) => {
@@ -78,7 +75,7 @@ class App extends Component {
   }
   getRequirements(path) {
     console.log("getRequirements")
-    let self = this;
+   
 
     axios.get("/peruse/listreqs")
       .then((res) => {
@@ -222,7 +219,7 @@ class App extends Component {
                   <Route path="/report/:id" render={(props) => {
 
                     let uuid = props.location.pathname.replace('/report/', '');
-                    let report = this.state.reports.find(obj => obj.uuid == uuid)
+                    let report = this.state.reports.find(obj => obj.uuid === uuid)
                     return (
                       <ReportView
                         report={report}

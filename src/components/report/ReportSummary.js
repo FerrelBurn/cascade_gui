@@ -21,8 +21,8 @@ const ReportSummary = (props) => {
                             <span>{props.report.subject} </span>
                         </div>
                     </Link>
-                    <div className="apt-notes">{props.report.text}</div>
-                    <a href="#"><span><FaFile /> report.docx</span></a>
+                    <div className="apt-notes">{props.report.text.substring(0,200)+"..."}</div>
+                    <a ><span><FaFile /> report.docx</span></a>
                 </div>
             </div>
 

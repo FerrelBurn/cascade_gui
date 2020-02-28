@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Button, Container, Row, Col, Table } from 'react-bootstrap';
+import { Button, Container, Table } from 'react-bootstrap';
 
 class RequirementCrosswalk extends Component {
     constructor(props) {

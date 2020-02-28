@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import MatchedRequirement from './MatchedRequirement';
 const Requirement = (props) => {
     return (<div class="row">

@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import AddRequirement from "./requirement/AddRequirement";
 
 
 class Home extends Component {

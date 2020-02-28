@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RequirementSummary from './RequirementSummary';
-import { Button, Spinner, InputGroup, FormControl, Modal } from 'react-bootstrap';
+import { Button, Spinner,  FormControl} from 'react-bootstrap';
 import axios from 'axios';
 import ReportMatchModal from './ReportMatchModal';
 
@@ -14,12 +14,18 @@ class ListRequirements extends Component {
             req_id: '',
             matchModalShow: false,
             loading: false,
-            matches: []
+            matches: [],
+            filteredReqs:[]
         }
         this.match = this.match.bind(this);
         this.saveAndMatch = this.saveAndMatch.bind(this);
         this.save = this.save.bind(this);
 
+    }
+    componentWillMount(){
+        this.setState({
+            filteredReqs:this.props.requirements
+        })
     }
     match(requirement) {
         let self = this;
@@ -34,9 +40,9 @@ class ListRequirements extends Component {
                 // self.match(response.data);
                 // console.log(response)
                 if (response.data.length > 0) {
-                    self.setState({ 
+                    self.setState({
                         matchModalShow: true,
-                        matches:response.data 
+                        matches: response.data
                     })
                 }
                 self.setState({ loading: false })
@@ -46,7 +52,7 @@ class ListRequirements extends Component {
     setModalShow(value) {
         this.setState({ matchModalShow: value })
     }
-    
+
 
     save() {
         let reqId = this.state.req_id
@@ -81,15 +87,36 @@ class ListRequirements extends Component {
         // console.log(val)
         this.setState({ req_id: val })
     }
+    handleSearch = (e) => {
+        this.setState({
+            requirementFilter: e.target.value
+        })
+        this.filterRequirements(e.target.value)
+    }
+    filterRequirements = (requirementFilter) => {
+     
+        let filteredReqs = this.props.requirements
+        filteredReqs = filteredReqs.filter((req) => {
+            let reqId = req.req_id.toLowerCase()
+            return reqId.indexOf(
+                requirementFilter.toLowerCase()) !== -1
+        })
+        this.setState({
+            filteredReqs
+        })
+    }
     render() {
-        let matchModalClose = () => this.setState({matchModalShow:false})
+        let matchModalClose = () => this.setState({ matchModalShow: false })
         return (
-           
+
             <div className="container-fluid" >
-                 {/* {console.log(this.props)} */}
+                {/* {console.log(this.props)} */}
                 {/* {console.log("ListRequirements")}
                 {console.log(this.props.requirements)} */}
                 {/* style={{ border: '1px solid black'}} */}
+                <div className="row" style={{ marginBottom: '4em' }}  >
+                    <FormControl onChange={this.handleSearch}  type="text" placeholder="Search REQID" />
+                </div>
                 <div className="row" style={{ marginBottom: '4em' }}  >
                     <div className="col-md-2">
                         <FormControl onChange={this.updateReq_id} type="text" placeholder="Enter REQID" />
@@ -117,7 +144,7 @@ class ListRequirements extends Component {
                 </div>
 
                 {
-                    this.props.requirements.map((requirement, index) => (
+                    this.state.filteredReqs.map((requirement, index) => (
 
                         <RequirementSummary
                             requirement={requirement}

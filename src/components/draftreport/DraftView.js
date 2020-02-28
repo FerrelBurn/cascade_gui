@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import ReportEnclosure from '../report/ReportEnclosure';
 import ReportComment from '../report/ReportComment';
-import RequirementsMatcher from './RequirementsMatcher';
 import { Button, Spinner } from 'react-bootstrap';
 import HighlightedText from './HighlightedText';
 import axios from 'axios';
