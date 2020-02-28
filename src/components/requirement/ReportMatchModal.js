@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Container, Spinner, InputGroup, FormControl, Modal, Row, Link } from 'react-bootstrap';
+import { Button, Container, Spinner, InputGroup, FormControl, Modal, Row, Col, Link } from 'react-bootstrap';
 
 class ReportMatchModal extends Component {
     constructor(props) {
@@ -29,7 +29,8 @@ class ReportMatchModal extends Component {
                             this.props.matches.map((requirement, index) => (
 
                                 <Row title={requirement.text}>
-                                    <a target="_blank" href={"/report/"+requirement.uuid}>{requirement.uuid}</a>
+                                    <Col><a target="_blank" href={"/report/"+requirement.uuid}>{requirement.uuid}</a></Col>
+                                    <Col><b>Score: </b> { Math.round(requirement.score[0] * 1000) / 10 + "%"}</Col>
                                 </Row>
 
                             ))

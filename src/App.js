@@ -47,20 +47,13 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-    
-    // this.getData("allreports");
-    // this.getFakeData();
-
 
   }
   componentDidMount() {
-    // this.uploadRequirements();
+
     this.getReports();
     this.getRequirements();
-    // console.log(reports)
 
-
-    // this.getFakeData()
   }
 
   getFakeData() {
@@ -68,47 +61,39 @@ class App extends Component {
       reports: data1,
       drafts: data1
     })
-    // return data1;
+
   }
   uploadRequirements(payload) {
-    console.log("axios request")
-    // axios.defaults.headers.post['Content-Type'] = 'application/json';
+
 
     const cannedpayload = [
 
       { "req_id": "REQ-324445-B", "text": "Are there trains or buses around?" },
       { "req_id": "REQ-324445-C", "text": "What is there to do near the hotel for fun?" }];
-    // payload.push(...cannedpayload)
+
     axios.post("/peruse/provide_queries", payload)
       .then((response) => {
-        // console.log(response.data)
-        // console.log(response)
+
       })
   }
   getRequirements(path) {
     console.log("getRequirements")
     let self = this;
-    // axios.get("http://localhost:3000/allrequirements")
+
     axios.get("/peruse/listreqs")
       .then((res) => {
-        // console.log("respons from get data")
+
         this.setState({ requirements: res.data });
-        // self.uploadRequirements(res.data)
+
       })
-    // const res = await fetch("http://localhost:3000/" + path)
-    //   .then((res) => {
-    //     return res.data
-    //   })
-    // const reports = await res.json();
-    // this.setState({ reports: reports, drafts: reports });
 
   }
   getReports(path) {
     console.log("getReports")
-    // axios.get("http://localhost:3000/allreports")
+
     axios.get("/peruse/listreps")
       .then((res) => {
-        // console.log("respons from get data")
+
         this.setState({
           reports: res.data,
           drafts: res.data
@@ -127,9 +112,9 @@ class App extends Component {
 
   render() {
     const { reports, requirements } = this.state
-    if (!reports[0] || !requirements[0]) {                                        // added this line
-      return <div>Hold tight while items are being fetched...</div>;  // added this line
-    }  
+    if (!reports[0] || !requirements[0]) {
+      return <div>Hold tight while items are being fetched...</div>;
+    }
     return (
 
 
