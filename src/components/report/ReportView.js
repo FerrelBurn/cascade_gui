@@ -10,7 +10,9 @@ class ReportView extends Component {
             loading:false
         }
     }
- 
+    componentDidMount(){
+       
+    }
     render() {
         return (
             <div className="container-fluid" >

@@ -126,6 +126,10 @@ class App extends Component {
   }
 
   render() {
+    const { reports, requirements } = this.state
+    if (!reports[0] || !requirements[0]) {                                        // added this line
+      return <div>Hold tight while items are being fetched...</div>;  // added this line
+    }  
     return (
 
 

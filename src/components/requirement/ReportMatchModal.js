@@ -6,10 +6,10 @@ class ReportMatchModal extends Component {
         super(props);
         this.state = { matches: [] }
     }
+  
     render() {
         const {isLoading, isLoaded, data } = this.props;
-        console.log("************************")
-        console.log("*********************"+isLoading)
+       
         return (
             <Modal
                 {...this.props}
@@ -29,7 +29,7 @@ class ReportMatchModal extends Component {
                             this.props.matches.map((requirement, index) => (
 
                                 <Row title={requirement.text}>
-                                    <a href={"/report/"+requirement.uuid}>{requirement.uuid}</a>
+                                    <a target="_blank" href={"/report/"+requirement.uuid}>{requirement.uuid}</a>
                                 </Row>
 
                             ))
