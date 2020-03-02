@@ -66,7 +66,7 @@ class ListRequirements extends Component {
         axios.post("/peruse/addrequirement", req)
             .then((response) => {
 
-                self.match(response.data);
+              this.props.updateReqs()
 
             })
             .catch((error) => console.error(error))

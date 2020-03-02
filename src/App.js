@@ -73,7 +73,7 @@ class App extends Component {
 
       })
   }
-  getRequirements(path) {
+  getRequirements() {
     console.log("getRequirements")
    
 
@@ -85,7 +85,7 @@ class App extends Component {
       })
 
   }
-  getReports(path) {
+  getReports() {
     console.log("getReports")
 
     axios.get("/peruse/listreps")
@@ -199,7 +199,7 @@ class App extends Component {
                   )} />
                   {/* <Route path="/list-reports" component={ListReports} /> */}
                   <Route path="/list-requirements" render={(props) => (
-                    <ListRequirements requirements={this.state.requirements} />
+                    <ListRequirements updateRequirements={this.getRequirements} requirements={this.state.requirements} />
                   )} />
                   <Route path="/add-report" component={AddReporting} />
                   <Route path="/add-requirement" component={AddRequirement} />
