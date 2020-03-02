@@ -29,7 +29,7 @@ class ReportMatchModal extends Component {
                             this.props.matches.map((requirement, index) => (
 
                                 <Row title={requirement.text}>
-                                    <Col><a target="_blank" rel="noopener noreferrer"  href={"/report/"+requirement.uuid}>{requirement.uuid}</a></Col>
+                                    <Col><a target="_blank" rel="noopener noreferrer"  href={"/report/"+requirement.uuid}>{requirement.serial.classification+requirement.serial.crc+requirement.serial.serialNumber+requirement.serial.year}</a></Col>
                                     <Col><b>Score: </b> { Math.round(requirement.score[0] * 1000) / 10 + "%"}</Col>
                                 </Row>
 
