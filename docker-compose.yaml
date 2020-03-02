@@ -1,0 +1,21 @@
+version: "3.3"
+services:
+  nifi:
+    container_name: cascadegui
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: cascadegui:latest
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    ports:
+      - 3000:80
+    restart: unless-stopped
+    networks:
+      - zai_network
+networks:
+    zai_network:
+        external: true
