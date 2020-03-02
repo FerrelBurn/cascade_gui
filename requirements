@@ -1,0 +1,15 @@
+{"_id":{"$oid":"5e5d495971474b0006d2e128"},"uuid":"c5b80ca3-15c3-453d-9393-85d9f3c59214","req_id":"REQ-324445-A","text":"Is there a cocktail bar in the hotel?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e129"},"uuid":"c2900bac-9331-4e40-b85f-b642dd5446bb","req_id":"REQ-324446-A","text":"Is there a swimming pool?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e12a"},"uuid":"0d784bef-81cc-4043-8479-828dedef89b2","req_id":"REQ-324447-A","text":"Is there a restaurant?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e12b"},"uuid":"09a5f07c-0237-4378-a4c0-960f547fabef","req_id":"REQ-856590","text":"Are there places nearby where one could swim?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e12c"},"uuid":"2e3336ad-a007-440f-acf8-8b06b91f1ca6","req_id":"REQ-282531","text":"Do the rooms have mini bars? "}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e12d"},"uuid":"58cb9905-b345-47eb-ba51-5045b4facfb1","req_id":"REQ-451336","text":"Do you offer turn down service?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e12e"},"uuid":"5975af1c-9eb6-4168-9369-0440171365ce","req_id":"REQ-299528","text":"Is parking available at the hotel?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e12f"},"uuid":"4b652faf-69cd-4132-9223-519dfec664d3","req_id":"REQ-691201","text":"Can I reserve a parking lot?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e130"},"uuid":"3926fe93-2050-41b5-8636-728140bd312b","req_id":"REQ-346717","text":"What are the reception opening hours?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e131"},"uuid":"6094abf8-5ec4-4b22-a907-c0deb27c6ab5","req_id":"REQ-499918","text":"Can I also book breakfast online? What does it cost?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e132"},"uuid":"b8328f1c-fc75-40a9-bb5d-bcc12854335f","req_id":"REQ-253694","text":"Is half or full board available?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e133"},"uuid":"48c75bcb-1cb6-45c4-a38f-43b6a66fa28d","req_id":"REQ-322143","text":"Are Spa services available?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e134"},"uuid":"78e3c0e7-81a8-4974-8f01-1395b23985ed","req_id":"REQ-701788","text":"Is it possible to book spa treatments online?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e135"},"uuid":"dc13724f-ed51-43a9-a961-5dc1e3116695","req_id":"REQ-474840","text":"Can I book tee times online?"}
+{"_id":{"$oid":"5e5d4b6f71474b0006d2e136"},"uuid":"e2633c6f-c30e-4b23-9a3b-b3d4da4b67e1","req_id":"REQ-745394","text":"Can I bring my pet?"}
