@@ -6,7 +6,7 @@ const MatchItem = (props) => {
     return (
 
         <div>
-            {console.log(props.matches)}
+            
             {
 
 
