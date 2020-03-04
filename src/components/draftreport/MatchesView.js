@@ -14,7 +14,7 @@ class MatchesView extends Component {
         }
         this.next = this.next.bind(this);
         this.back = this.back.bind(this);
-        console.log(this.props.matches[this.state.currentIndex])
+        // console.log(this.props.matches[this.state.currentIndex])
 
     }
     componentDidMount() {
@@ -48,7 +48,7 @@ class MatchesView extends Component {
                     <div className="col">
                         <Button variant="secondary" onClick={this.back}><MdChevronLeft /> Back</Button>
                     </div>
-                    <div className="col" className="pull-right" >
+                    <div className="col pull-right" >
                         <Button variant="secondary" onClick={this.next}>Next <MdChevronRight /></Button>
                     </div>
 

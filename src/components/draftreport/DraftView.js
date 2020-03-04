@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReportEnclosure from '../report/ReportEnclosure';
 import ReportComment from '../report/ReportComment';
-import { Button, Spinner } from 'react-bootstrap';
+import { Button, Spinner, Toast } from 'react-bootstrap';
 import HighlightedText from './HighlightedText';
 import axios from 'axios';
 const reactStringReplace = require('react-string-replace');
@@ -13,7 +13,8 @@ class DraftView extends Component {
             highlighted: [],
             requirements: [],
             matches: [],
-            loading: false
+            loading: false,
+            showtoast: false
         };
         this.spot = this.spot.bind(this);
         this.match = this.match.bind(this);
@@ -30,17 +31,23 @@ class DraftView extends Component {
         this.setState({ highlighted: reportText });
     }
     addRequirement(requirement) {
-
+        console.log(requirement)
         // let reqId = requirement.ml_matches[0][0].req_id;
         let updatedRequirements = [...this.state.requirements];
-        updatedRequirements.push(requirement.req_id)
+        if (updatedRequirements.indexOf(requirement.req_id) === -1) {
+            updatedRequirements.push(requirement.req_id)
+        } else {
+            this.setShowToast(true)
+        }
         this.setState({ requirements: updatedRequirements });
     }
 
-
+    setShowToast(val){
+        this.setState({ showtoast: val })
+    }
     spot() {
-       
-        this.setState({loading:true})
+
+        this.setState({ loading: true })
         let reportText = this.props.report.text.split('\n').map((item, key) => {
             return { "paragraph_number": key, "text": item }
         });
@@ -122,18 +129,24 @@ class DraftView extends Component {
         highlightedReport = reactStringReplace(highlightedReport, '\n', (match, i) => (
             <p key={i}>{match}</p>
         ))
-        this.setState({ highlighted: highlightedReport,
-                        loading:false });
+        this.setState({
+            highlighted: highlightedReport,
+            loading: false
+        });
     }
 
     render() {
 
         return (
             <div className="container-fluid" >
+
                 {console.log(this.props.report)}
                 {
 
                     <div className="card" >
+                        <Toast bg="warning" onClose={() => this.setShowToast(false)} delay={3000} autohide show={this.state.showtoast}>
+                            <Toast.Body>Requirement already added</Toast.Body>
+                        </Toast>
                         <div className="card-header  d-flex">
                             <span>
                                 <b> Serial Number:</b>
@@ -144,13 +157,13 @@ class DraftView extends Component {
                             </span>
                             <span className="ml-auto">
                                 <Button className="mr-1" onClick={this.spot}>
-                                   {this.state.loading && <span><Spinner
+                                    {this.state.loading && <span><Spinner
                                         as="span"
                                         animation="grow"
                                         size="sm"
                                         role="status"
                                         aria-hidden="true"
-                                   />Working...</span>}{!this.state.loading && <span>Match</span>}</Button>
+                                    />Working...</span>}{!this.state.loading && <span>Match</span>}</Button>
                                 {/* <RequirementsMatcher
                                     highlights={this.state.highlighted}
                                     matches={this.matchRequirements(this.props.report.text)} /> */}
