@@ -66,7 +66,7 @@ class App extends Component {
   uploadRequirements(payload) {
 
 
-    
+
 
     axios.post("/peruse/provide_queries", payload)
       .then((response) => {
@@ -75,7 +75,7 @@ class App extends Component {
   }
   getRequirements() {
     console.log("getRequirements")
-   
+
 
     axios.get("/peruse/listreqs")
       .then((res) => {
@@ -117,15 +117,22 @@ class App extends Component {
 
       <Router>
         <div className="container-fluid">
+          <div className="row"><span>header</span></div>
           <header>
+            {/* <Navbar fixed="top" bg="light" className="text-center">
+              <span className="text-muted text-center">UNCLASSIFIED // CUI</span>
+            </Navbar> */}
             <Navbar fixed="top" color="337ab7" bg="dark" className="navbar-dark bg-dark" >
-
+             
               <NavbarBrand>
+              
                 <Link className="text-white navbar-brand" to="/">
                   <h1><font color="37eb34">CASCADE</font></h1>
                 </Link>
               </NavbarBrand>
+             
               <Navigation />
+              <Navbar.Text>UNCLASSIFIED // CUI</Navbar.Text>
             </Navbar>
           </header>
 
@@ -227,10 +234,11 @@ class App extends Component {
                     )
                   }} />
                   <Route path="/requirement/:id" render={(props) => {
-                    let requirementPosition = props.location.pathname.replace('/requirement/', '');
+                    let req_id = props.location.pathname.replace('/requirement/', '');
+                    let requirement = this.state.requirements.find(obj => obj.req_id === req_id)
                     return (
                       <RequirementView
-                        report={this.state.requirements[requirementPosition - 1]}
+                        requirement={requirement}
                       />
                     )
                   }} />
