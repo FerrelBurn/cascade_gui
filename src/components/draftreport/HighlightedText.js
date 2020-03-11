@@ -18,7 +18,7 @@ class HighlightedText extends Component {
         // console.log(this.state.highlighted)
         return (
             // style={this.state.highlighted ? { backgroundColor: 'yellow' } : {}}
-            <span style={this.props.highlighted ? { backgroundColor: this.state.color } : {}}>
+            <span onClick={this.props.handleClick} style={this.props.highlighted ? { backgroundColor: this.state.color } : {}}>
 
                 <RequirementsMatcher
                     handleAddRequirement={this.props.handleAddRequirement}

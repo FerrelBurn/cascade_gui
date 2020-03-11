@@ -35,11 +35,11 @@ class RequirmentsMatcher extends Component {
         return (
             <>
 
-                <span variant="primary" onClick={this.handleShow}>
+                {/* <span variant="primary" onClick={this.handleShow}> */}
                     {this.props.text}
-                </span>
+                {/* </span> */}
 
-                <Modal size="md" centered="true" show={this.state.show} onHide={this.handleClose}>
+                <Modal size="md" centered="true" show={this.props.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>
                         {/* <Modal.Title>{this.props.matches.length} requirement matches</Modal.Title> */}
                         <Button variant="success" className="mr-1" onClick={this.handleAccept}>

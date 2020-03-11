@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button, Spinner, FormControl } from 'react-bootstrap';
+import { Button, Spinner, FormControl, Row, Col } from 'react-bootstrap';
 import ReportSummary from './ReportSummary';
 
 class ListReports extends Component {
@@ -38,24 +38,30 @@ class ListReports extends Component {
   }
   render() {
     return (
-      <div className="container-fluid" >
+      < >
         {/* {console.log(props)} */}
-        < div className="row" style={{ marginBottom: '4em' }}  >
-          <FormControl onChange={this.handleSearch} type="text" placeholder="Search Report Subj" />
-        </div >
-        {
+        < Row style={{ marginBottom: '4em' }}  >
+          <Col md={{ span: 3, offset: 4 }}>
+            <FormControl onChange={this.handleSearch} type="text" placeholder="Search Report Subj" />
 
-          this.state.filteredReps.map((report, index) => (
+          </Col>
 
-            <ReportSummary
-              report={report}
-              key={report.id}
-              index={index}
-            />
+        </Row >
+        <Row>
+          <Col md={{ span: 4, offset: 4 }}>
+            {
+              this.state.filteredReps.map((report, index) => (
+                <ReportSummary
+                  report={report}
+                  key={report.id}
+                  index={index}
+                />
+              ))
+            }
+          </Col>
+        </Row>
 
-          ))
-        }
-      </div >
+      </>
     )
   }
 }

@@ -6,10 +6,10 @@ const Navigation = (props) => (
         <Nav className="mr-auto">
 
             <NavItem>
-                <Nav.Link href="/list-reports">List Reports</Nav.Link>
+                <Nav.Link href="/list-reports">Reports</Nav.Link>
             </NavItem>
             <NavItem>
-                <Nav.Link href="/list-requirements">List Requirements</Nav.Link>
+                <Nav.Link href="/list-requirements">Requirements</Nav.Link>
             </NavItem>
             <NavItem>
                 <Nav.Link href="/add-report">Add Report</Nav.Link>
@@ -20,9 +20,9 @@ const Navigation = (props) => (
             <NavItem>
                 <Nav.Link href="/list-drafts">Draft Queue</Nav.Link>
             </NavItem>
-            <NavItem>
+            {/* <NavItem>
                 <Nav.Link href="/collection-management">Collection Management</Nav.Link>
-            </NavItem>
+            </NavItem> */}
             <NavItem>
                 <Nav.Link href="/req-cross-walk">Requirement Crosswalk</Nav.Link>
             </NavItem>

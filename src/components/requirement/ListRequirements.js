@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import RequirementSummary from './RequirementSummary';
-import { Button, Spinner,  FormControl} from 'react-bootstrap';
+import { Button, Spinner, FormControl, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
 import ReportMatchModal from './ReportMatchModal';
 
@@ -15,16 +15,16 @@ class ListRequirements extends Component {
             matchModalShow: false,
             loading: false,
             matches: [],
-            filteredReqs:[]
+            filteredReqs: []
         }
         this.match = this.match.bind(this);
         this.saveAndMatch = this.saveAndMatch.bind(this);
         this.save = this.save.bind(this);
 
     }
-    componentWillMount(){
+    componentWillMount() {
         this.setState({
-            filteredReqs:this.props.requirements
+            filteredReqs: this.props.requirements
         })
     }
     match(requirement) {
@@ -66,7 +66,7 @@ class ListRequirements extends Component {
         axios.post("/peruse/addrequirement", req)
             .then((response) => {
 
-              this.props.updateReqs()
+                this.props.updateReqs()
 
             })
             .catch((error) => console.error(error))
@@ -94,7 +94,7 @@ class ListRequirements extends Component {
         this.filterRequirements(e.target.value)
     }
     filterRequirements = (requirementFilter) => {
-     
+
         let filteredReqs = this.props.requirements
         filteredReqs = filteredReqs.filter((req) => {
             let reqId = req.req_id.toLowerCase()
@@ -109,24 +109,24 @@ class ListRequirements extends Component {
         let matchModalClose = () => this.setState({ matchModalShow: false })
         return (
 
-            <div className="container-fluid" >
-                {/* {console.log(this.props)} */}
-                {/* {console.log("ListRequirements")}
-                {console.log(this.props.requirements)} */}
-                {/* style={{ border: '1px solid black'}} */}
-                <div className="row" style={{ marginBottom: '4em' }}  >
-                    <FormControl onChange={this.handleSearch}  type="text" placeholder="Search REQID" />
-                </div>
-                <div className="row" style={{ marginBottom: '4em' }}  >
-                    <div className="col-md-2">
+            <>
+
+                <Row style={{ marginBottom: '4em' }}  >
+                    <Col md={{ span: 4, offset: 2 }}>
+                        <FormControl onChange={this.handleSearch} type="text" placeholder="Search REQID" />
+                    </Col>
+
+                </Row>
+                <Row style={{ marginBottom: '4em' }}  >
+                    <Col md={{ span: 1, offset: 2 }}>
                         <FormControl onChange={this.updateReq_id} type="text" placeholder="Enter REQID" />
-                    </div>
-                    <div className="col-md-6">
+                    </Col>
+                    <Col md={{ span: 4 }}>
                         <FormControl onChange={this.updateReq} type="text" placeholder="Enter Requirement" />
-                    </div>
-                    <div className="col-md-4">
-                        <div className="row">
-                            <div className="col">
+                    </Col>
+                    <Col  md={{ span: 5 }}>
+                        <Row >
+                            <Col>
                                 <Button onClick={this.save}>Add</Button>
                                 <Button onClick={this.saveAndMatch} style={{ marginLeft: '1em' }}>
                                     {this.state.loading && <span><Spinner
@@ -136,14 +136,15 @@ class ListRequirements extends Component {
                                         role="status"
                                         aria-hidden="true"
                                     />Working...</span>}{!this.state.loading && <span>Match</span>}Add/Match</Button>
-                            </div>
+                            </Col>
 
-                        </div>
+                        </Row>
 
-                    </div>
-                </div>
-
+                    </Col>
+                </Row>
+               
                 {
+                    
                     this.state.filteredReqs.map((requirement, index) => (
 
                         <RequirementSummary
@@ -154,12 +155,14 @@ class ListRequirements extends Component {
                         />
 
                     ))
+                    
                 }
+               
                 <ReportMatchModal
                     show={this.state.matchModalShow}
                     onHide={matchModalClose}
                     matches={this.state.matches}></ReportMatchModal>
-            </div>);
+            </>);
     }
 
 }

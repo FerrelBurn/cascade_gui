@@ -9,7 +9,7 @@ import ListReports from './components/report/ListReports';
 import ListRequirements from './components/requirement/ListRequirements';
 import Navigation from './components/Navigation';
 import DraftList from './components/draftreport/DraftList';
-import { Navbar, NavbarBrand } from "react-bootstrap";
+import { Navbar, NavbarBrand, Col, Row } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
 import data1 from './data/allreportsresponse.json';
@@ -117,27 +117,27 @@ class App extends Component {
 
       <Router>
         <div className="container-fluid">
-          <div className="row"><span>header</span></div>
+
           <header>
             {/* <Navbar fixed="top" bg="light" className="text-center">
               <span className="text-muted text-center">UNCLASSIFIED // CUI</span>
             </Navbar> */}
             <Navbar fixed="top" color="337ab7" bg="dark" className="navbar-dark bg-dark" >
-             
+
               <NavbarBrand>
-              
+
                 <Link className="text-white navbar-brand" to="/">
                   <h1><font color="37eb34">CASCADE</font></h1>
                 </Link>
               </NavbarBrand>
-             
+
               <Navigation />
               <Navbar.Text>UNCLASSIFIED // CUI</Navbar.Text>
             </Navbar>
           </header>
 
 
-          <main role="main" className="container" style={{ marginTop: '1em' }} id="petratings">
+          <main role="main" className="container-fluid" style={{ marginTop: '1em' }} id="petratings">
 
 
             <SideNav style={{ marginTop: '5em', background: ' #555555 ' }}
@@ -195,64 +195,68 @@ class App extends Component {
                 </NavItem>
               </SideNav.Nav>
             </SideNav>
-            <div className="row">
-              <div className="col-md-11 offset-md-1">
-                <Switch>
-                  <Route exact path="/" render={(props) => (
-                    <Home />
-                  )} />
-                  <Route exact path="/list-reports" render={(props) => (
-                    <ListReports reports={this.state.reports} />
-                  )} />
-                  {/* <Route path="/list-reports" component={ListReports} /> */}
-                  <Route path="/list-requirements" render={(props) => (
-                    <ListRequirements updateRequirements={this.getRequirements} requirements={this.state.requirements} />
-                  )} />
-                  <Route path="/add-report" component={AddReporting} />
-                  <Route path="/add-requirement" component={AddRequirement} />
+            <div className="container-fluid">
+              {/* <Col style={{border:"1px solid orange"}} md={{ span: 10, offset: 1 }}>
+                <Row style={{border:"3px solid pink"}} >
+                  <Col xs={{ span: 7, offset: 3 }} md={{ span: 7, offset: 3 }} lg={{ span: 7, offset: 3 }} className=""> */}
+                    <Switch>
+                      <Route exact path="/" render={(props) => (
+                        <Home />
+                      )} />
+                      <Route exact path="/list-reports" render={(props) => (
+                        <ListReports reports={this.state.reports} />
+                      )} />
+                      {/* <Route path="/list-reports" component={ListReports} /> */}
+                      <Route path="/list-requirements" render={(props) => (
+                        <ListRequirements updateRequirements={this.getRequirements} requirements={this.state.requirements} />
+                      )} />
+                      <Route path="/add-report" component={AddReporting} />
+                      <Route path="/add-requirement" component={AddRequirement} />
 
-                  <Route path="/collection-management" render={(props) => (
-                    <CollectionManagment matchedRequirements={this.state.matchedRequirements} />
-                  )} />
+                      <Route path="/collection-management" render={(props) => (
+                        <CollectionManagment matchedRequirements={this.state.matchedRequirements} />
+                      )} />
 
 
-                  <Route path="/req-cross-walk" component={RequirementCrosswalk} />
-                  <Route exact path="/list-drafts" render={(props) => (
-                    <DraftList
-                      handleClick={this.handleClick}
-                      sidePaneOpen={this.state.sidePaneOpen}
-                      reports={this.state.drafts} />
-                  )} />
-                  <Route path="/report/:id" render={(props) => {
+                      <Route path="/req-cross-walk" component={RequirementCrosswalk} />
+                      <Route exact path="/list-drafts" render={(props) => (
+                        <DraftList
+                          handleClick={this.handleClick}
+                          sidePaneOpen={this.state.sidePaneOpen}
+                          reports={this.state.drafts} />
+                      )} />
+                      <Route path="/report/:id" render={(props) => {
 
-                    let uuid = props.location.pathname.replace('/report/', '');
-                    let report = this.state.reports.find(obj => obj.uuid === uuid)
-                    return (
-                      <ReportView
-                        report={report}
-                      />
-                    )
-                  }} />
-                  <Route path="/requirement/:id" render={(props) => {
-                    let req_id = props.location.pathname.replace('/requirement/', '');
-                    let requirement = this.state.requirements.find(obj => obj.req_id === req_id)
-                    return (
-                      <RequirementView
-                        requirement={requirement}
-                      />
-                    )
-                  }} />
-                  <Route path="/draft/:id" render={(props) => {
+                        let uuid = props.location.pathname.replace('/report/', '');
+                        let report = this.state.reports.find(obj => obj.uuid === uuid)
+                        return (
+                          <ReportView
+                            report={report}
+                          />
+                        )
+                      }} />
+                      <Route path="/requirement/:id" render={(props) => {
+                        let req_id = props.location.pathname.replace('/requirement/', '');
+                        let requirement = this.state.requirements.find(obj => obj.req_id === req_id)
+                        return (
+                          <RequirementView
+                            requirement={requirement}
+                          />
+                        )
+                      }} />
+                      <Route path="/draft/:id" render={(props) => {
 
-                    let reportPosition = props.location.pathname.replace('/draft/', '');
-                    return (
-                      <DraftView
-                        report={this.state.reports[reportPosition]}
-                      />
-                    )
-                  }} />
-                </Switch>
-              </div>
+                        let reportPosition = props.location.pathname.replace('/draft/', '');
+                        return (
+                          <DraftView
+                            report={this.state.reports[reportPosition]}
+                          />
+                        )
+                      }} />
+                    </Switch>
+                  {/* </Col>
+                </Row>
+              </Col> */}
             </div>
           </main>
 

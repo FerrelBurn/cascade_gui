@@ -5,7 +5,7 @@ const DraftList = (props) => {
     // console.log("draft list")
     // console.log(props);
     return (
-        <div className="container-fluid" >
+        < >
             {
               
                 props.reports.map((report, index) => (
@@ -21,7 +21,7 @@ const DraftList = (props) => {
 
                 ))
             }
-        </div>
+        </>
         );
 }
 

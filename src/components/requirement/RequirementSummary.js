@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Spinner } from 'react-bootstrap';
+import { Button, Spinner, Row, Col } from 'react-bootstrap';
 
 class RequirementSummary extends Component {
     constructor(props) {
@@ -17,9 +17,9 @@ class RequirementSummary extends Component {
         // console.log(this.props.requirement)
         return (
 
-            <div className=" row mb-3">
+            <Row style={{padding:"1em"}}>
 
-                <div className=" col media py-3" key={this.props.requirement.req_id}>
+                <Col md={{ span: 3, offset: 3 }} key={this.props.requirement.req_id}>
 
 
                     <div className=" media-body">
@@ -35,10 +35,10 @@ class RequirementSummary extends Component {
                         </Link>
                         <div className="apt-notes">{this.props.requirement.text}</div>
                     </div>
-                </div>
-                <div className="col-md-4">
-                    <div className="row">
-                        <div className="col">
+                </Col>
+                <Col>
+                    <Row>
+                        <Col md={{ span: 3}}>
                             <Button value={this.props.key} onClick={this.handleClick} style={{ margin: '1em' }}>
                             {this.props.loading && <span><Spinner
                                         as="span"
@@ -47,14 +47,14 @@ class RequirementSummary extends Component {
                                         role="status"
                                         aria-hidden="true"
                                    />Working...</span>}{!this.props.loading && <span>Match</span>}</Button>
-                        </div>
+                        </Col>
 
-                    </div>
+                    </Row>
 
-                </div>
+                </Col>
 
 
-            </div >
+            </Row >
         );
     }
 }
