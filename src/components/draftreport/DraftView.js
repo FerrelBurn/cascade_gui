@@ -25,14 +25,13 @@ class DraftView extends Component {
     componentDidMount() {
 
         let reportText = this.props.report.text.split('\n').map((item, key) => {
-            return <p key={key}>{item}</p>
+            return <p key={"text"+key}>{item}</p>
         });
 
         this.setState({ highlighted: reportText });
     }
     addRequirement(requirement) {
-        console.log(requirement)
-        // let reqId = requirement.ml_matches[0][0].req_id;
+       
         let updatedRequirements = [...this.state.requirements];
         if (updatedRequirements.indexOf(requirement.req_id) === -1) {
             updatedRequirements.push(requirement.req_id)
@@ -120,31 +119,28 @@ class DraftView extends Component {
             let ss = this.props.report.text.substring(item.start, item.end);
 
             highlightedReport = reactStringReplace(highlightedReport, ss, (match) => (
-                <HighlightedText handleAddRequirement={this.addRequirement} key={i}
-                    highlighted={true} handleClick={this.handleClickHighlight} matches={this.state.matches} text={match} currentIndex={i} />
+                <HighlightedText handleAddRequirement={this.addRequirement} 
+                    highlighted={true}  matches={this.state.matches} text={match} currentIndex={i} />
             ));
 
 
         })
 
         highlightedReport = reactStringReplace(highlightedReport, '\n', (match, i) => (
-            <p key={i}>{match}</p>
+            <p >{match}</p>
         ))
         this.setState({
             highlighted: highlightedReport,
             loading: false
         });
     }
-    handleClickHighlight(e){
-        console.log(e)
-        alert("clicked highlight")
-    }
+  
     render() {
 
         return (
             <Row>
                 <Col md={{ span: 6, offset: 3 }}>
-                    {console.log(this.props.report)}
+                   
                     {
 
                         <div className="card" >
@@ -220,12 +216,12 @@ class DraftView extends Component {
                                 </div>
                                 {
                                     this.props.report.comments.map((comment, index) => (
-                                        <ReportComment key={index} comment={comment} />
+                                        <ReportComment key={"comment"+index} comment={comment} />
                                     ))
                                 }
                                 {
                                     this.props.report.encl.map((encl, index) => (
-                                        <ReportEnclosure key={index} encl={encl} />
+                                        <ReportEnclosure key={"enclosure"+index} encl={encl} />
                                     ))
                                 }
 

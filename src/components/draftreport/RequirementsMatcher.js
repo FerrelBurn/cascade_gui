@@ -1,5 +1,3 @@
-// import React from 'react';
-// import {Modal, Button} from 'react-bootstrap/Modal';
 import React, { Component } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import MatchesView from './MatchesView';
@@ -21,10 +19,12 @@ class RequirmentsMatcher extends Component {
 
     }
     handleClose(e) {
+       
         this.setState({ show: false });
+        this.props.handleClose()
     }
     handleAccept(e) {
-        console.log("currentIndex: " + this.props.currentIndex)
+
         this.props.handleAddRequirement(this.props.matches[this.props.currentIndex]);
     }
     handleShow(e) {
@@ -35,9 +35,11 @@ class RequirmentsMatcher extends Component {
         return (
             <>
 
-                {/* <span variant="primary" onClick={this.handleShow}> */}
+
+                <span onClick={this.props.handleClick}>
                     {this.props.text}
-                {/* </span> */}
+                </span>
+
 
                 <Modal size="md" centered="true" show={this.props.show} onHide={this.handleClose}>
                     <Modal.Header closeButton>

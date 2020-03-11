@@ -14,7 +14,7 @@ class MatchesView extends Component {
         }
         this.next = this.next.bind(this);
         this.back = this.back.bind(this);
-        // console.log(this.props.matches[this.state.currentIndex])
+        
 
     }
     componentDidMount() {

@@ -12,12 +12,10 @@ class CollectionManagement extends Component {
     render() {
         return (
             <div className="container-fluid" >
-                {/* {console.log("ListRequirements")}
-        {console.log(this.props.requirements)} */}
                 {
                     this.props.requirements.map((requirement) => (
 
-                        <Requirement/>
+                        <Requirement />
 
                     ))
                 }

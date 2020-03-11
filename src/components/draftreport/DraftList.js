@@ -2,8 +2,7 @@ import React from 'react';
 import DraftSummary from './DraftSummary';
 
 const DraftList = (props) => {
-    // console.log("draft list")
-    // console.log(props);
+
     return (
         < >
             {

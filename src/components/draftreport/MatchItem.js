@@ -2,15 +2,9 @@ import React from 'react';
 import ReqMatch from './ReqMatch';
 
 const MatchItem = (props) => {
-
     return (
-
         <div>
-            
             {
-
-
-
                 <div className="">
                     <div className="row m-2">
                         <div className="col">
@@ -29,8 +23,6 @@ const MatchItem = (props) => {
                         </div>
                     </div>
                 </div>
-                // <ReqMatch reqid={match.req_id} question={match.reqText} match={match} answer={match.matchText}/>
-
             }
         </div>
     );
