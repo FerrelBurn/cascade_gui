@@ -31,7 +31,7 @@ class DraftView extends Component {
         this.setState({ highlighted: reportText });
     }
     addRequirement(requirement) {
-       
+       console.log(requirement)
         let updatedRequirements = [...this.state.requirements];
         if (updatedRequirements.indexOf(requirement.req_id) === -1) {
             updatedRequirements.push(requirement.req_id)
@@ -39,6 +39,7 @@ class DraftView extends Component {
             this.setShowToast(true)
         }
         this.setState({ requirements: updatedRequirements });
+        axios.post("/peruse/attachreq/"+requirement.req_id+"/report/"+this.props.report.uuid)
     }
 
     setShowToast(val) {
@@ -139,7 +140,7 @@ class DraftView extends Component {
 
         return (
             <Row>
-                <Col md={{ span: 6, offset: 3 }}>
+                <Col sm={{ span: 10, offset: 1 }} md={{ span: 8, offset: 3 }}>
                    
                     {
 

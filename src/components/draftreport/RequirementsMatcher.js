@@ -11,11 +11,13 @@ class RequirmentsMatcher extends Component {
         this.state = {
             show: false,
             setShow: false
+            
         }
 
         this.handleClose = this.handleClose.bind(this);
         this.handleShow = this.handleShow.bind(this);
         this.handleAccept = this.handleAccept.bind(this);
+        this.updateCurrentIndex = this.updateCurrentIndex.bind(this);
 
     }
     handleClose(e) {
@@ -24,12 +26,18 @@ class RequirmentsMatcher extends Component {
         this.props.handleClose()
     }
     handleAccept(e) {
-
-        this.props.handleAddRequirement(this.props.matches[this.props.currentIndex]);
+        console.log(e)
+       this.props.handleAddRequirement(this.props.matches[this.props.currentIndex]);
     }
     handleShow(e) {
 
         this.setState({ show: true });
+    }
+    updateCurrentIndex(index){
+        console.log("update current index")
+        console.log(index)
+        //this.setState({currentIndex:index})
+
     }
     render() {
         return (
@@ -52,7 +60,7 @@ class RequirmentsMatcher extends Component {
                         </Button>
                     </Modal.Header>
                     <Modal.Body>
-                        <MatchesView matches={this.props.matches} currentIndex={this.props.currentIndex} />
+                        <MatchesView matches={this.props.matches} updateCurrentIndex={this.updateCurrentIndex} currentIndex={this.props.currentIndex} />
                     </Modal.Body>
                     <Modal.Footer>
 

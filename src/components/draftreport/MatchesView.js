@@ -14,7 +14,7 @@ class MatchesView extends Component {
         }
         this.next = this.next.bind(this);
         this.back = this.back.bind(this);
-        
+
 
     }
     componentDidMount() {
@@ -27,17 +27,20 @@ class MatchesView extends Component {
     next() {
 
         var nextIndex = this.state.currentIndex;
+        console.log("matches view index: " + this.state.currentIndex)
         if (this.state.currentIndex < (this.state.matches.length - 1)) {
             nextIndex = this.state.currentIndex + 1
             this.setState({ currentIndex: nextIndex });
+            this.props.updateCurrentIndex(nextIndex)
         }
 
     }
     back() {
-
+        console.log("matches view index: " + this.state.currentIndex)
         if (this.state.currentIndex > 0) {
             var lastIndex = this.state.currentIndex - 1;
             this.setState({ currentIndex: lastIndex });
+            this.props.updateCurrentIndex(lastIndex)
         }
     }
     render() {
@@ -54,7 +57,7 @@ class MatchesView extends Component {
 
                 </div>
                 <div className="row">
-                <MatchItem match={this.props.matches[this.state.currentIndex]} />
+                    <MatchItem match={this.props.matches[this.state.currentIndex]} />
                 </div>
             </div>
         );

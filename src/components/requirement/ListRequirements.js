@@ -112,19 +112,19 @@ class ListRequirements extends Component {
             <>
 
                 <Row style={{ marginBottom: '4em' }}  >
-                    <Col md={{ span: 4, offset: 2 }}>
+                    <Col sm={{ span: 8, offset: 2 }} md={{ span: 4, offset: 2 }}>
                         <FormControl onChange={this.handleSearch} type="text" placeholder="Search REQID" />
                     </Col>
 
                 </Row>
                 <Row style={{ marginBottom: '4em' }}  >
-                    <Col md={{ span: 1, offset: 2 }}>
+                    <Col sm={{ span: 1, offset: 2 }} md={{ span: 1, offset: 2 }}>
                         <FormControl onChange={this.updateReq_id} type="text" placeholder="Enter REQID" />
                     </Col>
-                    <Col md={{ span: 4 }}>
+                    <Col sm={{ span: 5}} md={{ span: 4 }}>
                         <FormControl onChange={this.updateReq} type="text" placeholder="Enter Requirement" />
                     </Col>
-                    <Col  md={{ span: 5 }}>
+                    <Col m={{ span: 5}} md={{ span: 5 }}>
                         <Row >
                             <Col>
                                 <Button onClick={this.save}>Add</Button>

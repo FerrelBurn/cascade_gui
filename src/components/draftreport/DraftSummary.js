@@ -8,7 +8,7 @@ const DraftSummary = (props) => {
     return (
         <Row>
 
-            <Col md={{ span: 5, offset: 3 }} key={props.report.reportId}>
+            <Col md={{ span: 6, offset: 3 }} key={props.report.reportId}>
                
 
                 <div  className=" media-body">
@@ -18,7 +18,7 @@ const DraftSummary = (props) => {
                     </div>
                     <Link alt="view report"
                         title="view report"
-                        to={`/draft/${props.index}`} >
+                        to={`/draft/${props.report.uuid}`} >
                         <div className="">
                            
                             <h5>{props.report.subject} </h5>

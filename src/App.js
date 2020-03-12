@@ -87,10 +87,19 @@ class App extends Component {
 
     axios.get("/peruse/listreps")
       .then((res) => {
-
+        let drafts = []
+        let prelimdrafts = res.data.filter(obj => obj.status === "draft");
+        if (prelimdrafts.length > 0) {
+          drafts = prelimdrafts;
+        }
+        let reports = []
+        let prelim_reports = res.data.filter(obj => obj.status !== "draft");
+        if (prelim_reports.length > 0) {
+          reports = prelim_reports;
+        }
         this.setState({
-          reports: res.data,
-          drafts: res.data
+          reports: reports,
+          drafts: drafts
         });
       })
 
@@ -242,11 +251,12 @@ class App extends Component {
                   )
                 }} />
                 <Route path="/draft/:id" render={(props) => {
-
-                  let reportPosition = props.location.pathname.replace('/draft/', '');
+                  let uuid = props.location.pathname.replace('/draft/', '');
+                  let report = this.state.drafts.find(obj => obj.uuid === uuid)
+                  // let reportPosition = props.location.pathname.replace('/draft/', '');
                   return (
                     <DraftView
-                      report={this.state.reports[reportPosition]}
+                      report={report}
                     />
                   )
                 }} />

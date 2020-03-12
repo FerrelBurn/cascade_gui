@@ -41,14 +41,14 @@ class ListReports extends Component {
       < >
         {/* {console.log(props)} */}
         < Row style={{ marginBottom: '4em' }}  >
-          <Col md={{ span: 3, offset: 4 }}>
+          <Col md={{ span: 4, offset: 3 }}>
             <FormControl onChange={this.handleSearch} type="text" placeholder="Search Report Subj" />
 
           </Col>
 
         </Row >
         <Row>
-          <Col md={{ span: 4, offset: 4 }}>
+          <Col md={{ span: 6, offset: 3 }}>
             {
               this.state.filteredReps.map((report, index) => (
                 <ReportSummary

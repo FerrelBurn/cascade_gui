@@ -19,7 +19,7 @@ class RequirementSummary extends Component {
 
             <Row style={{padding:"1em"}}>
 
-                <Col md={{ span: 3, offset: 3 }} key={this.props.requirement.req_id}>
+                <Col sm={{ span: 8}} md={{ span: 6, offset: 3 }} key={this.props.requirement.req_id}>
 
 
                     <div className=" media-body">
@@ -38,7 +38,7 @@ class RequirementSummary extends Component {
                 </Col>
                 <Col>
                     <Row>
-                        <Col md={{ span: 3}}>
+                        <Col md={{ span: 1}}>
                             <Button value={this.props.key} onClick={this.handleClick} style={{ margin: '1em' }}>
                             {this.props.loading && <span><Spinner
                                         as="span"
