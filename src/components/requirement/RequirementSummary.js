@@ -19,7 +19,7 @@ class RequirementSummary extends Component {
 
             <Row style={{padding:"1em"}}>
 
-                <Col sm={{ span: 8}} md={{ span: 6, offset: 3 }} key={this.props.requirement.req_id}>
+                <Col sm={{ span: 8}} md={{ span: 5, offset: 2 }} key={this.props.requirement.req_id}>
 
 
                     <div className=" media-body">

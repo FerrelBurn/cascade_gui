@@ -47,10 +47,10 @@ class App extends Component {
   }
 
   componentDidUpdate() {
-
+    console.log("component did update")
   }
   componentDidMount() {
-
+    console.log("component did mount")
     this.getReports();
     this.getRequirements();
 

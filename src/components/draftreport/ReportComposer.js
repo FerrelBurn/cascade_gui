@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Redirect} from 'react-router-dom';
 import axios from 'axios';
 
 class ReportComposer extends Component {
@@ -11,7 +12,8 @@ class ReportComposer extends Component {
             serialNumber: "131",
             year: "2020",
             subject: "",
-            text: ""
+            text: "",
+            saved: false
         }
         this.save = this.save.bind(this)
         this.handleChange = this.handleChange.bind(this)
@@ -42,10 +44,13 @@ class ReportComposer extends Component {
             headers: { 'Content-Type': 'application/json' }
         })
             .then((response) => {
-
+                this.setState({saved:true})
             })
     }
     render() {
+        if(this.state.saved === true){
+            return <Redirect to='/'/>
+        }
         return (
             < >
 
