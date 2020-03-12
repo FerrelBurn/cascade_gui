@@ -28,7 +28,10 @@ class DraftView extends Component {
             return <p key={"text"+key}>{item}</p>
         });
 
-        this.setState({ highlighted: reportText });
+        this.setState({ 
+            highlighted: reportText,
+            requirements: this.props.report.reqs
+         });
     }
     addRequirement(requirement) {
        console.log(requirement)
