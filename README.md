@@ -1,3 +1,25 @@
+# CASCADE Demo Tool
+
+## About
+The CASCADE tool is a ReactJS based webapp that interacts with the CASCADE peruse Flask app, and also NiFi. The purpose of the tool is to show some minimally viable examples of what types of technological solutions can be offered for a given customers sore spots.
+
+The app follows typical best practices for the ReactJS framework utilizing various libraries to achomplish the tasks required to communicate with the back-end and display data. The application can be started locally in development mode, or deployed as a docker container for added stability and performance.
+
+## Starting the app in development mode
+### Background
+Because of CORS issues, requests to the back-end must be proxied. A proxy exists in development in the form recognized by Reactjs. The file setupProxy.js is specifically looked for by react when loading the application on startup. This allows proxying to seamlessly work in development just like it does being proxied by nginx in the docker container.
+
+1. Clone the git repository
+2. Navigate to the destination of the git repository
+3. In the terminal execute `npm install`
+4. In the terminal execute `npm start`
+
+
+## Deploying as a docker container
+
+1. execute `docker-compose build cascade-gui`
+2. execute `docker-compose up -d`
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 In the project directory, first run:
