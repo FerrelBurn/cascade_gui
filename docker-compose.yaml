@@ -15,7 +15,8 @@ services:
       - 3000:80
     restart: unless-stopped
     networks:
-      - zai_network
+      - environment_zai_network
+
 networks:
-    zai_network:
+    environment_zai_network:
         external: true
