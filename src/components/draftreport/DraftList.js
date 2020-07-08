@@ -4,7 +4,7 @@ import DraftSummary from './DraftSummary';
 const DraftList = (props) => {
 
     return (
-        < >
+        <div className="container-fluid">
             {
               
                 props.reports.map((report, index) => (
@@ -20,7 +20,7 @@ const DraftList = (props) => {
 
                 ))
             }
-        </>
+        </div>
         );
 }
 

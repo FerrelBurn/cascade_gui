@@ -195,9 +195,9 @@ class DraftView extends Component {
                                 </p>
                                 <p className="card-text">
                                     <b>REQ: </b>
-                                    {this.state.requirements.map((reqid, i) => (
+                                    {/*this.state.requirements.map((reqid, i) => (
                                         <span>{reqid} </span>
-                                    ))}
+                                    ))*/}
                                 </p>
                                 <p className="card-text">
                                     <b>Country: </b>{this.props.report.country.trigraph}
