@@ -131,7 +131,7 @@ class DraftView extends Component {
         })
 
         highlightedReport = reactStringReplace(highlightedReport, '\n', (match, i) => (
-            <p >{match}</p>
+            <p key={i}>{match}</p>
         ))
         this.setState({
             highlighted: highlightedReport,
@@ -196,7 +196,7 @@ class DraftView extends Component {
                                 <p className="card-text">
                                     <b>REQ: </b>
                                     {this.state.requirements && this.state.requirements.map((reqid, i) => (
-                                        <span>{reqid} </span>
+                                        <span key={i}>{reqid} </span>
                                     ))}
                                 </p>
                                 <p className="card-text">
