@@ -61,7 +61,6 @@ class ListRequirements extends Component {
         // console.log("reqid: " + reqId)
         // console.log("requirement: " + requirement)
         // create a new XMLHttpRequest
-        let self = this;
 
         axios.post("/peruse/addrequirement", req)
             .then((response) => {

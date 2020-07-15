@@ -9,7 +9,8 @@ import ListReports from './components/report/ListReports';
 import ListRequirements from './components/requirement/ListRequirements';
 import Navigation from './components/Navigation';
 import DraftList from './components/draftreport/DraftList';
-import { Navbar, NavbarBrand, Col, Row } from "react-bootstrap";
+//import { Navbar, NavbarBrand, Col, Row } from "react-bootstrap";
+import { Navbar, NavbarBrand } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
 import data1 from './data/allreportsresponse.json';

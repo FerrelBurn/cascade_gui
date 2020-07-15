@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import ReportEnclosure from './ReportEnclosure';
 import ReportComment from './ReportComment';
-import { Form, Button, Row, Col } from 'react-bootstrap'
+//import { Form, Button, Row, Col } from 'react-bootstrap'
+import { Row, Col } from 'react-bootstrap'
 // const ReportView = (this.props) => (
 class ReportView extends Component {
     constructor(props) {

@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Upload from '../Upload';
 import ReportComposer from '../draftreport/ReportComposer';
-import { Form, Button, Row, Col } from 'react-bootstrap';
+//import { Form, Button, Row, Col } from 'react-bootstrap';
+import { Row, Col } from 'react-bootstrap';
 
 class AddReporting extends Component {
   render() {
