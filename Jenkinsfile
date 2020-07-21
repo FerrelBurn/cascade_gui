@@ -1,23 +1,25 @@
-  
 pipeline {
-    // build on a node with a GPU label
-    agent { label 'GPU' }
+  // build on a node with a GPU label
+  agent { label 'GPU' }
 
-    stages {
-        stage('Build') {
-            steps {
-                // checkout this project
-                checkout scm
-
-                // create virtualenv and install requirements
-                sh '''
-                    cd peruse
-                    virtualenv -p python3 venv
-                    . venv/bin/activate
-                    pip install -r requirements.txt
-                '''
-            }
-        }
-    }
+  stages {
+      stage('Build') {
+          steps {
+              // checkout this project from version control
+              checkout scm
+              // execute this shell command to build the project
+              sh 'npm install'
+          }
+      }
+      stage('Test') {
+          environment {
+              // Setting CI to true runs test without user input
+              CI = 'true'
+          }
+          steps {
+              // execute this shell command to test the project
+              sh 'npm test'
+          }
+      }
+  }
 }
-
