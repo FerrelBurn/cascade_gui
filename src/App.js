@@ -9,7 +9,8 @@ import ListReports from './components/report/ListReports';
 import ListRequirements from './components/requirement/ListRequirements';
 import Navigation from './components/Navigation';
 import DraftList from './components/draftreport/DraftList';
-import { Navbar, NavbarBrand, Col, Row } from "react-bootstrap";
+//import { Navbar, NavbarBrand, Col, Row } from "react-bootstrap";
+import { Navbar, NavbarBrand, Alert } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
 import data1 from './data/allreportsresponse.json';
@@ -235,10 +236,27 @@ class App extends Component {
 
                   let uuid = props.location.pathname.replace('/report/', '');
                   let report = this.state.reports.find(obj => obj.uuid === uuid)
+		  if (report) {
+                      return (
+                        <ReportView
+                          report={report}
+                        />
+                      )
+                  }
+                  let draft = this.state.drafts.find(obj => obj.uuid === uuid)
+		  if (draft) {
+                      return (
+                        <ReportView
+                          report={draft}
+                        />
+                      )
+                  }
                   return (
-                    <ReportView
-                      report={report}
-                    />
+                  <div className="alert">
+                      <Alert variant='secondary'>
+                          Report {uuid} does not exist.
+                      </Alert>
+                  </div>
                   )
                 }} />
                 <Route path="/requirement/:id" render={(props) => {

@@ -55,11 +55,11 @@ class DraftView extends Component {
             return { "paragraph_number": key, "text": item }
         });
 
-        var res = this.matchRequirements(reportText)
+        // var res = this.matchRequirements(reportText)
+        this.matchRequirements(reportText)
     }
 
     matchRequirements(payload) {
-
         // create a new XMLHttpRequest
         let self = this;
 
@@ -131,7 +131,7 @@ class DraftView extends Component {
         })
 
         highlightedReport = reactStringReplace(highlightedReport, '\n', (match, i) => (
-            <p >{match}</p>
+            <p key={i}>{match}</p>
         ))
         this.setState({
             highlighted: highlightedReport,
@@ -195,8 +195,8 @@ class DraftView extends Component {
                                 </p>
                                 <p className="card-text">
                                     <b>REQ: </b>
-                                    {this.state.requirements.map((reqid, i) => (
-                                        <span>{reqid} </span>
+                                    {this.state.requirements && this.state.requirements.map((reqid, i) => (
+                                        <span key={i}>{reqid} </span>
                                     ))}
                                 </p>
                                 <p className="card-text">
@@ -208,8 +208,10 @@ class DraftView extends Component {
                                 <p className="card-text">
                                     <b>Summary: </b>{this.props.report.summary}
                                 </p>
-                                <div className="card-text">
+                                <p className="card-text">
                                     <b>Text:</b>
+                                </p>
+                                <div className="card-text">
                                     <div style={{padding:"1em", margin:"1em"}}>
                                         {
                                             this.state.highlighted

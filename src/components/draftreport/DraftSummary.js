@@ -13,7 +13,7 @@ const DraftSummary = (props) => {
 
                 <div  className=" media-body">
                     <div className="d-flex">
-                        <span >{props.report.crc}</span>
+                        <span >{props.report.serial.crc}</span>
                         <span className=" ml-auto">{props.report.acqDate}</span>
                     </div>
                     <Link alt="view report"
