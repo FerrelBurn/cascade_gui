@@ -23,10 +23,8 @@ import { FaCheck, FaWindowClose, FaTags, FaRegListAlt } from "react-icons/fa";
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import axios from 'axios';
 import { ResponsiveNeoGraph } from "./components/neo4j/NeoGraph";
+import config from "./config";
 
-const NEO4J_URI = "bolt://10.7.83.100:7687";
-const NEO4J_USER = "neo4j";
-const NEO4J_PASSWORD = "developer";
 
 class App extends Component {
   _isMounted = false;
@@ -235,10 +233,9 @@ class App extends Component {
                 <Route path="/neo4j-vis" render={(props) => ( 
 	            <ResponsiveNeoGraph
 	              containerId={"id0"}
-	              neo4jUri={NEO4J_URI}
-	              neo4jUser={NEO4J_USER}
-	              neo4jPassword={NEO4J_PASSWORD}
-		      initial_cypher='MATCH (n {uuid:"36419340-2aed-48b6-bd83-0d2a0b45617e"})-[r]->(m)-[b]->(z) RETURN n,r,m,b,z'
+	              neo4jUri={config.neo4j.URI}
+	              neo4jUser={config.neo4j.USER}
+	              neo4jPassword={config.neo4j.PASS}
 	            />
                 )} />
                 <Route exact path="/list-drafts" render={(props) => (
@@ -251,7 +248,7 @@ class App extends Component {
 
                   let uuid = props.location.pathname.replace('/report/', '');
                   let report = this.state.reports.find(obj => obj.uuid === uuid)
-	          let initial_cypher = 'MATCH (n {uuid:"'+report.uuid+'"})-[r]->(m)-[b]->(z) RETURN n,r,m,b,z'
+	          let initial_cypher = 'MATCH (n {uuid:"'+report.uuid+'"}) OPTIONAL MATCH (n)-[r]->(m)-[b]->(z) RETURN n,r,m,b,z'
 		  if (report) {
                       return (
 			<>
@@ -260,9 +257,9 @@ class App extends Component {
                           />
                           <ResponsiveNeoGraph
                             containerId={"id0"}
-                            neo4jUri={NEO4J_URI}
-                            neo4jUser={NEO4J_USER}
-                            neo4jPassword={NEO4J_PASSWORD}
+                            neo4jUri={config.neo4j.URI}
+                            neo4jUser={config.neo4j.USER}
+                            neo4jPassword={config.neo4j.PASS}
                	            initial_cypher={initial_cypher}
                           />
 			</>
@@ -278,9 +275,9 @@ class App extends Component {
   
                           <ResponsiveNeoGraph
                             containerId={"id0"}
-                            neo4jUri={NEO4J_URI}
-                            neo4jUser={NEO4J_USER}
-                            neo4jPassword={NEO4J_PASSWORD}
+                            neo4jUri={config.neo4j.URI}
+                            neo4jUser={config.neo4j.USER}
+                            neo4jPassword={config.neo4j.PASS}
                             initial_cypher={initial_cypher}
                           />
 			</>
@@ -297,7 +294,7 @@ class App extends Component {
                 <Route path="/requirement/:id" render={(props) => {
                   let req_id = props.location.pathname.replace('/requirement/', '');
                   let requirement = this.state.requirements.find(obj => obj.req_id === req_id)
-	          let initial_cypher = 'MATCH (n {uuid:"'+requirement.uuid+'"})-[r]->(m)-[b]->(z) RETURN n,r,m,b,z'
+	          let initial_cypher = 'MATCH (n {uuid:"'+requirement.uuid+'"}) OPTIONAL MATCH (n)-[r]->(m)-[b]->(z) RETURN n,r,m,b,z'
                   return (
                     <>
                       <RequirementView
@@ -305,9 +302,9 @@ class App extends Component {
                       />
                       <ResponsiveNeoGraph
                         containerId={"id0"}
-                        neo4jUri={NEO4J_URI}
-                        neo4jUser={NEO4J_USER}
-                        neo4jPassword={NEO4J_PASSWORD}
+                        neo4jUri={config.neo4j.URI}
+                        neo4jUser={config.neo4j.USER}
+                        neo4jPassword={config.neo4j.PASS}
                         initial_cypher={initial_cypher}
                       />
                     </>
@@ -316,7 +313,7 @@ class App extends Component {
                 <Route path="/draft/:id" render={(props) => {
                   let uuid = props.location.pathname.replace('/draft/', '');
                   let report = this.state.drafts.find(obj => obj.uuid === uuid)
-	          let initial_cypher = 'MATCH (n {uuid:"'+report.uuid+'"})-[r]->(m)-[b]->(z) RETURN n,r,m,b,z'
+	          let initial_cypher = 'MATCH (n {uuid:"'+report.uuid+'"}) OPTIONAL MATCH (n)-[r]->(m)-[b]->(z) RETURN n,r,m,b,z'
                   // let reportPosition = props.location.pathname.replace('/draft/', '');
                   return (
                     <>
@@ -325,9 +322,9 @@ class App extends Component {
                       />
                       <ResponsiveNeoGraph
                         containerId={"id0"}
-                        neo4jUri={NEO4J_URI}
-                        neo4jUser={NEO4J_USER}
-                        neo4jPassword={NEO4J_PASSWORD}
+                        neo4jUri={config.neo4j.URI}
+                        neo4jUser={config.neo4j.USER}
+                        neo4jPassword={config.neo4j.PASS}
                         initial_cypher={initial_cypher}
                       />
                     </>

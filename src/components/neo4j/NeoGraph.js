@@ -11,10 +11,10 @@ class NeoGraph extends Component {
   }
 
   componentDidMount() {
-    const { neo4jUri = "bolt://10.7.83.100:7687", 
-	    neo4jUser = "neo4j", 
-	    neo4jPassword = "developer", 
-            initial_cypher = "MATCH (rep:Report)-[con:SATISFIES]->(req:Requirement) RETURN req, con, rep"
+    const { neo4jUri, 
+	    neo4jUser, 
+	    neo4jPassword, 
+            initial_cypher = "MATCH (n) OPTIONAL MATCH (n)-[c]->(m) RETURN n, c, m"
     
     } = this.props;
     const config = {
@@ -43,10 +43,6 @@ class NeoGraph extends Component {
       },
       initial_cypher: initial_cypher
     };
-    /*
-      Since there is no neovis package on NPM at the moment, we have to use a "trick":
-      we bind Neovis to the window object in public/index.html.js
-    */
     this.vis = new NeoVis(config);
     this.vis.render();
   }
