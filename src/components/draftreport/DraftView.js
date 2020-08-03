@@ -143,7 +143,7 @@ class DraftView extends Component {
 
         return (
             <Row>
-                <Col sm={{ span: 10, offset: 1 }} md={{ span: 8, offset: 3 }}>
+                <Col sm={{ span: 10, offset: 1 }} md={{ span: 8, offset: 2 }}>
                    
                     {
 
