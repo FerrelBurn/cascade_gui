@@ -1,9 +1,7 @@
 import React from 'react';
-import { Row, Col, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 const RequirementView = (props) => {
     return (
-            <Row>
-                <Col sm={{ span: 10, offset: 1 }} md={{ span: 8, offset: 2 }}>
 	          <Card>
                     <Card.Body>
                       <Card.Text>
@@ -14,8 +12,6 @@ const RequirementView = (props) => {
                       </Card.Text>
                     </Card.Body>
 	          </Card>
-                </Col>
-            </Row>
     );
 }
 

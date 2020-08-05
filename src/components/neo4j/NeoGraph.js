@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ResizeAware from "react-resize-aware";
-import { Row, Col, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import NeoVis from 'neovis.js'
 
@@ -24,10 +24,10 @@ class NeoGraph extends Component {
       server_password: neo4jPassword,
       labels: {
         Requirement: {
-          caption: "req_id",
+          caption: "req_id"
         },
         Report: {
-          caption: "id",
+          caption: "id"
         }
       },
       relationships: {
@@ -50,8 +50,6 @@ class NeoGraph extends Component {
   render() {
     const { width, height, containerId, backgroundColor } = this.props;
     return (
-      <Row>
-        <Col sm={{ span: 10, offset: 1 }} md={{ span: 8, offset: 2 }}>
 	  <Card>
             <Card.Body>
               <div
@@ -65,8 +63,6 @@ class NeoGraph extends Component {
               />
             </Card.Body>
 	  </Card>
-        </Col>
-      </Row>
     );
   }
 }

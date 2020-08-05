@@ -142,11 +142,7 @@ class DraftView extends Component {
     render() {
 
         return (
-            <Row>
-                <Col sm={{ span: 10, offset: 1 }} md={{ span: 8, offset: 2 }}>
                    
-                    {
-
                         <div className="card" >
                             {/* <Toast bg="warning" onClose={() => this.setShowToast(false)} delay={3000} autohide show={this.state.showtoast}>
                             <Toast.Body>Requirement already added</Toast.Body>
@@ -233,9 +229,6 @@ class DraftView extends Component {
 
                             </div>
                         </div>
-                    }
-                </Col>
-            </Row>
         )
     }
 

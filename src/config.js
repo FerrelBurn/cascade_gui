@@ -1,6 +1,6 @@
 const local = {
 	  neo4j: {
-            URI: "bolt://10.7.83.100:7687",
+            URI: "bolt://localhost:7687",
             USER: "neo4j",
             PASS: "developer"
           }
@@ -8,13 +8,13 @@ const local = {
 
 const docker = {
 	  neo4j: {
-            URI: "bolt://10.7.83.100:7687",
+            URI: "bolt://"+window.location.hostname+":7687",
             USER: "neo4j",
             PASS: "developer"
           }
 };
 
-const config = process.env.REACT_APP_STAGE === 'docker'
+const config = process.env.REACT_APP_ENV === 'docker'
   ? docker
   : local;
 

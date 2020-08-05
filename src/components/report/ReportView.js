@@ -18,8 +18,6 @@ class ReportView extends Component {
         return (
             < >
                 {
-                    <Row>
-                        <Col md={{ span: 8, offset: 2 }}>
                             <div className="card" >
                                 <div className="card-header  d-flex">
                                     <span>
@@ -64,9 +62,6 @@ class ReportView extends Component {
 
                                 </div>
                             </div>
-                        </Col>
-                    </Row>
-
                 }
             </>
         )
