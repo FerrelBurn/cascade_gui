@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ResizeAware from "react-resize-aware";
-import { Card } from 'react-bootstrap';
 import PropTypes from "prop-types";
 import NeoVis from 'neovis.js'
 
@@ -14,7 +13,7 @@ class NeoGraph extends Component {
     const { neo4jUri, 
 	    neo4jUser, 
 	    neo4jPassword, 
-            initial_cypher = "MATCH (n) OPTIONAL MATCH (n)-[c]->(m) RETURN n, c, m"
+            initial_cypher = "MATCH (n)-[r]-(m) RETURN n, r, m"
     
     } = this.props;
     const config = {
@@ -46,23 +45,25 @@ class NeoGraph extends Component {
     this.vis = new NeoVis(config);
     this.vis.render();
   }
+  componentDidUpdate() {
+    // fixes issue with visualization not centering  
+    if (this.vis._network) {
+      this.vis._network.fit();
+    }
+  }
 
   render() {
     const { width, height, containerId, backgroundColor } = this.props;
     return (
-	  <Card>
-            <Card.Body>
-              <div
-                id={containerId}
-                ref={this.visRef}
-                style={{
-                  width: '100%',
-                  height: `${height}px`,
-                  backgroundColor: `${backgroundColor}`
-                }}
-              />
-            </Card.Body>
-	  </Card>
+          <div
+            id={containerId}
+            ref={this.visRef}
+            style={{
+              width: '100%',
+              height: `${height}px`,
+              backgroundColor: `${backgroundColor}`
+            }}
+          />
     );
   }
 }

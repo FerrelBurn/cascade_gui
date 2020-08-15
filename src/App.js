@@ -236,14 +236,14 @@ class App extends Component {
 
                   let uuid = props.location.pathname.replace('/report/', '');
                   let report = this.state.reports.find(obj => obj.uuid === uuid)
-                  let initial_cypher = 'MATCH (n {uuid:"'+report.uuid+'"}) OPTIONAL MATCH (n)-[r]->(m)-[b]->(z) RETURN n,r,m,b,z'
 
                   if (!report) { 
-                      let report = this.state.drafts.find(obj => obj.uuid === uuid)
+                      report = this.state.drafts.find(obj => obj.uuid === uuid)
                   }
+
+                  let initial_cypher = 'MATCH (n:Report)-[rel*0..2]-(n2) WHERE n.uuid = "'+report.uuid+'" RETURN n, rel, n2'
                   if (report) { 
                     return (
-                      <Row>
                         <Col md={{ span: 8, offset: 2 }}>
                           <Tabs defaultActiveKey="report">
                             <Tab eventKey="report" title="Report">
@@ -262,7 +262,6 @@ class App extends Component {
                             </Tab>
                           </Tabs>
                         </Col>
-                      </Row>
                     )
                   }
                   return (
@@ -276,9 +275,8 @@ class App extends Component {
                 <Route path="/requirement/:id" render={(props) => {
                   let req_id = props.location.pathname.replace('/requirement/', '');
                   let requirement = this.state.requirements.find(obj => obj.req_id === req_id)
-                  let initial_cypher = 'MATCH (n {uuid:"'+requirement.uuid+'"}) OPTIONAL MATCH (n)-[r]->(m)-[b]->(z) RETURN n,r,m,b,z'
+                  let initial_cypher = 'MATCH (n:Report)-[rel*0..2]-(n2) WHERE n.uuid = "'+requirement.uuid+'" RETURN n, rel, n2'
                   return (
-                    <Row>
                       <Col md={{ span: 8, offset: 2 }}>
                         <Tabs defaultActiveKey="requirement">
                           <Tab eventKey="requirement" title="Requirement">
@@ -297,16 +295,14 @@ class App extends Component {
                           </Tab>
                         </Tabs>
                       </Col>
-                    </Row>
                   )
                 }} />
                 <Route path="/draft/:id" render={(props) => {
                   let uuid = props.location.pathname.replace('/draft/', '');
                   let report = this.state.drafts.find(obj => obj.uuid === uuid)
-                  let initial_cypher = 'MATCH (n {uuid:"'+report.uuid+'"}) OPTIONAL MATCH (n)-[r]->(m)-[b]->(z) RETURN n,r,m,b,z'
+                  let initial_cypher = 'MATCH (n:Report)-[rel*0..2]-(n2) WHERE n.uuid = "'+report.uuid+'" RETURN n, rel, n2'
                   // let reportPosition = props.location.pathname.replace('/draft/', '');
                   return (
-                      <Row>
                         <Col md={{ span: 8, offset: 2 }}>
                           <Tabs defaultActiveKey="report">
                             <Tab eventKey="report" title="Report">
@@ -325,7 +321,6 @@ class App extends Component {
                           </Tab>
                         </Tabs>
                       </Col>
-                    </Row>
                   )
                 }} />
               </Switch>

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReportEnclosure from '../report/ReportEnclosure';
 import ReportComment from '../report/ReportComment';
-import { Button, Spinner, Toast, Row, Col } from 'react-bootstrap';
+import { Button, Spinner, Card, Row, Col } from 'react-bootstrap';
 import HighlightedText from './HighlightedText';
 import axios from 'axios';
 const reactStringReplace = require('react-string-replace');
@@ -143,11 +143,8 @@ class DraftView extends Component {
 
         return (
                    
-                        <div className="card" >
-                            {/* <Toast bg="warning" onClose={() => this.setShowToast(false)} delay={3000} autohide show={this.state.showtoast}>
-                            <Toast.Body>Requirement already added</Toast.Body>
-                        </Toast> */}
-                            <div className="card-header">
+                        <Card>
+                            <Card.Header>
                                 <Row >
                                     <Col>
                                         <b> Serial Number:</b>
@@ -177,8 +174,8 @@ class DraftView extends Component {
 
 
                                 </div>
-                            </div>
-                            <div className="cardBody">
+                            </Card.Header>
+                            <Card.Body>
 
                                 <p className="card-text">
                                     <b>ACQ: </b>{this.props.report.acq}
@@ -227,8 +224,8 @@ class DraftView extends Component {
                                     ))
                                 }
 
-                            </div>
-                        </div>
+                            </Card.Body>
+                        </Card>
         )
     }
 
