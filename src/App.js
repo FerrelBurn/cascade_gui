@@ -275,7 +275,7 @@ class App extends Component {
                 <Route path="/requirement/:id" render={(props) => {
                   let req_id = props.location.pathname.replace('/requirement/', '');
                   let requirement = this.state.requirements.find(obj => obj.req_id === req_id)
-                  let initial_cypher = 'MATCH (n:Report)-[rel*0..2]-(n2) WHERE n.uuid = "'+requirement.uuid+'" RETURN n, rel, n2'
+                  let initial_cypher = 'MATCH (n:Requirement)-[rel*0..2]-(n2) WHERE n.uuid = "'+requirement.uuid+'" RETURN n, rel, n2'
                   return (
                       <Col md={{ span: 8, offset: 2 }}>
                         <Tabs defaultActiveKey="requirement">
