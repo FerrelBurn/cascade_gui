@@ -9,6 +9,10 @@ COPY package*.json /app/
 # Javascript modules on the registry
 # metadata file in JSON format
 RUN npm install
+
+# vis-network bug workaround
+RUN cp node_modules/vis-network/dist/dist/vis-network.min.css node_modules/vis-network/dist/vis-network.min.css
+
 COPY ./ /app/
 RUN npm run build
 # Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
