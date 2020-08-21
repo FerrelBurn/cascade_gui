@@ -1,7 +1,10 @@
 # Stage 0, "build-stage", based on Node.js, to build and compile the frontend
 FROM tiangolo/node-frontend:10 as build-stage
-# Creates directories 
 
+#Set React environment
+ENV REACT_APP_ENV docker
+
+# Creates directories 
 WORKDIR /app
 # Install JSON dependencies
 COPY package*.json /app/
