@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import ReportEnclosure from './ReportEnclosure';
 import ReportComment from './ReportComment';
 //import { Form, Button, Row, Col } from 'react-bootstrap'
-import { Row, Col } from 'react-bootstrap'
+import { Row, Col, Card } from 'react-bootstrap'
 // const ReportView = (this.props) => (
 class ReportView extends Component {
     constructor(props) {
@@ -17,12 +17,7 @@ class ReportView extends Component {
     render() {
         return (
             < >
-                {/* <span>{this.props.report}</span> */}
-                {console.log(this.props.report.serial)}
-                {/* {console.log(this.props.report.serial)} */}
                 {
-                    <Row>
-                        <Col md={{ span: 8, offset: 2 }}>
                             <div className="card" >
                                 <div className="card-header  d-flex">
                                     <span>
@@ -49,27 +44,24 @@ class ReportView extends Component {
                                     <p className="card-text">
                                         <b>Summary: </b>{this.props.report.summary}
                                     </p>
-                                    <p className="card-text">
+                                    <Card.Text>
                                         <b>Text:</b> {this.props.report.text.split('\n').map((item, key) => {
-                                            return <p key={key}>{item}<br /></p>
+                                            return <span key={key}>{item}<br /><br /></span>
                                         })}
-                                    </p>
+                                    </Card.Text>
                                     {
-                                        this.props.report.comments.map((comment) => (
-                                            <ReportComment comment={comment} />
+                                        this.props.report.comments.map((comment, key) => (
+                                            <ReportComment key={key} comment={comment} />
                                         ))
                                     }
                                     {
-                                        this.props.report.encl.map((encl) => (
-                                            <ReportEnclosure encl={encl} />
+                                        this.props.report.encl.map((encl, key) => (
+                                            <ReportEnclosure key={key} encl={encl} />
                                         ))
                                     }
 
                                 </div>
                             </div>
-                        </Col>
-                    </Row>
-
                 }
             </>
         )

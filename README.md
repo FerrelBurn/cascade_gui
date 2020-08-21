@@ -102,3 +102,9 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/de
 ### `npm run build` fails to minify
 
 This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+
+
+
+### Neo4j Initialization
+
+visit http://<cascade_gui>/seed to load reports and requirements into Neo4j

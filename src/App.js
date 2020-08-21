@@ -9,8 +9,7 @@ import ListReports from './components/report/ListReports';
 import ListRequirements from './components/requirement/ListRequirements';
 import Navigation from './components/Navigation';
 import DraftList from './components/draftreport/DraftList';
-//import { Navbar, NavbarBrand, Col, Row } from "react-bootstrap";
-import { Navbar, NavbarBrand, Alert } from "react-bootstrap";
+import { Navbar, NavbarBrand, Alert, Col, Row, Tab, Tabs } from "react-bootstrap";
 
 import { Link } from 'react-router-dom';
 import data1 from './data/allreportsresponse.json';
@@ -22,6 +21,10 @@ import RequirementCrosswalk from './components/collection_management/Requirement
 import { FaCheck, FaWindowClose, FaTags, FaRegListAlt } from "react-icons/fa";
 import SideNav, { NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import axios from 'axios';
+import { ResponsiveNeoGraph } from "./components/neo4j/NeoGraph";
+import config from "./config";
+
+
 class App extends Component {
   _isMounted = false;
   constructor() {
@@ -54,7 +57,6 @@ class App extends Component {
     console.log("component did mount")
     this.getReports();
     this.getRequirements();
-
   }
 
   getFakeData() {
@@ -64,16 +66,14 @@ class App extends Component {
     })
 
   }
+
   uploadRequirements(payload) {
-
-
-
-
     axios.post("/peruse/provide_queries", payload)
       .then((response) => {
 
       })
   }
+
   getRequirements() {
 
     axios.get("/peruse/listreqs")
@@ -236,20 +236,33 @@ class App extends Component {
 
                   let uuid = props.location.pathname.replace('/report/', '');
                   let report = this.state.reports.find(obj => obj.uuid === uuid)
-		  if (report) {
-                      return (
-                        <ReportView
-                          report={report}
-                        />
-                      )
+
+                  if (!report) { 
+                      report = this.state.drafts.find(obj => obj.uuid === uuid)
                   }
-                  let draft = this.state.drafts.find(obj => obj.uuid === uuid)
-		  if (draft) {
-                      return (
-                        <ReportView
-                          report={draft}
-                        />
-                      )
+
+                  let initial_cypher = 'MATCH (n:Report)-[rel*0..2]-(n2) WHERE n.uuid = "'+report.uuid+'" RETURN n, rel, n2'
+                  if (report) { 
+                    return (
+                        <Col md={{ span: 8, offset: 2 }}>
+                          <Tabs defaultActiveKey="report">
+                            <Tab eventKey="report" title="Report">
+                              <ReportView
+                                report={report}
+                              />
+                            </Tab>
+                            <Tab eventKey="neo4j" title="Relationships">
+                              <ResponsiveNeoGraph
+                                containerId={"id0"}
+                                neo4jUri={config.neo4j.URI}
+                                neo4jUser={config.neo4j.USER}
+                                neo4jPassword={config.neo4j.PASS}
+                                initial_cypher={initial_cypher}
+                              />
+                            </Tab>
+                          </Tabs>
+                        </Col>
+                    )
                   }
                   return (
                   <div className="alert">
@@ -262,20 +275,52 @@ class App extends Component {
                 <Route path="/requirement/:id" render={(props) => {
                   let req_id = props.location.pathname.replace('/requirement/', '');
                   let requirement = this.state.requirements.find(obj => obj.req_id === req_id)
+                  let initial_cypher = 'MATCH (n:Requirement)-[rel*0..2]-(n2) WHERE n.uuid = "'+requirement.uuid+'" RETURN n, rel, n2'
                   return (
-                    <RequirementView
-                      requirement={requirement}
-                    />
+                      <Col md={{ span: 8, offset: 2 }}>
+                        <Tabs defaultActiveKey="requirement">
+                          <Tab eventKey="requirement" title="Requirement">
+                            <RequirementView
+                              requirement={requirement}
+                            />
+                          </Tab>
+                          <Tab eventKey="neo4j" title="Relationships">
+                            <ResponsiveNeoGraph
+                              containerId={"id0"}
+                              neo4jUri={config.neo4j.URI}
+                              neo4jUser={config.neo4j.USER}
+                              neo4jPassword={config.neo4j.PASS}
+                              initial_cypher={initial_cypher}
+                            />
+                          </Tab>
+                        </Tabs>
+                      </Col>
                   )
                 }} />
                 <Route path="/draft/:id" render={(props) => {
                   let uuid = props.location.pathname.replace('/draft/', '');
                   let report = this.state.drafts.find(obj => obj.uuid === uuid)
+                  let initial_cypher = 'MATCH (n:Report)-[rel*0..2]-(n2) WHERE n.uuid = "'+report.uuid+'" RETURN n, rel, n2'
                   // let reportPosition = props.location.pathname.replace('/draft/', '');
                   return (
-                    <DraftView
-                      report={report}
-                    />
+                        <Col md={{ span: 8, offset: 2 }}>
+                          <Tabs defaultActiveKey="report">
+                            <Tab eventKey="report" title="Report">
+                              <DraftView
+                                report={report}
+                              />
+                          </Tab>
+                          <Tab eventKey="neo4j" title="Relationships">
+                            <ResponsiveNeoGraph
+                              containerId={"id0"}
+                              neo4jUri={config.neo4j.URI}
+                              neo4jUser={config.neo4j.USER}
+                              neo4jPassword={config.neo4j.PASS}
+                              initial_cypher={initial_cypher}
+                            />
+                          </Tab>
+                        </Tabs>
+                      </Col>
                   )
                 }} />
               </Switch>
