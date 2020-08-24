@@ -107,4 +107,4 @@ This section has moved here: https://facebook.github.io/create-react-app/docs/tr
 
 ### Neo4j Initialization
 
-visit http://<cascade_gui>/seed to load reports and requirements into Neo4j
+visit `http://<cascade_gui>/seed` to load reports and requirements into Neo4j
